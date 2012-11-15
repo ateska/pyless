@@ -1,0 +1,60 @@
+/* 
+Style sheets including other style sheets: the @import rule
+
+http://www.w3.org/TR/WD-css3-syntax-20030813/#at-import
+*/
+@import "mystyle.css";
+@import url("mystyle.css");
+
+@import url("fineprint.css") print;
+@import url("bluish.css") projection, tv;
+
+
+/* 
+Pseudo-classes
+
+http://www.w3.org/TR/CSS2/selector.html#pseudo-class-selectors
+*/
+div > p:first-child { text-indent: 0 }
+
+p:first-child em { font-weight : bold }
+
+q:lang(no) {
+  quotes: none;
+}
+
+* > a:first-child {quotes: none}
+a:first-child  {quotes: none}
+
+a:link { color: red }
+:link  { color: red }
+
+a.external:visited { color: blue }
+
+a:link    { color: red }
+a:visited { color: blue }
+a:hover   { color: yellow }
+a:active  { color: lime }
+
+a:focus { background: yellow }
+a:focus:hover { background: white }
+
+html:lang(fr-ca){quotes: none}
+html:lang(de) {quotes: none}
+:lang(fr) > Q {quotes: none}
+:lang(de) > Q {quotes: none}
+
+
+/* 
+Pseudo-elements
+
+http://www.w3.org/TR/CSS2/selector.html#pseudo-element-selectors
+*/
+
+p:first-line { text-transform: uppercase }
+
+p:first-letter { font-size: 3em; font-weight: normal }
+
+h1:before {content: counter(chapno, upper-roman) ". " }
+p.special:before {content: "Special! "}
+p.special:first-letter {color: #ffd800}

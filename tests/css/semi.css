@@ -1,0 +1,20 @@
+/* Semicolumns presence prior '}' test */
+
+/* rule sets */
+div { width: 99% }
+div { width: 99%; }
+div { width: 99%; height: 1px; }
+div { width: 99%; height: 1px }
+
+
+/* font faces */
+@font-face { font-family: 'Garamond Pro' }
+@font-face { font-family: 'Garamond Pro' ; }
+@font-face { font-family: 'Garamond Pro'; src: url("/fonts/garamond-pro.ttf"); }
+@font-face { font-family: 'Garamond Pro'; src: url("/fonts/garamond-pro.ttf") }
+
+/* @page */
+@page :left { margin: 0.5cm }
+@page :left { margin: 0.5cm; }
+@page :left { margin: 0.5cm; margin: 1cm; }
+@page :left { margin: 0.5cm; margin: 1cm }
