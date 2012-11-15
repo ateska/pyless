@@ -4,4 +4,4 @@ python:
 
 install: []
 
-script: python -m unittest tests.test_css
+script: python -m unittest discover
