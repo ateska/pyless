@@ -1,4 +1,4 @@
-# $ANTLR 3.1.3 Mar 18, 2009 10:09:25 lesscss.g 2012-11-17 23:16:45
+# $ANTLR 3.1.3 Mar 18, 2009 10:09:25 lesscss.g 2012-11-17 23:35:04
 
 import sys
 from antlr3 import *
@@ -275,7 +275,7 @@ class lesscssParser(Parser):
                     stream_EOF.add(EOF4)
 
                 # AST Rewrite
-                # elements: imports, charSet, bodylist
+                # elements: charSet, bodylist, imports
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -720,7 +720,7 @@ class lesscssParser(Parser):
                     stream_RBRACE.add(RBRACE17)
 
                 # AST Rewrite
-                # elements: media_query_list, ruleSet
+                # elements: ruleSet, media_query_list
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -1234,7 +1234,7 @@ class lesscssParser(Parser):
                     stream_RPAREN.add(RPAREN34)
 
                 # AST Rewrite
-                # elements: media_feature, expr
+                # elements: expr, media_feature
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -2029,7 +2029,7 @@ class lesscssParser(Parser):
                     stream_RBRACE.add(RBRACE62)
 
                 # AST Rewrite
-                # elements: pseudoPage, declarationset
+                # elements: declarationset, pseudoPage
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -2373,7 +2373,7 @@ class lesscssParser(Parser):
                     stream_RBRACE.add(RBRACE72)
 
                 # AST Rewrite
-                # elements: declarationset, selector
+                # elements: selector, declarationset
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -3268,7 +3268,7 @@ class lesscssParser(Parser):
                         stream_IDENT.add(IDENT88)
 
                     # AST Rewrite
-                    # elements: a, IDENT, b
+                    # elements: IDENT, b, a
                     # token labels: b, a
                     # rule labels: retval
                     # token list labels: 
@@ -3343,7 +3343,7 @@ class lesscssParser(Parser):
                         stream_RPAREN.add(RPAREN91)
 
                     # AST Rewrite
-                    # elements: expr, d, FUNCTION, c
+                    # elements: expr, FUNCTION, c, d
                     # token labels: d, c
                     # rule labels: retval
                     # token list labels: 
@@ -3431,7 +3431,7 @@ class lesscssParser(Parser):
                         stream_RPAREN.add(RPAREN96)
 
                     # AST Rewrite
-                    # elements: RBRACKET, LBRACKET, FUNCTION, e, expr, f
+                    # elements: expr, FUNCTION, f, LBRACKET, RBRACKET, e
                     # token labels: f, e
                     # rule labels: retval
                     # token list labels: 
@@ -3941,7 +3941,7 @@ class lesscssParser(Parser):
 
 
                 # AST Rewrite
-                # elements: prio, property, expr
+                # elements: expr, prio, property
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -4612,7 +4612,7 @@ class lesscssParser(Parser):
                         stream_RPAREN.add(RPAREN128)
 
                     # AST Rewrite
-                    # elements: fnct_name, fnct_args
+                    # elements: fnct_args, fnct_name
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -4664,7 +4664,7 @@ class lesscssParser(Parser):
                         stream_RPAREN.add(RPAREN131)
 
                     # AST Rewrite
-                    # elements: fnct_name, expr
+                    # elements: expr, fnct_name
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 

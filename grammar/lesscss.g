@@ -681,8 +681,7 @@ STRING
         |   '\'' ( STRINGESC | ~('\''|'\\'|'\n'|'\r') )* '\''
         ;
 
-protected
-STRINGESC
+fragment STRINGESC
         :   '\\'
             (   'n'
             |   'r'
@@ -724,7 +723,12 @@ PAGE_SYM        : '@' P A G E ;
 MEDIA_SYM       : '@' M E D I A ;
 FONTFACE_SYM    : '@' F O N T '-' F A C E ;
 CHARSET_SYM     : '@charset' ;
-KEYFRAMES_SYM   : '@' K E Y F R A M E S ;
+KEYFRAMES_SYM   : '@' K E Y F R A M E S
+                | '@' '-' W E B K I T '-' K E Y F R A M E S
+                | '@' '-' M O Z '-' K E Y F R A M E S
+                | '@' '-' M S '-' K E Y F R A M E S
+                | '@' '-' O '-' K E Y F R A M E S
+                ;
 
 IMPORTANT_SYM   : '!' (WS|COMMENT)* I M P O R T A N T   ;
 
@@ -749,7 +753,8 @@ fragment    PERCENTAGE  :;  // '%'
 fragment    RESOLUTION  :;  // 'dpi', 'dpcm'
 
 NUMBER
-    :   (
+    :   
+        (
               '0'..'9'+ ('.' '0'..'9'+)?
             | '.' '0'..'9'+
         )
