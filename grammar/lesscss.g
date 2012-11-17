@@ -96,8 +96,8 @@ media_query_list
     ;
 
 media_query
-    : ( ONLY | NOT )? media_type ( AND media_expr )*
-    | media_expr ( AND media_expr )*
+    : ( IDENT )? media_type ( IDENT media_expr )*
+    | media_expr ( IDENT media_expr )*
     ;
 
 media_type
@@ -105,7 +105,7 @@ media_type
     ;
 
 media_expr
-    : LPAREN media_feature ( COLON expr )? RPAREN
+    : LPAREN media_feature ( COLON expr )? COLON? RPAREN
     ;
 
 media_feature
@@ -247,9 +247,6 @@ term
             | RESOLUTION
         )
     | STRING
-    | NOT
-    | AND
-    | ONLY
     | IDENT
     | URI
     | function
@@ -619,11 +616,6 @@ RPAREN          : ')'       ;
 COMMA           : ','       ;
 DOT             : '.'       ;
 
-// These are coming from Media queries extension
-AND             : 'and'     ;
-ONLY            : 'only'    ;
-NOT             : 'not'     ;
-
 // -----------------
 // Literal strings. Delimited by either ' or "
 //
@@ -733,14 +725,14 @@ NUMBER
             | (K? H Z)=>
                 K? H    Z   { $type = FREQ;         }
             
-            | IDENT         { $type = DIMENSION;    }
-            
-            | '%'           { $type = PERCENTAGE;   }
-
             | (D P I)=>
                 D P I       { $type = RESOLUTION;   }
             | (D P C M)=>
                 D P C M      { $type = RESOLUTION;  }
+
+            | IDENT         { $type = DIMENSION;    }
+            
+            | '%'           { $type = PERCENTAGE;   }
             
             | // Just a number
         )

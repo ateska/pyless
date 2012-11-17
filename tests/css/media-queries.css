@@ -30,12 +30,7 @@ Test is based on http://www.w3.org/TR/css3-mediaqueries/
 
 @media (min-width: -100px) { a {color: red} }
 
-/*
-@media (example, all,), speech { a {color: red} }
-@media &test, screen           { a {color: red} }
-
-@media all and(color) { a {color: red} }
-@media test;,all { body { background:lime } }
+@media all and (color) { a {color: red} }
 
 @media screen and (min-width: 400px) and (max-width: 700px) { a {color: red} }
 
@@ -71,4 +66,3 @@ Test is based on http://www.w3.org/TR/css3-mediaqueries/
 
 @media handheld and (grid) and (max-width: 15em) { a {color: red} }
 @media handheld and (grid) and (device-max-height: 7em) { a {color: red} }
-*/
