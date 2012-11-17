@@ -1,0 +1,108 @@
+@media print {
+  .class {
+    color: blue;
+  }
+  .class .sub {
+    width: 42;
+  }
+  .top,
+  header > h1 {
+    color: #444444;
+  }
+}
+@media screen {
+  body {
+    max-width: 480;
+  }
+}
+@media all {
+  body {
+    max-width: 800px;
+  }
+}
+@media all {
+  aside {
+    float: none;
+  }
+}
+@media handheld {
+  body {
+    max-width: 480px;
+  }
+}
+@media print {
+  body {
+    padding: 20px;
+  }
+  body header {
+    background-color: red;
+  }
+}
+@media print {
+  body {
+    margin-left: 20px;
+  }
+}
+@media screen {
+  .sidebar {
+    width: 300px;
+  }
+}
+@media screen {
+  .sidebar {
+    width: 500px;
+  }
+}
+@media a {
+  
+}
+@media a {
+  .first .second .third {
+    width: 300px;
+  }
+  .first .second .fourth {
+    width: 3;
+  }
+}
+@media a {
+  .first .second .third {
+    width: 500px;
+  }
+}
+@media a, b {
+  body {
+    width: 95%;
+  }
+}
+@media a {
+  body {
+    width: 100%;
+  }
+}
+.a {
+  background: black;
+}
+@media handheld {
+  .a {
+    background: white;
+  }
+}
+@media handheld {
+  .a {
+    background: red;
+  }
+}
+.b {
+  background: black;
+}
+@media handheld {
+  .b {
+    background: white;
+  }
+}
+@media handheld {
+  .b {
+    background: red;
+  }
+}
+
