@@ -1,3 +1,14 @@
+p a span,
+.foo .bar .qux {
+  color: red;
+}
+
+* { color: red; }
+a { color: red; }
+#id { color: red; }
+.cls { color: red; }
+
+
 h1 a:hover,
 h2 a:hover,
 h3 a:hover,
@@ -121,4 +132,16 @@ p a span {
 }
 .a :nth-child(3) {
   color: purple;
+}
+
+.a[id] {
+  color: red;
+}
+
+.a[id] {
+  color: red;
+}
+
+.a[foo=bar] {
+  color: red;
 }

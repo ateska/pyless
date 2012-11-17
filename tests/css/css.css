@@ -1,6 +1,6 @@
 @charset "utf-8";
 div {
-  color: black;
+  margin: +0 -0 0 0;
 }
 div {
   width: 99%;
@@ -75,7 +75,7 @@ p + h1 {
   background-image: url(images/image.jpg);
   background: -webkit-gradient(linear, left top, left bottom, from(#ff0000), to(#0000ff));
   margin: 17px;
-  filter: alpha(opacity=100);
+  filter: alpha(opacity=100,x=3);
 }
 #important {
   color: red !important;

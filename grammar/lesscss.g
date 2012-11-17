@@ -31,9 +31,12 @@ tokens {
     N_Page;
     N_Media;
     N_RuleSet;
-    N_Selectors;
+    N_Selector;
     N_Declarations;
     N_Declaration;
+    N_Function;
+    N_Attrib;
+    N_Space;
 }
 
 
@@ -44,7 +47,6 @@ tokens {
 // A style sheet consists of an optional character set specification, an optional series
 // of imports, and then the main body of style rules.
 //
-//DONE
 styleSheet
     :   charSet?
         imports*
@@ -56,7 +58,6 @@ styleSheet
 // -----------------
 // Character set.   Picks up the user specified character set, should it be present.
 //
-//DONE
 charSet
     :   CHARSET_SYM STRING SEMI
         -> ^(N_CharSet STRING)
@@ -65,13 +66,11 @@ charSet
 // ---------
 // Import.  Location of an external style sheet to include in the ruleset.
 //
-//DONE
 imports
     :   IMPORT_SYM importUrl (medium (COMMA medium)*)? SEMI
         -> ^(N_Import importUrl medium*)
     ;
 
-//DONE
 importUrl
     : STRING
     | URI
@@ -81,7 +80,6 @@ importUrl
 // Media.   Introduce a set of rules that are to be used if the consumer indicates
 //          it belongs to the signified medium.
 //
-//DONE
 media
     : MEDIA_SYM medium (COMMA medium)*
         LBRACE
@@ -93,7 +91,6 @@ media
 // ---------    
 // Medium.  The name of a medim that are particulare set of rules applies to.
 //
-//DONE
 medium
     : IDENT 
     ;
@@ -101,18 +98,15 @@ medium
 // ---------
 // Font face
 //
-//DONE
 fontface
     : FONTFACE_SYM LBRACE declarationset RBRACE
         -> ^(N_FontFace declarationset)
     ;
     
-//DONE
 bodylist
     : bodyset*
     ;
 
-//DONE
 bodyset
     : ruleSet
     | media
@@ -120,39 +114,29 @@ bodyset
     | fontface
     ;   
 
-//DONE
 page
     : PAGE_SYM pseudoPage? LBRACE declarationset RBRACE
         -> ^(N_Page pseudoPage? declarationset)
     ;
 
-//DONE
 pseudoPage
     : COLON IDENT -> IDENT
     ;
     
-unaryOperator
-    : MINUS
-    | PLUS
-    ;  
-
-//DONE    
 property
     : IDENT
     ;
 
-//DONE
 ruleSet
     : selector (COMMA selector)* LBRACE declarationset RBRACE
-        -> ^(N_RuleSet ^(N_Selectors selector+) declarationset)
+        -> ^(N_RuleSet ^(N_Selector selector)+ declarationset)
     ;
 
 selector
     : simpleSelector (combinator simpleSelector)*
     ;
 
-//DONE
-fragment combinator
+combinator
     : PLUS
     | GREATER
     |
@@ -162,11 +146,16 @@ simpleSelector
     : elementName ((esPred)=>elementSubsequent)*
     | ((esPred)=>elementSubsequent)+
     ;
-    
+
 esPred
     : HASH | DOT | LBRACKET | COLON
     ;
-    
+
+elementName
+    : IDENT
+    | STAR
+    ;
+
 elementSubsequent
     : HASH
     | cssClass
@@ -174,71 +163,55 @@ elementSubsequent
     | pseudo
     ;
 
-//DONE
 cssClass
     : DOT a=IDENT
-        { $a.setText('.' + $a.getText()); } // Add dot to IDENT token
+        { $a.setText('.' + $a.getText()); } // Add '.' to IDENT token
         -> IDENT
     ;
 
-//DONE
-elementName
-    : IDENT
-    | STAR
-    ;
-    
-attrib
-    : LBRACKET
-    
-        IDENT
-        
-            (
-                (
-                      OPEQ
-                    | INCLUDES
-                    | DASHMATCH
-                )
-                (
-                      IDENT
-                    | STRING
-                )       
-            )?
-    
-      RBRACKET
-;
-
 pseudo
-    : COLON ( IDENT | FUNCTION expr RPAREN )
+    : COLON a=IDENT
+        { $a.setText(':' + $a.getText()); } // Add ':' to IDENT token
+        -> IDENT
+    | COLON FUNCTION expr RPAREN
+        -> ^(N_Function FUNCTION expr)
     ;
 
-//DONE
+attrib
+    : LBRACKET attribBody RBRACKET
+        ->  ^(N_Attrib attribBody )
+    ;
+
+attribBody
+    : IDENT
+    | IDENT (OPEQ | INCLUDES | DASHMATCH)^ (IDENT | STRING ) 
+    ;
+
 declarationset
     : declaration (SEMI declaration)* SEMI? -> declaration+
     ;
 
-//DONE
 declaration
     : property COLON expr prio? -> ^(N_Declaration property expr prio?)
     ;
-    
-//DONE
+
 prio
     : IMPORTANT_SYM
     ;
-    
+
+//DOMNE
 expr
-    : term (operator term)*
+    : term (operator^ term)*
     ;
 
-//DONE
 fragment operator
     : SOLIDUS
     | COMMA
-    |
+    | -> N_Space // If operator is whitespace, emit this token
     ;
 
 term
-    : unaryOperator?
+    : unaryOperator^?
         (
               NUMBER
             | PERCENTAGE
@@ -256,10 +229,19 @@ term
     | hexColor
     ;
 
+unaryOperator
+    : MINUS
+    | PLUS
+    ;  
+
 
 function
     : fnct_name fnct_args RPAREN
+        -> ^(N_Function fnct_name fnct_args)
+
     | fnct_name expr RPAREN
+        -> ^(N_Function fnct_name expr)
+
     ;
 
 fnct_name
@@ -268,10 +250,11 @@ fnct_name
 
 fragment fnct_args
     : fnct_arg (COMMA fnct_arg)*
+        -> fnct_arg+
     ;
 
 fnct_arg
-    : IDENT OPEQ expr
+    : IDENT OPEQ^ expr
     ;
 
 hexColor
