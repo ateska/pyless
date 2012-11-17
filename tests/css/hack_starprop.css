@@ -1,3 +1,10 @@
+/* 
+This is non-standard feature called Star Property Hack
+See: http://stackoverflow.com/questions/1667531/what-does-a-star-preceded-property-mean-in-css
+
+It is extensively used in Bootstrap CSS for example
+*/
+
 video {
   display: inline-block;
   *display: inline;
