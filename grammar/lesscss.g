@@ -30,6 +30,8 @@ tokens {
     N_FontFace;
     N_Page;
     N_Media;
+    N_MediaQuery;
+    N_MediaExpr;
     N_RuleSet;
     N_Selector;
     N_Declarations;
@@ -68,7 +70,7 @@ charSet
 //
 imports
     :   IMPORT_SYM importUrl media_query_list? SEMI
-        -> ^(N_Import importUrl)
+        -> ^(N_Import importUrl media_query_list?)
     ;
 
 importUrl
@@ -93,11 +95,12 @@ media
 //
 media_query_list
     : media_query (COMMA media_query)*
+        -> ^(N_MediaQuery media_query+)
     ;
 
 media_query
-    : ( IDENT )? media_type ( IDENT media_expr )*
-    | media_expr ( IDENT media_expr )*
+    : ( IDENT )? media_type ( IDENT^ media_expr )*
+    | media_expr ( IDENT^ media_expr )*
     ;
 
 media_type
@@ -106,6 +109,7 @@ media_type
 
 media_expr
     : LPAREN media_feature ( COLON expr )? COLON? RPAREN
+        -> ^(N_MediaExpr media_feature expr? )
     ;
 
 media_feature
