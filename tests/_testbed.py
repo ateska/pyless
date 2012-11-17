@@ -28,7 +28,7 @@ class FileBasedParserTest(unittest.TestCase):
 		###
 
 		fout = open(fname+'.dot', "w")
-		fout.write('digraph {0} {{\nratio = fill;splines=curved;packMode=graph;\n'.format(os.path.basename(fname)[:-4]))
+		fout.write('digraph {0} {{\nratio = fill;splines=curved;packMode=graph;\n'.format(os.path.basename(fname)[:-4].replace('-','_')))
 
 		def twalker(t):
 			fout.write('"{0}" [shape=box,label="{1}"];\n'.format(id(t), "{0}".format(t).replace('"','\\"')))
