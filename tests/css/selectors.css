@@ -112,10 +112,10 @@ p a span {
 .bar b > .bar b {
   background: amber;
 }
-.other :fnord {
+.other ::fnord {
   color: #ff0000;
 }
-.other:fnord {
+.other::fnord {
   color: #ff0000;
 }
 .other :bnord {
