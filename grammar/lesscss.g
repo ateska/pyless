@@ -52,7 +52,7 @@ styleSheet
         imports*
         bodylist
         EOF
-            -> ^(N_StyleSheet charSet? imports* bodylist)
+            -> ^(N_StyleSheet charSet? imports* bodylist?)
     ;
     
 // -----------------
@@ -67,8 +67,8 @@ charSet
 // Import.  Location of an external style sheet to include in the ruleset.
 //
 imports
-    :   IMPORT_SYM importUrl (medium (COMMA medium)*)? SEMI
-        -> ^(N_Import importUrl medium*)
+    :   IMPORT_SYM importUrl media_query_list? SEMI
+        -> ^(N_Import importUrl)
     ;
 
 importUrl
@@ -81,18 +81,35 @@ importUrl
 //          it belongs to the signified medium.
 //
 media
-    : MEDIA_SYM medium (COMMA medium)*
+    : MEDIA_SYM media_query_list?
         LBRACE
             ruleSet*
         RBRACE
-        -> ^(N_Media medium+ ruleSet*)
+        -> ^(N_Media media_query_list? ruleSet*)
     ;
 
 // ---------    
-// Medium.  The name of a medim that are particulare set of rules applies to.
+// Media queries
 //
-medium
-    : IDENT 
+media_query_list
+    : media_query (COMMA media_query)*
+    ;
+
+media_query
+    : ( ONLY | NOT )? media_type ( AND media_expr )*
+    | media_expr ( AND media_expr )*
+    ;
+
+media_type
+    : IDENT
+    ;
+
+media_expr
+    : LPAREN media_feature ( COLON expr )? RPAREN
+    ;
+
+media_feature
+    : IDENT
     ;
 
 // ---------
@@ -206,7 +223,6 @@ prio
     : IMPORTANT_SYM
     ;
 
-//DOMNE
 expr
     : term (operator^ term)*
     ;
@@ -228,8 +244,12 @@ term
             | ANGLE
             | TIME
             | FREQ
+            | RESOLUTION
         )
     | STRING
+    | NOT
+    | AND
+    | ONLY
     | IDENT
     | URI
     | function
@@ -599,6 +619,11 @@ RPAREN          : ')'       ;
 COMMA           : ','       ;
 DOT             : '.'       ;
 
+// These are coming from Media queries extension
+AND             : 'and'     ;
+ONLY            : 'only'    ;
+NOT             : 'not'     ;
+
 // -----------------
 // Literal strings. Delimited by either ' or "
 //
@@ -622,11 +647,10 @@ STRINGESC
             )
         ;
 
-
 // -------------
 // Identifier.  Identifier tokens pick up properties names and values
 //
-IDENT : '-'? NMSTART NMCHAR* ;
+IDENT   : '-'? NMSTART NMCHAR* ;
 
 // -------------
 // Function.
@@ -637,13 +661,13 @@ FUNCTION        : IDENT LPAREN
 // -------------
 // Reference.   Reference to an element in the body we are styling, such as <XXXX id="reference">
 //
-HASH            : '#' NAME              ;
+HASH            : '#' NAME ;
 
-IMPORT_SYM      : '@' I M P O R T       ;
-PAGE_SYM        : '@' P A G E           ;
-MEDIA_SYM       : '@' M E D I A         ;
-FONTFACE_SYM    : '@' F O N T '-' F A C E   ;
-CHARSET_SYM     : '@charset '           ;
+IMPORT_SYM      : '@' I M P O R T ;
+PAGE_SYM        : '@' P A G E ;
+MEDIA_SYM       : '@' M E D I A ;
+FONTFACE_SYM    : '@' F O N T '-' F A C E ;
+CHARSET_SYM     : '@charset' ;
 
 IMPORTANT_SYM   : '!' (WS|COMMENT)* I M P O R T A N T   ;
 
@@ -665,6 +689,7 @@ fragment    TIME        :;  // 'ms', 's'
 fragment    FREQ        :;  // 'khz', 'hz'
 fragment    DIMENSION   :;  // nnn'Somethingnotyetinvented'
 fragment    PERCENTAGE  :;  // '%'
+fragment    RESOLUTION  :;  // 'dpi', 'dpcm'
 
 NUMBER
     :   (
@@ -711,6 +736,11 @@ NUMBER
             | IDENT         { $type = DIMENSION;    }
             
             | '%'           { $type = PERCENTAGE;   }
+
+            | (D P I)=>
+                D P I       { $type = RESOLUTION;   }
+            | (D P C M)=>
+                D P C M      { $type = RESOLUTION;  }
             
             | // Just a number
         )

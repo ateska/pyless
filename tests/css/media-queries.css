@@ -1,0 +1,74 @@
+/*
+Test is based on http://www.w3.org/TR/css3-mediaqueries/
+*/
+
+@import url(color.css) screen;
+@import url(color.css) screen and (color);
+@import url(example.css) screen and (color), projection and (color);
+
+@media screen {
+  * { font-family: sans-serif }
+}
+
+@media all and (min-width:500px) { a {color: red} }
+@media (min-width:500px) { a {color: red} }
+
+@media (orientation: portrait) { a {color: red} }
+@media all and (orientation: portrait) { a {color: red} }
+
+@media screen and (color), projection and (color) { a {color: red} }
+
+@media all { a {color: red} }
+@media { a {color: red} }
+
+@media screen and (color), projection and (color) { a {color: red} }
+
+@media all { body { background:lime } }
+@media example { body { background:red } }
+
+@media (min-orientation:portrait) { a {color: red} }
+
+@media (min-width: -100px) { a {color: red} }
+
+/*
+@media (example, all,), speech { a {color: red} }
+@media &test, screen           { a {color: red} }
+
+@media all and(color) { a {color: red} }
+@media test;,all { body { background:lime } }
+
+@media screen and (min-width: 400px) and (max-width: 700px) { a {color: red} }
+
+@media handheld and (min-width: 20em), 
+	screen and (min-width: 20em) { a {color: red} }
+
+@media screen and (device-width: 800px) { a {color: red} }
+
+@media all and (orientation:portrait) { a {color: red} }
+@media all and (orientation:landscape) { a {color: red} }
+
+@media screen and (device-aspect-ratio: 16/9) { a {color: red} }
+@media screen and (device-aspect-ratio: 32/18) { a {color: red} }
+@media screen and (device-aspect-ratio: 1280/720) { a {color: red} }
+@media screen and (device-aspect-ratio: 2560/1440) { a {color: red} }
+
+@media all and (color) { a {color: red} }
+@media all and (min-color: 1) { a {color: red} }
+
+@media all and (min-color: 2) { a {color: red} }
+
+@media all and (color-index) { a {color: red} }
+@media all and (min-color-index: 1) { a {color: red} }
+
+@media all and (monochrome) { a {color: red} }
+@media all and (min-monochrome: 1) { a {color: red} }
+
+@media all and (min-monochrome: 2) { a {color: red} }
+
+@media print and (min-resolution: 300dpi) { a {color: red} }
+@media print and (min-resolution: 118dpcm) { a {color: red} }
+@media tv and (scan: progressive) { a {color: red} }
+
+@media handheld and (grid) and (max-width: 15em) { a {color: red} }
+@media handheld and (grid) and (device-max-height: 7em) { a {color: red} }
+*/
