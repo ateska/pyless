@@ -36,3 +36,4 @@ nosetests.xml
 pyless.sublime-*
 lesscss.tokens
 tests/css/*.dot
+tests/bootstrap/*.dot
