@@ -1,5 +1,19 @@
+// LessCSS / CSS3 grammar for ANTLR
+//
+// Author      : Ales Teska, Exidius
+// Contact     : ales.teska+pyless@exidius.com
+// Website     : https://github.com/ateska
+// License     : Free BSD License
+//
 // Gramar is based on original Jim Idle CSS 2.1 grammar released under conditions
 // stated bellow. See original file at: http://www.antlr.org/grammar/1240941192304/css21.g
+//
+// Used references:
+// - http://www.w3.org/TR/CSS21/grammar.html
+// - http://www.w3.org/TR/css3-syntax
+// - http://www.w3.org/TR/css3-selectors
+// - http://www.w3.org/TR/css3-mediaqueries
+// - http://www.w3.org/TR/css3-animations
 //
 // This grammar is free to use providing you retain everyhting in this header comment
 // section.
@@ -15,6 +29,7 @@
 // This grammar is free to use providing you retain everything in this header comment
 // section.
 //
+
 grammar lesscss;
 
 options {
@@ -39,6 +54,7 @@ tokens {
     N_Function;
     N_Attrib;
     N_Space;
+    N_Pseudo;
 }
 
 
@@ -123,7 +139,28 @@ fontface
     : FONTFACE_SYM LBRACE declarationset RBRACE
         -> ^(N_FontFace declarationset)
     ;
-    
+ 
+
+// ---------
+// Keyframes.   From CSS3 Animation
+//
+
+ keyframes
+    : KEYFRAMES_SYM IDENT LBRACE keyframes_block* RBRACE
+    ;
+
+keyframes_block
+    : keyframe_selector LBRACE declarationset RBRACE
+    ;
+
+
+keyframe_selector
+    : ( IDENT | PERCENTAGE ) ( COMMA ( IDENT | PERCENTAGE ) )*
+    ;
+
+// ---------
+// Body
+//
 bodylist
     : bodyset*
     ;
@@ -133,6 +170,7 @@ bodyset
     | media
     | page
     | fontface
+    | keyframes
     ;   
 
 page
@@ -198,11 +236,12 @@ cssClass
     ;
 
 pseudo
-    : COLON a=IDENT
-        { $a.setText(':' + $a.getText()); } // Add ':' to IDENT token
-        -> IDENT
-    | COLON FUNCTION expr RPAREN
-        -> ^(N_Function FUNCTION expr)
+    : a=COLON b=COLON? IDENT
+        -> ^(N_Pseudo $a $b? IDENT)
+    | c=COLON d=COLON? FUNCTION expr RPAREN
+        -> ^(N_Pseudo $c $d? ^(N_Function FUNCTION expr ) )
+    | e=COLON f=COLON? FUNCTION LBRACKET expr RBRACKET RPAREN
+        -> ^(N_Pseudo $e $f? ^(N_Function FUNCTION LBRACKET expr RBRACKET ) )
     ;
 
 attrib
@@ -212,7 +251,17 @@ attrib
 
 attribBody
     : IDENT
-    | IDENT (OPEQ | INCLUDES | DASHMATCH)^ (IDENT | STRING ) 
+    | IDENT 
+        ( OPEQ 
+        | INCLUDES 
+        | DASHMATCH
+        | PREFIXMATCH
+        | SUFFIXMATCH
+        | SUBSTRINGMATCH
+        )^ 
+        ( IDENT 
+        | STRING 
+        ) 
     ;
 
 declarationset
@@ -602,6 +651,10 @@ CDC             : '-->'
                 
 INCLUDES        : '~='      ;
 DASHMATCH       : '|='      ;
+PREFIXMATCH     : '^='      ;
+SUFFIXMATCH     : '$='      ;
+SUBSTRINGMATCH  : '*='      ;
+
 
 GREATER         : '>'       ;
 LBRACE          : '{'       ;
@@ -634,12 +687,19 @@ STRINGESC
             (   'n'
             |   'r'
             |   't'
-            |   'b'
-            |   'f'
+            |   HEXCHAR
             |   '"'
             |   '\''
             |   '\\'
             |   ('u')+ HEXCHAR HEXCHAR HEXCHAR HEXCHAR
+            // Unicode escape sequence '\XXXXXX'
+            |   HEXCHAR HEXCHAR 
+                    (HEXCHAR 
+                        (HEXCHAR 
+                            (HEXCHAR HEXCHAR?)?
+                        )?
+                    )?
+                ('\r'|'\n'|'\t'|'\f'|' ')*
             )
         ;
 
@@ -664,6 +724,7 @@ PAGE_SYM        : '@' P A G E ;
 MEDIA_SYM       : '@' M E D I A ;
 FONTFACE_SYM    : '@' F O N T '-' F A C E ;
 CHARSET_SYM     : '@charset' ;
+KEYFRAMES_SYM   : '@' K E Y F R A M E S ;
 
 IMPORTANT_SYM   : '!' (WS|COMMENT)* I M P O R T A N T   ;
 
