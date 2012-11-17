@@ -125,7 +125,14 @@ pseudoPage
     
 property
     : IDENT
+
+    // This is 'star property hack'
+    // See: http://stackoverflow.com/questions/1667531/what-does-a-star-preceded-property-mean-in-css
+    | STAR a=IDENT
+        { $a.setText('*' + $a.getText()); } // Add '*' to IDENT token
+        -> IDENT
     ;
+
 
 ruleSet
     : selector (COMMA selector)* LBRACE declarationset RBRACE
