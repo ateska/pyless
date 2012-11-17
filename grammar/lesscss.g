@@ -23,6 +23,19 @@ options {
     language=Python;
 }
 
+tokens {
+    N_StyleSheet;
+    N_CharSet;
+    N_Import;
+    N_FontFace;
+    N_Page;
+    N_Media;
+    N_RuleSet;
+    N_Selectors;
+    N_Declarations;
+    N_Declaration;
+}
+
 
 // -------------
 // Main rule.   This is the main entry rule for the parser, the top level
@@ -31,107 +44,122 @@ options {
 // A style sheet consists of an optional character set specification, an optional series
 // of imports, and then the main body of style rules.
 //
+//DONE
 styleSheet
-    :   charSet
+    :   charSet?
         imports*
         bodylist
         EOF
+            -> ^(N_StyleSheet charSet? imports* bodylist)
     ;
     
 // -----------------
 // Character set.   Picks up the user specified character set, should it be present.
 //
+//DONE
 charSet
     :   CHARSET_SYM STRING SEMI
-    |
+        -> ^(N_CharSet STRING)
     ;
 
 // ---------
 // Import.  Location of an external style sheet to include in the ruleset.
 //
+//DONE
 imports
-    :   IMPORT_SYM (STRING|URI) (medium (COMMA medium)*)? SEMI
+    :   IMPORT_SYM importUrl (medium (COMMA medium)*)? SEMI
+        -> ^(N_Import importUrl medium*)
+    ;
+
+//DONE
+importUrl
+    : STRING
+    | URI
     ;
 
 // ---------
 // Media.   Introduce a set of rules that are to be used if the consumer indicates
 //          it belongs to the signified medium.
 //
+//DONE
 media
     : MEDIA_SYM medium (COMMA medium)*
         LBRACE
-            ruleSet
+            ruleSet*
         RBRACE
-    ;
-
-// ---------
-// Font face
-//
-//
-fontface
-    : FONTFACE_SYM LBRACE declarationset RBRACE
+        -> ^(N_Media medium+ ruleSet*)
     ;
 
 // ---------    
 // Medium.  The name of a medim that are particulare set of rules applies to.
 //
+//DONE
 medium
     : IDENT 
     ;
-    
 
+// ---------
+// Font face
+//
+//DONE
+fontface
+    : FONTFACE_SYM LBRACE declarationset RBRACE
+        -> ^(N_FontFace declarationset)
+    ;
+    
+//DONE
 bodylist
     : bodyset*
     ;
-    
+
+//DONE
 bodyset
     : ruleSet
     | media
     | page
     | fontface
     ;   
-    
+
+//DONE
 page
     : PAGE_SYM pseudoPage? LBRACE declarationset RBRACE
+        -> ^(N_Page pseudoPage? declarationset)
     ;
-    
+
+//DONE
 pseudoPage
-    : COLON IDENT
-    ;
-    
-operator
-    : SOLIDUS
-    | COMMA
-    |
-    ;
-    
-combinator
-    : PLUS
-    | GREATER
-    |
+    : COLON IDENT -> IDENT
     ;
     
 unaryOperator
     : MINUS
     | PLUS
     ;  
-    
+
+//DONE    
 property
     : IDENT
     ;
-    
+
+//DONE
 ruleSet
     : selector (COMMA selector)* LBRACE declarationset RBRACE
+        -> ^(N_RuleSet ^(N_Selectors selector+) declarationset)
     ;
-    
+
 selector
     : simpleSelector (combinator simpleSelector)*
     ;
 
+//DONE
+fragment combinator
+    : PLUS
+    | GREATER
+    |
+    ;
+
 simpleSelector
-    : elementName 
-        ((esPred)=>elementSubsequent)*
-        
+    : elementName ((esPred)=>elementSubsequent)*
     | ((esPred)=>elementSubsequent)+
     ;
     
@@ -145,11 +173,15 @@ elementSubsequent
     | attrib
     | pseudo
     ;
-    
+
+//DONE
 cssClass
-    : DOT IDENT
+    : DOT a=IDENT
+        { $a.setText('.' + $a.getText()); } // Add dot to IDENT token
+        -> IDENT
     ;
-    
+
+//DONE
 elementName
     : IDENT
     | STAR
@@ -179,14 +211,17 @@ pseudo
     : COLON ( IDENT | FUNCTION expr RPAREN )
     ;
 
+//DONE
 declarationset
-    : declaration (SEMI declaration)* SEMI?
+    : declaration (SEMI declaration)* SEMI? -> declaration+
     ;
 
+//DONE
 declaration
-    : property COLON expr prio?
+    : property COLON expr prio? -> ^(N_Declaration property expr prio?)
     ;
     
+//DONE
 prio
     : IMPORTANT_SYM
     ;
@@ -194,7 +229,14 @@ prio
 expr
     : term (operator term)*
     ;
-    
+
+//DONE
+fragment operator
+    : SOLIDUS
+    | COMMA
+    |
+    ;
+
 term
     : unaryOperator?
         (
@@ -636,7 +678,7 @@ fragment    PERCENTAGE  :;  // '%'
 
 NUMBER
     :   (
-              '0'..'9' ('.' '0'..'9'+)?
+              '0'..'9'+ ('.' '0'..'9'+)?
             | '.' '0'..'9'+
         )
         (

@@ -1,5 +1,6 @@
 import unittest, glob, os
 import pyless
+from pyless.antlr3 import tree
 
 ###
 '''
@@ -25,9 +26,27 @@ class TestCSS(unittest.TestCase):
 		r = result.tree.toStringTree()
 		self.assertIsNotNone(r, "Parsing silently failed!")
 
+		###
+
+		fout = open(fname+'.dot', "w")
+		fout.write('digraph {0} {{\nratio = fill;splines=curved;packMode=graph;\n'.format(os.path.basename(fname)[:-4]))
+
+		def twalker(t):
+			fout.write('"{0}" [shape=box,label="{1}"];\n'.format(id(t), "{0}".format(t).replace('"','\\"')))
+			if t.parent is not None:
+				fout.write('"{0}" -> "{1}";\n'.format(id(t.parent), id(t)))
+
+			for ch in t.children:
+				twalker(ch)
+
+		twalker(result.tree)
+
+		fout.write("}\n")
+
+
 	def test_count(self):
 		'Ensuring that there is correct number of CSS files to test parser.'
-		self.assertEqual(self.counter, 27, "Number of *.css files to be tested is not correct (counter={0})".format(self.counter))
+		self.assertEqual(self.counter, 29, "Number of *.css files to be tested is not correct (counter={0})".format(self.counter))
 
 
 def testcss_generator(fname):

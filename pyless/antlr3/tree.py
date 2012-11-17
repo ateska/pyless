@@ -1367,7 +1367,7 @@ class CommonTree(BaseTree):
         if self.getType() == INVALID_TOKEN_TYPE:
             return "<errornode>"
 
-        return self.token.text
+        return str(self.token.text)
 
     __str__ = toString   
 
