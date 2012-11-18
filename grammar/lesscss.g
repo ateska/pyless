@@ -298,6 +298,7 @@ term
             | LENGTH
             | EMS
             | EXS
+            | REMS
             | ANGLE
             | TIME
             | FREQ
@@ -747,6 +748,7 @@ IMPORTANT_SYM   : '!' (WS|COMMENT)* I M P O R T A N T   ;
 //          number parsing rule.
 //
 fragment    EMS         :;  // 'em'
+fragment    REMS        :;  // 'rem'
 fragment    EXS         :;  // 'ex'
 fragment    LENGTH      :;  // 'px'. 'cm', 'mm', 'in'. 'pt', 'pc'
 fragment    ANGLE       :;  // 'deg', 'rad', 'grad'
@@ -769,6 +771,8 @@ NUMBER
                       M     { $type = EMS;          }
                     | X     { $type = EXS;          }
                 )
+            | (R E M) =>
+                R E M       { $type = REM;          }
             | (P(X|T|C))=>
                 P
                 (
