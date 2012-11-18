@@ -230,10 +230,16 @@ cssClass
 pseudo
     : a=COLON b=COLON? IDENT
         -> ^(N_Pseudo $a $b? IDENT)
+    
     | c=COLON d=COLON? FUNCTION expr RPAREN
         -> ^(N_Pseudo $c $d? ^(N_PseudoFunction FUNCTION expr ) )
+
     | e=COLON f=COLON? FUNCTION LBRACKET expr RBRACKET RPAREN
         -> ^(N_Pseudo $e $f? ^(N_PseudoFunction FUNCTION LBRACKET expr RBRACKET ) )
+
+    | g=COLON h=COLON? FUNCTION pseudo RPAREN
+        -> ^(N_Pseudo $g $h? ^(N_PseudoFunction FUNCTION pseudo ) )
+
     ;
 
 attrib
