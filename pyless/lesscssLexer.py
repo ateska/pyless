@@ -1,4 +1,4 @@
-# $ANTLR 3.1.3 Mar 18, 2009 10:09:25 lesscss.g 2012-11-17 23:35:06
+# $ANTLR 3.1.3 Mar 18, 2009 10:09:25 lesscss.g 2012-11-18 01:05:46
 
 import sys
 from antlr3 import *
@@ -9,106 +9,103 @@ from antlr3.compat import set, frozenset
 HIDDEN = BaseRecognizer.HIDDEN
 
 # token types
-FUNCTION=43
-STAR=37
+FUNCTION=40
+STAR=39
 EOF=-1
-MEDIA_SYM=25
-LBRACKET=42
-INCLUDES=46
-RPAREN=32
-NAME=68
-GREATER=39
-ESCAPE=65
-DIMENSION=101
-STRINGESC=99
-NL=102
-COMMENT=96
-N_Media=9
-D=73
-E=74
-F=75
-G=76
-A=70
-B=71
-RBRACE=27
-C=72
-L=81
-M=82
-NMCHAR=67
-IMPORT_SYM=23
-N=83
-SUBSTRINGMATCH=50
-O=84
-H=77
-I=78
-J=79
-K=80
-NUMBER=53
-U=90
-T=89
-W=92
-V=91
-Q=86
-P=85
-S=88
-CDO=97
-R=87
-CDC=98
-Y=94
-PERCENTAGE=35
-URL=69
-X=93
-Z=95
-URI=24
-PAGE_SYM=36
-WS=100
-DASHMATCH=47
-EMS=55
-N_RuleSet=12
-NONASCII=63
-N_Page=8
-N_MediaQuery=10
-N_Declarations=14
-N_Selector=13
-LBRACE=26
-N_Import=6
-LPAREN=30
-LENGTH=54
-IMPORTANT_SYM=51
-N_Function=16
-TIME=58
-KEYFRAMES_SYM=34
-COMMA=28
+MEDIA_SYM=22
+INCLUDES=43
+LBRACKET=38
+RPAREN=29
+NAME=65
+GREATER=35
+ESCAPE=62
+DIMENSION=98
+STRINGESC=96
+NL=99
+COMMENT=93
+D=70
+E=71
+F=72
+G=73
+A=67
+B=68
+RBRACE=24
+C=69
+L=78
+M=79
+NMCHAR=64
+IMPORT_SYM=20
+N=80
+SUBSTRINGMATCH=47
+O=81
+H=74
+I=75
+J=76
+K=77
+NUMBER=50
+U=87
+T=86
+W=89
+V=88
+Q=83
+P=82
+S=85
+CDO=94
+R=84
+CDC=95
+PERCENTAGE=33
+URL=66
+Y=91
+X=90
+Z=92
+URI=21
+PAGE_SYM=31
+WS=97
+DASHMATCH=44
+EMS=52
+N_PseudoFunction=16
+N_RuleSet=7
+NONASCII=60
+N_MediaQuery=5
+N_Selector=10
+LBRACE=23
+LPAREN=27
+LENGTH=51
+IMPORTANT_SYM=48
+N_Function=12
+TIME=55
+KEYFRAMES_SYM=32
+COMMA=25
 N_StyleSheet=4
-IDENT=29
-PLUS=38
-FREQ=59
-RBRACKET=44
-DOT=41
-CHARSET_SYM=20
-ANGLE=57
-HASH=40
-HEXCHAR=62
-N_CharSet=5
-RESOLUTION=60
-PREFIXMATCH=48
-MINUS=61
-N_Pseudo=19
-SOLIDUS=52
-SEMI=22
-UNICODE=64
-COLON=31
-NMSTART=66
-N_Declaration=15
-OPEQ=45
-FONTFACE_SYM=33
-EXS=56
-N_Space=18
-N_MediaExpr=11
-N_Attrib=17
-SUFFIXMATCH=49
-N_FontFace=7
-STRING=21
+IDENT=26
+PLUS=34
+FREQ=56
+RBRACKET=41
+DOT=37
+CHARSET_SYM=17
+ANGLE=54
+HASH=36
+HEXCHAR=59
+RESOLUTION=57
+PREFIXMATCH=45
+MINUS=58
+N_Pseudo=15
+SOLIDUS=49
+SEMI=19
+UNICODE=61
+COLON=28
+NMSTART=63
+N_Declaration=11
+OPEQ=42
+FONTFACE_SYM=30
+EXS=53
+N_Space=14
+M_KeyframeSelector=9
+N_MediaExpr=6
+N_Attrib=13
+N_KeyframeBlock=8
+SUFFIXMATCH=46
+STRING=18
 
 
 class lesscssLexer(Lexer):
@@ -198,8 +195,8 @@ class lesscssLexer(Lexer):
     def mHEXCHAR(self, ):
 
         try:
-            # lesscss.g:385:25: ( ( 'a' .. 'f' | 'A' .. 'F' | '0' .. '9' ) )
-            # lesscss.g:385:27: ( 'a' .. 'f' | 'A' .. 'F' | '0' .. '9' )
+            # lesscss.g:389:25: ( ( 'a' .. 'f' | 'A' .. 'F' | '0' .. '9' ) )
+            # lesscss.g:389:27: ( 'a' .. 'f' | 'A' .. 'F' | '0' .. '9' )
             pass 
             if (48 <= self.input.LA(1) <= 57) or (65 <= self.input.LA(1) <= 70) or (97 <= self.input.LA(1) <= 102):
                 self.input.consume()
@@ -227,8 +224,8 @@ class lesscssLexer(Lexer):
     def mNONASCII(self, ):
 
         try:
-            # lesscss.g:388:25: ( '\\u0080' .. '\\uFFFF' )
-            # lesscss.g:388:27: '\\u0080' .. '\\uFFFF'
+            # lesscss.g:392:25: ( '\\u0080' .. '\\uFFFF' )
+            # lesscss.g:392:27: '\\u0080' .. '\\uFFFF'
             pass 
             self.matchRange(128, 65535)
 
@@ -247,59 +244,59 @@ class lesscssLexer(Lexer):
     def mUNICODE(self, ):
 
         try:
-            # lesscss.g:390:25: ( '\\\\' HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? )? ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* )
-            # lesscss.g:390:27: '\\\\' HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? )? ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+            # lesscss.g:394:25: ( '\\\\' HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? )? ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* )
+            # lesscss.g:394:27: '\\\\' HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? )? ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
             pass 
             self.match(92)
             self.mHEXCHAR()
-            # lesscss.g:391:33: ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? )?
+            # lesscss.g:395:33: ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? )?
             alt5 = 2
             LA5_0 = self.input.LA(1)
 
             if ((48 <= LA5_0 <= 57) or (65 <= LA5_0 <= 70) or (97 <= LA5_0 <= 102)) :
                 alt5 = 1
             if alt5 == 1:
-                # lesscss.g:391:34: HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )?
+                # lesscss.g:395:34: HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )?
                 pass 
                 self.mHEXCHAR()
-                # lesscss.g:392:37: ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )?
+                # lesscss.g:396:37: ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )?
                 alt4 = 2
                 LA4_0 = self.input.LA(1)
 
                 if ((48 <= LA4_0 <= 57) or (65 <= LA4_0 <= 70) or (97 <= LA4_0 <= 102)) :
                     alt4 = 1
                 if alt4 == 1:
-                    # lesscss.g:392:38: HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )?
+                    # lesscss.g:396:38: HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )?
                     pass 
                     self.mHEXCHAR()
-                    # lesscss.g:393:41: ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )?
+                    # lesscss.g:397:41: ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )?
                     alt3 = 2
                     LA3_0 = self.input.LA(1)
 
                     if ((48 <= LA3_0 <= 57) or (65 <= LA3_0 <= 70) or (97 <= LA3_0 <= 102)) :
                         alt3 = 1
                     if alt3 == 1:
-                        # lesscss.g:393:42: HEXCHAR ( HEXCHAR ( HEXCHAR )? )?
+                        # lesscss.g:397:42: HEXCHAR ( HEXCHAR ( HEXCHAR )? )?
                         pass 
                         self.mHEXCHAR()
-                        # lesscss.g:394:45: ( HEXCHAR ( HEXCHAR )? )?
+                        # lesscss.g:398:45: ( HEXCHAR ( HEXCHAR )? )?
                         alt2 = 2
                         LA2_0 = self.input.LA(1)
 
                         if ((48 <= LA2_0 <= 57) or (65 <= LA2_0 <= 70) or (97 <= LA2_0 <= 102)) :
                             alt2 = 1
                         if alt2 == 1:
-                            # lesscss.g:394:46: HEXCHAR ( HEXCHAR )?
+                            # lesscss.g:398:46: HEXCHAR ( HEXCHAR )?
                             pass 
                             self.mHEXCHAR()
-                            # lesscss.g:394:54: ( HEXCHAR )?
+                            # lesscss.g:398:54: ( HEXCHAR )?
                             alt1 = 2
                             LA1_0 = self.input.LA(1)
 
                             if ((48 <= LA1_0 <= 57) or (65 <= LA1_0 <= 70) or (97 <= LA1_0 <= 102)) :
                                 alt1 = 1
                             if alt1 == 1:
-                                # lesscss.g:394:54: HEXCHAR
+                                # lesscss.g:398:54: HEXCHAR
                                 pass 
                                 self.mHEXCHAR()
 
@@ -317,7 +314,7 @@ class lesscssLexer(Lexer):
 
 
 
-            # lesscss.g:398:33: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+            # lesscss.g:402:33: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
             while True: #loop6
                 alt6 = 2
                 LA6_0 = self.input.LA(1)
@@ -359,7 +356,7 @@ class lesscssLexer(Lexer):
     def mESCAPE(self, ):
 
         try:
-            # lesscss.g:400:25: ( UNICODE | '\\\\' ~ ( '\\r' | '\\n' | '\\f' | HEXCHAR ) )
+            # lesscss.g:404:25: ( UNICODE | '\\\\' ~ ( '\\r' | '\\n' | '\\f' | HEXCHAR ) )
             alt7 = 2
             LA7_0 = self.input.LA(1)
 
@@ -387,13 +384,13 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt7 == 1:
-                # lesscss.g:400:27: UNICODE
+                # lesscss.g:404:27: UNICODE
                 pass 
                 self.mUNICODE()
 
 
             elif alt7 == 2:
-                # lesscss.g:400:37: '\\\\' ~ ( '\\r' | '\\n' | '\\f' | HEXCHAR )
+                # lesscss.g:404:37: '\\\\' ~ ( '\\r' | '\\n' | '\\f' | HEXCHAR )
                 pass 
                 self.match(92)
                 if (0 <= self.input.LA(1) <= 9) or self.input.LA(1) == 11 or (14 <= self.input.LA(1) <= 47) or (58 <= self.input.LA(1) <= 64) or (71 <= self.input.LA(1) <= 96) or (103 <= self.input.LA(1) <= 65535):
@@ -421,7 +418,7 @@ class lesscssLexer(Lexer):
     def mNMSTART(self, ):
 
         try:
-            # lesscss.g:402:25: ( '_' | 'a' .. 'z' | 'A' .. 'Z' | ESCAPE )
+            # lesscss.g:406:25: ( '_' | 'a' .. 'z' | 'A' .. 'Z' | ESCAPE )
             alt8 = 4
             LA8 = self.input.LA(1)
             if LA8 == 95:
@@ -441,25 +438,25 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt8 == 1:
-                # lesscss.g:402:27: '_'
+                # lesscss.g:406:27: '_'
                 pass 
                 self.match(95)
 
 
             elif alt8 == 2:
-                # lesscss.g:403:27: 'a' .. 'z'
+                # lesscss.g:407:27: 'a' .. 'z'
                 pass 
                 self.matchRange(97, 122)
 
 
             elif alt8 == 3:
-                # lesscss.g:404:27: 'A' .. 'Z'
+                # lesscss.g:408:27: 'A' .. 'Z'
                 pass 
                 self.matchRange(65, 90)
 
 
             elif alt8 == 4:
-                # lesscss.g:406:27: ESCAPE
+                # lesscss.g:410:27: ESCAPE
                 pass 
                 self.mESCAPE()
 
@@ -477,7 +474,7 @@ class lesscssLexer(Lexer):
     def mNMCHAR(self, ):
 
         try:
-            # lesscss.g:409:25: ( '_' | 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '-' | ESCAPE )
+            # lesscss.g:413:25: ( '_' | 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '-' | ESCAPE )
             alt9 = 6
             LA9 = self.input.LA(1)
             if LA9 == 95:
@@ -501,37 +498,37 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt9 == 1:
-                # lesscss.g:409:27: '_'
+                # lesscss.g:413:27: '_'
                 pass 
                 self.match(95)
 
 
             elif alt9 == 2:
-                # lesscss.g:410:27: 'a' .. 'z'
+                # lesscss.g:414:27: 'a' .. 'z'
                 pass 
                 self.matchRange(97, 122)
 
 
             elif alt9 == 3:
-                # lesscss.g:411:27: 'A' .. 'Z'
+                # lesscss.g:415:27: 'A' .. 'Z'
                 pass 
                 self.matchRange(65, 90)
 
 
             elif alt9 == 4:
-                # lesscss.g:412:27: '0' .. '9'
+                # lesscss.g:416:27: '0' .. '9'
                 pass 
                 self.matchRange(48, 57)
 
 
             elif alt9 == 5:
-                # lesscss.g:413:27: '-'
+                # lesscss.g:417:27: '-'
                 pass 
                 self.match(45)
 
 
             elif alt9 == 6:
-                # lesscss.g:415:27: ESCAPE
+                # lesscss.g:419:27: ESCAPE
                 pass 
                 self.mESCAPE()
 
@@ -549,10 +546,10 @@ class lesscssLexer(Lexer):
     def mNAME(self, ):
 
         try:
-            # lesscss.g:418:25: ( ( NMCHAR )+ )
-            # lesscss.g:418:27: ( NMCHAR )+
+            # lesscss.g:422:25: ( ( NMCHAR )+ )
+            # lesscss.g:422:27: ( NMCHAR )+
             pass 
-            # lesscss.g:418:27: ( NMCHAR )+
+            # lesscss.g:422:27: ( NMCHAR )+
             cnt10 = 0
             while True: #loop10
                 alt10 = 2
@@ -563,7 +560,7 @@ class lesscssLexer(Lexer):
 
 
                 if alt10 == 1:
-                    # lesscss.g:418:27: NMCHAR
+                    # lesscss.g:422:27: NMCHAR
                     pass 
                     self.mNMCHAR()
 
@@ -595,10 +592,10 @@ class lesscssLexer(Lexer):
     def mURL(self, ):
 
         try:
-            # lesscss.g:420:25: ( ( '[' | '!' | '#' | '$' | '%' | '&' | '?' | '*' | '-' | '+' | '~' | '_' | '/' | '.' | ':' | ';' | '=' | ',' | '\\r' | '\\n' | '\\t' | '\\f' | ' ' | 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
-            # lesscss.g:420:27: ( '[' | '!' | '#' | '$' | '%' | '&' | '?' | '*' | '-' | '+' | '~' | '_' | '/' | '.' | ':' | ';' | '=' | ',' | '\\r' | '\\n' | '\\t' | '\\f' | ' ' | 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+            # lesscss.g:424:25: ( ( '[' | '!' | '#' | '$' | '%' | '&' | '?' | '*' | '-' | '+' | '~' | '_' | '/' | '.' | ':' | ';' | '=' | ',' | '\\r' | '\\n' | '\\t' | '\\f' | ' ' | 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
+            # lesscss.g:424:27: ( '[' | '!' | '#' | '$' | '%' | '&' | '?' | '*' | '-' | '+' | '~' | '_' | '/' | '.' | ':' | ';' | '=' | ',' | '\\r' | '\\n' | '\\t' | '\\f' | ' ' | 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
             pass 
-            # lesscss.g:420:27: ( '[' | '!' | '#' | '$' | '%' | '&' | '?' | '*' | '-' | '+' | '~' | '_' | '/' | '.' | ':' | ';' | '=' | ',' | '\\r' | '\\n' | '\\t' | '\\f' | ' ' | 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+            # lesscss.g:424:27: ( '[' | '!' | '#' | '$' | '%' | '&' | '?' | '*' | '-' | '+' | '~' | '_' | '/' | '.' | ':' | ';' | '=' | ',' | '\\r' | '\\n' | '\\t' | '\\f' | ' ' | 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
             while True: #loop11
                 alt11 = 2
                 LA11_0 = self.input.LA(1)
@@ -640,7 +637,7 @@ class lesscssLexer(Lexer):
     def mA(self, ):
 
         try:
-            # lesscss.g:434:17: ( ( 'a' | 'A' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '1' )
+            # lesscss.g:438:17: ( ( 'a' | 'A' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '1' )
             alt17 = 2
             LA17_0 = self.input.LA(1)
 
@@ -657,7 +654,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt17 == 1:
-                # lesscss.g:434:21: ( 'a' | 'A' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:438:21: ( 'a' | 'A' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 65 or self.input.LA(1) == 97:
                     self.input.consume()
@@ -669,7 +666,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:434:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:438:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop12
                     alt12 = 2
                     LA12_0 = self.input.LA(1)
@@ -698,47 +695,47 @@ class lesscssLexer(Lexer):
 
 
             elif alt17 == 2:
-                # lesscss.g:435:21: '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '1'
+                # lesscss.g:439:21: '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '1'
                 pass 
                 self.match(92)
-                # lesscss.g:435:26: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                # lesscss.g:439:26: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                 alt16 = 2
                 LA16_0 = self.input.LA(1)
 
                 if (LA16_0 == 48) :
                     alt16 = 1
                 if alt16 == 1:
-                    # lesscss.g:435:27: '0' ( '0' ( '0' ( '0' )? )? )?
+                    # lesscss.g:439:27: '0' ( '0' ( '0' ( '0' )? )? )?
                     pass 
                     self.match(48)
-                    # lesscss.g:435:31: ( '0' ( '0' ( '0' )? )? )?
+                    # lesscss.g:439:31: ( '0' ( '0' ( '0' )? )? )?
                     alt15 = 2
                     LA15_0 = self.input.LA(1)
 
                     if (LA15_0 == 48) :
                         alt15 = 1
                     if alt15 == 1:
-                        # lesscss.g:435:32: '0' ( '0' ( '0' )? )?
+                        # lesscss.g:439:32: '0' ( '0' ( '0' )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:435:36: ( '0' ( '0' )? )?
+                        # lesscss.g:439:36: ( '0' ( '0' )? )?
                         alt14 = 2
                         LA14_0 = self.input.LA(1)
 
                         if (LA14_0 == 48) :
                             alt14 = 1
                         if alt14 == 1:
-                            # lesscss.g:435:37: '0' ( '0' )?
+                            # lesscss.g:439:37: '0' ( '0' )?
                             pass 
                             self.match(48)
-                            # lesscss.g:435:41: ( '0' )?
+                            # lesscss.g:439:41: ( '0' )?
                             alt13 = 2
                             LA13_0 = self.input.LA(1)
 
                             if (LA13_0 == 48) :
                                 alt13 = 1
                             if alt13 == 1:
-                                # lesscss.g:435:41: '0'
+                                # lesscss.g:439:41: '0'
                                 pass 
                                 self.match(48)
 
@@ -779,7 +776,7 @@ class lesscssLexer(Lexer):
     def mB(self, ):
 
         try:
-            # lesscss.g:437:17: ( ( 'b' | 'B' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '2' )
+            # lesscss.g:441:17: ( ( 'b' | 'B' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '2' )
             alt23 = 2
             LA23_0 = self.input.LA(1)
 
@@ -796,7 +793,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt23 == 1:
-                # lesscss.g:437:21: ( 'b' | 'B' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:441:21: ( 'b' | 'B' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 66 or self.input.LA(1) == 98:
                     self.input.consume()
@@ -808,7 +805,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:437:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:441:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop18
                     alt18 = 2
                     LA18_0 = self.input.LA(1)
@@ -837,47 +834,47 @@ class lesscssLexer(Lexer):
 
 
             elif alt23 == 2:
-                # lesscss.g:438:21: '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '2'
+                # lesscss.g:442:21: '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '2'
                 pass 
                 self.match(92)
-                # lesscss.g:438:26: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                # lesscss.g:442:26: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                 alt22 = 2
                 LA22_0 = self.input.LA(1)
 
                 if (LA22_0 == 48) :
                     alt22 = 1
                 if alt22 == 1:
-                    # lesscss.g:438:27: '0' ( '0' ( '0' ( '0' )? )? )?
+                    # lesscss.g:442:27: '0' ( '0' ( '0' ( '0' )? )? )?
                     pass 
                     self.match(48)
-                    # lesscss.g:438:31: ( '0' ( '0' ( '0' )? )? )?
+                    # lesscss.g:442:31: ( '0' ( '0' ( '0' )? )? )?
                     alt21 = 2
                     LA21_0 = self.input.LA(1)
 
                     if (LA21_0 == 48) :
                         alt21 = 1
                     if alt21 == 1:
-                        # lesscss.g:438:32: '0' ( '0' ( '0' )? )?
+                        # lesscss.g:442:32: '0' ( '0' ( '0' )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:438:36: ( '0' ( '0' )? )?
+                        # lesscss.g:442:36: ( '0' ( '0' )? )?
                         alt20 = 2
                         LA20_0 = self.input.LA(1)
 
                         if (LA20_0 == 48) :
                             alt20 = 1
                         if alt20 == 1:
-                            # lesscss.g:438:37: '0' ( '0' )?
+                            # lesscss.g:442:37: '0' ( '0' )?
                             pass 
                             self.match(48)
-                            # lesscss.g:438:41: ( '0' )?
+                            # lesscss.g:442:41: ( '0' )?
                             alt19 = 2
                             LA19_0 = self.input.LA(1)
 
                             if (LA19_0 == 48) :
                                 alt19 = 1
                             if alt19 == 1:
-                                # lesscss.g:438:41: '0'
+                                # lesscss.g:442:41: '0'
                                 pass 
                                 self.match(48)
 
@@ -918,7 +915,7 @@ class lesscssLexer(Lexer):
     def mC(self, ):
 
         try:
-            # lesscss.g:440:17: ( ( 'c' | 'C' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '3' )
+            # lesscss.g:444:17: ( ( 'c' | 'C' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '3' )
             alt29 = 2
             LA29_0 = self.input.LA(1)
 
@@ -935,7 +932,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt29 == 1:
-                # lesscss.g:440:21: ( 'c' | 'C' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:444:21: ( 'c' | 'C' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 67 or self.input.LA(1) == 99:
                     self.input.consume()
@@ -947,7 +944,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:440:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:444:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop24
                     alt24 = 2
                     LA24_0 = self.input.LA(1)
@@ -976,47 +973,47 @@ class lesscssLexer(Lexer):
 
 
             elif alt29 == 2:
-                # lesscss.g:441:21: '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '3'
+                # lesscss.g:445:21: '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '3'
                 pass 
                 self.match(92)
-                # lesscss.g:441:26: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                # lesscss.g:445:26: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                 alt28 = 2
                 LA28_0 = self.input.LA(1)
 
                 if (LA28_0 == 48) :
                     alt28 = 1
                 if alt28 == 1:
-                    # lesscss.g:441:27: '0' ( '0' ( '0' ( '0' )? )? )?
+                    # lesscss.g:445:27: '0' ( '0' ( '0' ( '0' )? )? )?
                     pass 
                     self.match(48)
-                    # lesscss.g:441:31: ( '0' ( '0' ( '0' )? )? )?
+                    # lesscss.g:445:31: ( '0' ( '0' ( '0' )? )? )?
                     alt27 = 2
                     LA27_0 = self.input.LA(1)
 
                     if (LA27_0 == 48) :
                         alt27 = 1
                     if alt27 == 1:
-                        # lesscss.g:441:32: '0' ( '0' ( '0' )? )?
+                        # lesscss.g:445:32: '0' ( '0' ( '0' )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:441:36: ( '0' ( '0' )? )?
+                        # lesscss.g:445:36: ( '0' ( '0' )? )?
                         alt26 = 2
                         LA26_0 = self.input.LA(1)
 
                         if (LA26_0 == 48) :
                             alt26 = 1
                         if alt26 == 1:
-                            # lesscss.g:441:37: '0' ( '0' )?
+                            # lesscss.g:445:37: '0' ( '0' )?
                             pass 
                             self.match(48)
-                            # lesscss.g:441:41: ( '0' )?
+                            # lesscss.g:445:41: ( '0' )?
                             alt25 = 2
                             LA25_0 = self.input.LA(1)
 
                             if (LA25_0 == 48) :
                                 alt25 = 1
                             if alt25 == 1:
-                                # lesscss.g:441:41: '0'
+                                # lesscss.g:445:41: '0'
                                 pass 
                                 self.match(48)
 
@@ -1057,7 +1054,7 @@ class lesscssLexer(Lexer):
     def mD(self, ):
 
         try:
-            # lesscss.g:443:17: ( ( 'd' | 'D' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '4' )
+            # lesscss.g:447:17: ( ( 'd' | 'D' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '4' )
             alt35 = 2
             LA35_0 = self.input.LA(1)
 
@@ -1074,7 +1071,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt35 == 1:
-                # lesscss.g:443:21: ( 'd' | 'D' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:447:21: ( 'd' | 'D' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 68 or self.input.LA(1) == 100:
                     self.input.consume()
@@ -1086,7 +1083,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:443:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:447:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop30
                     alt30 = 2
                     LA30_0 = self.input.LA(1)
@@ -1115,47 +1112,47 @@ class lesscssLexer(Lexer):
 
 
             elif alt35 == 2:
-                # lesscss.g:444:21: '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '4'
+                # lesscss.g:448:21: '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '4'
                 pass 
                 self.match(92)
-                # lesscss.g:444:26: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                # lesscss.g:448:26: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                 alt34 = 2
                 LA34_0 = self.input.LA(1)
 
                 if (LA34_0 == 48) :
                     alt34 = 1
                 if alt34 == 1:
-                    # lesscss.g:444:27: '0' ( '0' ( '0' ( '0' )? )? )?
+                    # lesscss.g:448:27: '0' ( '0' ( '0' ( '0' )? )? )?
                     pass 
                     self.match(48)
-                    # lesscss.g:444:31: ( '0' ( '0' ( '0' )? )? )?
+                    # lesscss.g:448:31: ( '0' ( '0' ( '0' )? )? )?
                     alt33 = 2
                     LA33_0 = self.input.LA(1)
 
                     if (LA33_0 == 48) :
                         alt33 = 1
                     if alt33 == 1:
-                        # lesscss.g:444:32: '0' ( '0' ( '0' )? )?
+                        # lesscss.g:448:32: '0' ( '0' ( '0' )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:444:36: ( '0' ( '0' )? )?
+                        # lesscss.g:448:36: ( '0' ( '0' )? )?
                         alt32 = 2
                         LA32_0 = self.input.LA(1)
 
                         if (LA32_0 == 48) :
                             alt32 = 1
                         if alt32 == 1:
-                            # lesscss.g:444:37: '0' ( '0' )?
+                            # lesscss.g:448:37: '0' ( '0' )?
                             pass 
                             self.match(48)
-                            # lesscss.g:444:41: ( '0' )?
+                            # lesscss.g:448:41: ( '0' )?
                             alt31 = 2
                             LA31_0 = self.input.LA(1)
 
                             if (LA31_0 == 48) :
                                 alt31 = 1
                             if alt31 == 1:
-                                # lesscss.g:444:41: '0'
+                                # lesscss.g:448:41: '0'
                                 pass 
                                 self.match(48)
 
@@ -1196,7 +1193,7 @@ class lesscssLexer(Lexer):
     def mE(self, ):
 
         try:
-            # lesscss.g:446:17: ( ( 'e' | 'E' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '5' )
+            # lesscss.g:450:17: ( ( 'e' | 'E' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '5' )
             alt41 = 2
             LA41_0 = self.input.LA(1)
 
@@ -1213,7 +1210,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt41 == 1:
-                # lesscss.g:446:21: ( 'e' | 'E' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:450:21: ( 'e' | 'E' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 69 or self.input.LA(1) == 101:
                     self.input.consume()
@@ -1225,7 +1222,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:446:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:450:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop36
                     alt36 = 2
                     LA36_0 = self.input.LA(1)
@@ -1254,47 +1251,47 @@ class lesscssLexer(Lexer):
 
 
             elif alt41 == 2:
-                # lesscss.g:447:21: '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '5'
+                # lesscss.g:451:21: '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '5'
                 pass 
                 self.match(92)
-                # lesscss.g:447:26: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                # lesscss.g:451:26: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                 alt40 = 2
                 LA40_0 = self.input.LA(1)
 
                 if (LA40_0 == 48) :
                     alt40 = 1
                 if alt40 == 1:
-                    # lesscss.g:447:27: '0' ( '0' ( '0' ( '0' )? )? )?
+                    # lesscss.g:451:27: '0' ( '0' ( '0' ( '0' )? )? )?
                     pass 
                     self.match(48)
-                    # lesscss.g:447:31: ( '0' ( '0' ( '0' )? )? )?
+                    # lesscss.g:451:31: ( '0' ( '0' ( '0' )? )? )?
                     alt39 = 2
                     LA39_0 = self.input.LA(1)
 
                     if (LA39_0 == 48) :
                         alt39 = 1
                     if alt39 == 1:
-                        # lesscss.g:447:32: '0' ( '0' ( '0' )? )?
+                        # lesscss.g:451:32: '0' ( '0' ( '0' )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:447:36: ( '0' ( '0' )? )?
+                        # lesscss.g:451:36: ( '0' ( '0' )? )?
                         alt38 = 2
                         LA38_0 = self.input.LA(1)
 
                         if (LA38_0 == 48) :
                             alt38 = 1
                         if alt38 == 1:
-                            # lesscss.g:447:37: '0' ( '0' )?
+                            # lesscss.g:451:37: '0' ( '0' )?
                             pass 
                             self.match(48)
-                            # lesscss.g:447:41: ( '0' )?
+                            # lesscss.g:451:41: ( '0' )?
                             alt37 = 2
                             LA37_0 = self.input.LA(1)
 
                             if (LA37_0 == 48) :
                                 alt37 = 1
                             if alt37 == 1:
-                                # lesscss.g:447:41: '0'
+                                # lesscss.g:451:41: '0'
                                 pass 
                                 self.match(48)
 
@@ -1335,7 +1332,7 @@ class lesscssLexer(Lexer):
     def mF(self, ):
 
         try:
-            # lesscss.g:449:17: ( ( 'f' | 'F' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '6' )
+            # lesscss.g:453:17: ( ( 'f' | 'F' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '6' )
             alt47 = 2
             LA47_0 = self.input.LA(1)
 
@@ -1352,7 +1349,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt47 == 1:
-                # lesscss.g:449:21: ( 'f' | 'F' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:453:21: ( 'f' | 'F' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 70 or self.input.LA(1) == 102:
                     self.input.consume()
@@ -1364,7 +1361,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:449:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:453:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop42
                     alt42 = 2
                     LA42_0 = self.input.LA(1)
@@ -1393,47 +1390,47 @@ class lesscssLexer(Lexer):
 
 
             elif alt47 == 2:
-                # lesscss.g:450:21: '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '6'
+                # lesscss.g:454:21: '\\\\' ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '6'
                 pass 
                 self.match(92)
-                # lesscss.g:450:26: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                # lesscss.g:454:26: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                 alt46 = 2
                 LA46_0 = self.input.LA(1)
 
                 if (LA46_0 == 48) :
                     alt46 = 1
                 if alt46 == 1:
-                    # lesscss.g:450:27: '0' ( '0' ( '0' ( '0' )? )? )?
+                    # lesscss.g:454:27: '0' ( '0' ( '0' ( '0' )? )? )?
                     pass 
                     self.match(48)
-                    # lesscss.g:450:31: ( '0' ( '0' ( '0' )? )? )?
+                    # lesscss.g:454:31: ( '0' ( '0' ( '0' )? )? )?
                     alt45 = 2
                     LA45_0 = self.input.LA(1)
 
                     if (LA45_0 == 48) :
                         alt45 = 1
                     if alt45 == 1:
-                        # lesscss.g:450:32: '0' ( '0' ( '0' )? )?
+                        # lesscss.g:454:32: '0' ( '0' ( '0' )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:450:36: ( '0' ( '0' )? )?
+                        # lesscss.g:454:36: ( '0' ( '0' )? )?
                         alt44 = 2
                         LA44_0 = self.input.LA(1)
 
                         if (LA44_0 == 48) :
                             alt44 = 1
                         if alt44 == 1:
-                            # lesscss.g:450:37: '0' ( '0' )?
+                            # lesscss.g:454:37: '0' ( '0' )?
                             pass 
                             self.match(48)
-                            # lesscss.g:450:41: ( '0' )?
+                            # lesscss.g:454:41: ( '0' )?
                             alt43 = 2
                             LA43_0 = self.input.LA(1)
 
                             if (LA43_0 == 48) :
                                 alt43 = 1
                             if alt43 == 1:
-                                # lesscss.g:450:41: '0'
+                                # lesscss.g:454:41: '0'
                                 pass 
                                 self.match(48)
 
@@ -1474,7 +1471,7 @@ class lesscssLexer(Lexer):
     def mG(self, ):
 
         try:
-            # lesscss.g:452:17: ( ( 'g' | 'G' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'g' | 'G' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '7' ) )
+            # lesscss.g:456:17: ( ( 'g' | 'G' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'g' | 'G' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '7' ) )
             alt54 = 2
             LA54_0 = self.input.LA(1)
 
@@ -1491,7 +1488,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt54 == 1:
-                # lesscss.g:452:21: ( 'g' | 'G' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:456:21: ( 'g' | 'G' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 71 or self.input.LA(1) == 103:
                     self.input.consume()
@@ -1503,7 +1500,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:452:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:456:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop48
                     alt48 = 2
                     LA48_0 = self.input.LA(1)
@@ -1532,10 +1529,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt54 == 2:
-                # lesscss.g:453:21: '\\\\' ( 'g' | 'G' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '7' )
+                # lesscss.g:457:21: '\\\\' ( 'g' | 'G' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '7' )
                 pass 
                 self.match(92)
-                # lesscss.g:454:25: ( 'g' | 'G' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '7' )
+                # lesscss.g:458:25: ( 'g' | 'G' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '7' )
                 alt53 = 3
                 LA53 = self.input.LA(1)
                 if LA53 == 103:
@@ -1553,58 +1550,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt53 == 1:
-                    # lesscss.g:455:31: 'g'
+                    # lesscss.g:459:31: 'g'
                     pass 
                     self.match(103)
 
 
                 elif alt53 == 2:
-                    # lesscss.g:456:31: 'G'
+                    # lesscss.g:460:31: 'G'
                     pass 
                     self.match(71)
 
 
                 elif alt53 == 3:
-                    # lesscss.g:457:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '7'
+                    # lesscss.g:461:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '7'
                     pass 
-                    # lesscss.g:457:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:461:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt52 = 2
                     LA52_0 = self.input.LA(1)
 
                     if (LA52_0 == 48) :
                         alt52 = 1
                     if alt52 == 1:
-                        # lesscss.g:457:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:461:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:457:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:461:36: ( '0' ( '0' ( '0' )? )? )?
                         alt51 = 2
                         LA51_0 = self.input.LA(1)
 
                         if (LA51_0 == 48) :
                             alt51 = 1
                         if alt51 == 1:
-                            # lesscss.g:457:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:461:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:457:41: ( '0' ( '0' )? )?
+                            # lesscss.g:461:41: ( '0' ( '0' )? )?
                             alt50 = 2
                             LA50_0 = self.input.LA(1)
 
                             if (LA50_0 == 48) :
                                 alt50 = 1
                             if alt50 == 1:
-                                # lesscss.g:457:42: '0' ( '0' )?
+                                # lesscss.g:461:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:457:46: ( '0' )?
+                                # lesscss.g:461:46: ( '0' )?
                                 alt49 = 2
                                 LA49_0 = self.input.LA(1)
 
                                 if (LA49_0 == 48) :
                                     alt49 = 1
                                 if alt49 == 1:
-                                    # lesscss.g:457:46: '0'
+                                    # lesscss.g:461:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -1648,7 +1645,7 @@ class lesscssLexer(Lexer):
     def mH(self, ):
 
         try:
-            # lesscss.g:460:17: ( ( 'h' | 'H' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'h' | 'H' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '8' ) )
+            # lesscss.g:464:17: ( ( 'h' | 'H' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'h' | 'H' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '8' ) )
             alt61 = 2
             LA61_0 = self.input.LA(1)
 
@@ -1665,7 +1662,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt61 == 1:
-                # lesscss.g:460:21: ( 'h' | 'H' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:464:21: ( 'h' | 'H' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 72 or self.input.LA(1) == 104:
                     self.input.consume()
@@ -1677,7 +1674,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:460:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:464:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop55
                     alt55 = 2
                     LA55_0 = self.input.LA(1)
@@ -1706,10 +1703,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt61 == 2:
-                # lesscss.g:461:19: '\\\\' ( 'h' | 'H' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '8' )
+                # lesscss.g:465:19: '\\\\' ( 'h' | 'H' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '8' )
                 pass 
                 self.match(92)
-                # lesscss.g:462:25: ( 'h' | 'H' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '8' )
+                # lesscss.g:466:25: ( 'h' | 'H' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '8' )
                 alt60 = 3
                 LA60 = self.input.LA(1)
                 if LA60 == 104:
@@ -1727,58 +1724,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt60 == 1:
-                    # lesscss.g:463:31: 'h'
+                    # lesscss.g:467:31: 'h'
                     pass 
                     self.match(104)
 
 
                 elif alt60 == 2:
-                    # lesscss.g:464:31: 'H'
+                    # lesscss.g:468:31: 'H'
                     pass 
                     self.match(72)
 
 
                 elif alt60 == 3:
-                    # lesscss.g:465:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '8'
+                    # lesscss.g:469:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '8'
                     pass 
-                    # lesscss.g:465:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:469:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt59 = 2
                     LA59_0 = self.input.LA(1)
 
                     if (LA59_0 == 48) :
                         alt59 = 1
                     if alt59 == 1:
-                        # lesscss.g:465:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:469:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:465:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:469:36: ( '0' ( '0' ( '0' )? )? )?
                         alt58 = 2
                         LA58_0 = self.input.LA(1)
 
                         if (LA58_0 == 48) :
                             alt58 = 1
                         if alt58 == 1:
-                            # lesscss.g:465:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:469:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:465:41: ( '0' ( '0' )? )?
+                            # lesscss.g:469:41: ( '0' ( '0' )? )?
                             alt57 = 2
                             LA57_0 = self.input.LA(1)
 
                             if (LA57_0 == 48) :
                                 alt57 = 1
                             if alt57 == 1:
-                                # lesscss.g:465:42: '0' ( '0' )?
+                                # lesscss.g:469:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:465:46: ( '0' )?
+                                # lesscss.g:469:46: ( '0' )?
                                 alt56 = 2
                                 LA56_0 = self.input.LA(1)
 
                                 if (LA56_0 == 48) :
                                     alt56 = 1
                                 if alt56 == 1:
-                                    # lesscss.g:465:46: '0'
+                                    # lesscss.g:469:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -1822,7 +1819,7 @@ class lesscssLexer(Lexer):
     def mI(self, ):
 
         try:
-            # lesscss.g:468:17: ( ( 'i' | 'I' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'i' | 'I' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '9' ) )
+            # lesscss.g:472:17: ( ( 'i' | 'I' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'i' | 'I' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '9' ) )
             alt68 = 2
             LA68_0 = self.input.LA(1)
 
@@ -1839,7 +1836,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt68 == 1:
-                # lesscss.g:468:21: ( 'i' | 'I' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:472:21: ( 'i' | 'I' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 73 or self.input.LA(1) == 105:
                     self.input.consume()
@@ -1851,7 +1848,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:468:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:472:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop62
                     alt62 = 2
                     LA62_0 = self.input.LA(1)
@@ -1880,10 +1877,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt68 == 2:
-                # lesscss.g:469:19: '\\\\' ( 'i' | 'I' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '9' )
+                # lesscss.g:473:19: '\\\\' ( 'i' | 'I' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '9' )
                 pass 
                 self.match(92)
-                # lesscss.g:470:25: ( 'i' | 'I' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '9' )
+                # lesscss.g:474:25: ( 'i' | 'I' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '9' )
                 alt67 = 3
                 LA67 = self.input.LA(1)
                 if LA67 == 105:
@@ -1901,58 +1898,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt67 == 1:
-                    # lesscss.g:471:31: 'i'
+                    # lesscss.g:475:31: 'i'
                     pass 
                     self.match(105)
 
 
                 elif alt67 == 2:
-                    # lesscss.g:472:31: 'I'
+                    # lesscss.g:476:31: 'I'
                     pass 
                     self.match(73)
 
 
                 elif alt67 == 3:
-                    # lesscss.g:473:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '9'
+                    # lesscss.g:477:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) '9'
                     pass 
-                    # lesscss.g:473:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:477:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt66 = 2
                     LA66_0 = self.input.LA(1)
 
                     if (LA66_0 == 48) :
                         alt66 = 1
                     if alt66 == 1:
-                        # lesscss.g:473:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:477:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:473:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:477:36: ( '0' ( '0' ( '0' )? )? )?
                         alt65 = 2
                         LA65_0 = self.input.LA(1)
 
                         if (LA65_0 == 48) :
                             alt65 = 1
                         if alt65 == 1:
-                            # lesscss.g:473:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:477:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:473:41: ( '0' ( '0' )? )?
+                            # lesscss.g:477:41: ( '0' ( '0' )? )?
                             alt64 = 2
                             LA64_0 = self.input.LA(1)
 
                             if (LA64_0 == 48) :
                                 alt64 = 1
                             if alt64 == 1:
-                                # lesscss.g:473:42: '0' ( '0' )?
+                                # lesscss.g:477:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:473:46: ( '0' )?
+                                # lesscss.g:477:46: ( '0' )?
                                 alt63 = 2
                                 LA63_0 = self.input.LA(1)
 
                                 if (LA63_0 == 48) :
                                     alt63 = 1
                                 if alt63 == 1:
-                                    # lesscss.g:473:46: '0'
+                                    # lesscss.g:477:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -1996,7 +1993,7 @@ class lesscssLexer(Lexer):
     def mJ(self, ):
 
         try:
-            # lesscss.g:476:17: ( ( 'j' | 'J' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'j' | 'J' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'A' | 'a' ) ) )
+            # lesscss.g:480:17: ( ( 'j' | 'J' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'j' | 'J' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'A' | 'a' ) ) )
             alt75 = 2
             LA75_0 = self.input.LA(1)
 
@@ -2013,7 +2010,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt75 == 1:
-                # lesscss.g:476:21: ( 'j' | 'J' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:480:21: ( 'j' | 'J' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 74 or self.input.LA(1) == 106:
                     self.input.consume()
@@ -2025,7 +2022,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:476:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:480:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop69
                     alt69 = 2
                     LA69_0 = self.input.LA(1)
@@ -2054,10 +2051,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt75 == 2:
-                # lesscss.g:477:19: '\\\\' ( 'j' | 'J' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'A' | 'a' ) )
+                # lesscss.g:481:19: '\\\\' ( 'j' | 'J' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'A' | 'a' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:478:25: ( 'j' | 'J' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'A' | 'a' ) )
+                # lesscss.g:482:25: ( 'j' | 'J' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'A' | 'a' ) )
                 alt74 = 3
                 LA74 = self.input.LA(1)
                 if LA74 == 106:
@@ -2075,58 +2072,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt74 == 1:
-                    # lesscss.g:479:31: 'j'
+                    # lesscss.g:483:31: 'j'
                     pass 
                     self.match(106)
 
 
                 elif alt74 == 2:
-                    # lesscss.g:480:31: 'J'
+                    # lesscss.g:484:31: 'J'
                     pass 
                     self.match(74)
 
 
                 elif alt74 == 3:
-                    # lesscss.g:481:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'A' | 'a' )
+                    # lesscss.g:485:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'A' | 'a' )
                     pass 
-                    # lesscss.g:481:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:485:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt73 = 2
                     LA73_0 = self.input.LA(1)
 
                     if (LA73_0 == 48) :
                         alt73 = 1
                     if alt73 == 1:
-                        # lesscss.g:481:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:485:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:481:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:485:36: ( '0' ( '0' ( '0' )? )? )?
                         alt72 = 2
                         LA72_0 = self.input.LA(1)
 
                         if (LA72_0 == 48) :
                             alt72 = 1
                         if alt72 == 1:
-                            # lesscss.g:481:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:485:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:481:41: ( '0' ( '0' )? )?
+                            # lesscss.g:485:41: ( '0' ( '0' )? )?
                             alt71 = 2
                             LA71_0 = self.input.LA(1)
 
                             if (LA71_0 == 48) :
                                 alt71 = 1
                             if alt71 == 1:
-                                # lesscss.g:481:42: '0' ( '0' )?
+                                # lesscss.g:485:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:481:46: ( '0' )?
+                                # lesscss.g:485:46: ( '0' )?
                                 alt70 = 2
                                 LA70_0 = self.input.LA(1)
 
                                 if (LA70_0 == 48) :
                                     alt70 = 1
                                 if alt70 == 1:
-                                    # lesscss.g:481:46: '0'
+                                    # lesscss.g:485:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -2179,7 +2176,7 @@ class lesscssLexer(Lexer):
     def mK(self, ):
 
         try:
-            # lesscss.g:484:17: ( ( 'k' | 'K' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'k' | 'K' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'B' | 'b' ) ) )
+            # lesscss.g:488:17: ( ( 'k' | 'K' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'k' | 'K' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'B' | 'b' ) ) )
             alt82 = 2
             LA82_0 = self.input.LA(1)
 
@@ -2196,7 +2193,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt82 == 1:
-                # lesscss.g:484:21: ( 'k' | 'K' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:488:21: ( 'k' | 'K' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 75 or self.input.LA(1) == 107:
                     self.input.consume()
@@ -2208,7 +2205,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:484:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:488:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop76
                     alt76 = 2
                     LA76_0 = self.input.LA(1)
@@ -2237,10 +2234,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt82 == 2:
-                # lesscss.g:485:19: '\\\\' ( 'k' | 'K' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'B' | 'b' ) )
+                # lesscss.g:489:19: '\\\\' ( 'k' | 'K' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'B' | 'b' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:486:25: ( 'k' | 'K' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'B' | 'b' ) )
+                # lesscss.g:490:25: ( 'k' | 'K' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'B' | 'b' ) )
                 alt81 = 3
                 LA81 = self.input.LA(1)
                 if LA81 == 107:
@@ -2258,58 +2255,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt81 == 1:
-                    # lesscss.g:487:31: 'k'
+                    # lesscss.g:491:31: 'k'
                     pass 
                     self.match(107)
 
 
                 elif alt81 == 2:
-                    # lesscss.g:488:31: 'K'
+                    # lesscss.g:492:31: 'K'
                     pass 
                     self.match(75)
 
 
                 elif alt81 == 3:
-                    # lesscss.g:489:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'B' | 'b' )
+                    # lesscss.g:493:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'B' | 'b' )
                     pass 
-                    # lesscss.g:489:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:493:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt80 = 2
                     LA80_0 = self.input.LA(1)
 
                     if (LA80_0 == 48) :
                         alt80 = 1
                     if alt80 == 1:
-                        # lesscss.g:489:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:493:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:489:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:493:36: ( '0' ( '0' ( '0' )? )? )?
                         alt79 = 2
                         LA79_0 = self.input.LA(1)
 
                         if (LA79_0 == 48) :
                             alt79 = 1
                         if alt79 == 1:
-                            # lesscss.g:489:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:493:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:489:41: ( '0' ( '0' )? )?
+                            # lesscss.g:493:41: ( '0' ( '0' )? )?
                             alt78 = 2
                             LA78_0 = self.input.LA(1)
 
                             if (LA78_0 == 48) :
                                 alt78 = 1
                             if alt78 == 1:
-                                # lesscss.g:489:42: '0' ( '0' )?
+                                # lesscss.g:493:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:489:46: ( '0' )?
+                                # lesscss.g:493:46: ( '0' )?
                                 alt77 = 2
                                 LA77_0 = self.input.LA(1)
 
                                 if (LA77_0 == 48) :
                                     alt77 = 1
                                 if alt77 == 1:
-                                    # lesscss.g:489:46: '0'
+                                    # lesscss.g:493:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -2362,7 +2359,7 @@ class lesscssLexer(Lexer):
     def mL(self, ):
 
         try:
-            # lesscss.g:492:17: ( ( 'l' | 'L' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'l' | 'L' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'C' | 'c' ) ) )
+            # lesscss.g:496:17: ( ( 'l' | 'L' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'l' | 'L' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'C' | 'c' ) ) )
             alt89 = 2
             LA89_0 = self.input.LA(1)
 
@@ -2379,7 +2376,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt89 == 1:
-                # lesscss.g:492:21: ( 'l' | 'L' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:496:21: ( 'l' | 'L' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 76 or self.input.LA(1) == 108:
                     self.input.consume()
@@ -2391,7 +2388,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:492:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:496:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop83
                     alt83 = 2
                     LA83_0 = self.input.LA(1)
@@ -2420,10 +2417,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt89 == 2:
-                # lesscss.g:493:19: '\\\\' ( 'l' | 'L' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'C' | 'c' ) )
+                # lesscss.g:497:19: '\\\\' ( 'l' | 'L' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'C' | 'c' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:494:25: ( 'l' | 'L' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'C' | 'c' ) )
+                # lesscss.g:498:25: ( 'l' | 'L' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'C' | 'c' ) )
                 alt88 = 3
                 LA88 = self.input.LA(1)
                 if LA88 == 108:
@@ -2441,58 +2438,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt88 == 1:
-                    # lesscss.g:495:31: 'l'
+                    # lesscss.g:499:31: 'l'
                     pass 
                     self.match(108)
 
 
                 elif alt88 == 2:
-                    # lesscss.g:496:31: 'L'
+                    # lesscss.g:500:31: 'L'
                     pass 
                     self.match(76)
 
 
                 elif alt88 == 3:
-                    # lesscss.g:497:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'C' | 'c' )
+                    # lesscss.g:501:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'C' | 'c' )
                     pass 
-                    # lesscss.g:497:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:501:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt87 = 2
                     LA87_0 = self.input.LA(1)
 
                     if (LA87_0 == 48) :
                         alt87 = 1
                     if alt87 == 1:
-                        # lesscss.g:497:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:501:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:497:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:501:36: ( '0' ( '0' ( '0' )? )? )?
                         alt86 = 2
                         LA86_0 = self.input.LA(1)
 
                         if (LA86_0 == 48) :
                             alt86 = 1
                         if alt86 == 1:
-                            # lesscss.g:497:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:501:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:497:41: ( '0' ( '0' )? )?
+                            # lesscss.g:501:41: ( '0' ( '0' )? )?
                             alt85 = 2
                             LA85_0 = self.input.LA(1)
 
                             if (LA85_0 == 48) :
                                 alt85 = 1
                             if alt85 == 1:
-                                # lesscss.g:497:42: '0' ( '0' )?
+                                # lesscss.g:501:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:497:46: ( '0' )?
+                                # lesscss.g:501:46: ( '0' )?
                                 alt84 = 2
                                 LA84_0 = self.input.LA(1)
 
                                 if (LA84_0 == 48) :
                                     alt84 = 1
                                 if alt84 == 1:
-                                    # lesscss.g:497:46: '0'
+                                    # lesscss.g:501:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -2545,7 +2542,7 @@ class lesscssLexer(Lexer):
     def mM(self, ):
 
         try:
-            # lesscss.g:500:17: ( ( 'm' | 'M' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'm' | 'M' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'D' | 'd' ) ) )
+            # lesscss.g:504:17: ( ( 'm' | 'M' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'm' | 'M' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'D' | 'd' ) ) )
             alt96 = 2
             LA96_0 = self.input.LA(1)
 
@@ -2562,7 +2559,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt96 == 1:
-                # lesscss.g:500:21: ( 'm' | 'M' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:504:21: ( 'm' | 'M' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 77 or self.input.LA(1) == 109:
                     self.input.consume()
@@ -2574,7 +2571,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:500:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:504:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop90
                     alt90 = 2
                     LA90_0 = self.input.LA(1)
@@ -2603,10 +2600,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt96 == 2:
-                # lesscss.g:501:19: '\\\\' ( 'm' | 'M' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'D' | 'd' ) )
+                # lesscss.g:505:19: '\\\\' ( 'm' | 'M' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'D' | 'd' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:502:25: ( 'm' | 'M' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'D' | 'd' ) )
+                # lesscss.g:506:25: ( 'm' | 'M' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'D' | 'd' ) )
                 alt95 = 3
                 LA95 = self.input.LA(1)
                 if LA95 == 109:
@@ -2624,58 +2621,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt95 == 1:
-                    # lesscss.g:503:31: 'm'
+                    # lesscss.g:507:31: 'm'
                     pass 
                     self.match(109)
 
 
                 elif alt95 == 2:
-                    # lesscss.g:504:31: 'M'
+                    # lesscss.g:508:31: 'M'
                     pass 
                     self.match(77)
 
 
                 elif alt95 == 3:
-                    # lesscss.g:505:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'D' | 'd' )
+                    # lesscss.g:509:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'D' | 'd' )
                     pass 
-                    # lesscss.g:505:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:509:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt94 = 2
                     LA94_0 = self.input.LA(1)
 
                     if (LA94_0 == 48) :
                         alt94 = 1
                     if alt94 == 1:
-                        # lesscss.g:505:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:509:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:505:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:509:36: ( '0' ( '0' ( '0' )? )? )?
                         alt93 = 2
                         LA93_0 = self.input.LA(1)
 
                         if (LA93_0 == 48) :
                             alt93 = 1
                         if alt93 == 1:
-                            # lesscss.g:505:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:509:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:505:41: ( '0' ( '0' )? )?
+                            # lesscss.g:509:41: ( '0' ( '0' )? )?
                             alt92 = 2
                             LA92_0 = self.input.LA(1)
 
                             if (LA92_0 == 48) :
                                 alt92 = 1
                             if alt92 == 1:
-                                # lesscss.g:505:42: '0' ( '0' )?
+                                # lesscss.g:509:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:505:46: ( '0' )?
+                                # lesscss.g:509:46: ( '0' )?
                                 alt91 = 2
                                 LA91_0 = self.input.LA(1)
 
                                 if (LA91_0 == 48) :
                                     alt91 = 1
                                 if alt91 == 1:
-                                    # lesscss.g:505:46: '0'
+                                    # lesscss.g:509:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -2728,7 +2725,7 @@ class lesscssLexer(Lexer):
     def mN(self, ):
 
         try:
-            # lesscss.g:508:17: ( ( 'n' | 'N' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'n' | 'N' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'E' | 'e' ) ) )
+            # lesscss.g:512:17: ( ( 'n' | 'N' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'n' | 'N' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'E' | 'e' ) ) )
             alt103 = 2
             LA103_0 = self.input.LA(1)
 
@@ -2745,7 +2742,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt103 == 1:
-                # lesscss.g:508:21: ( 'n' | 'N' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:512:21: ( 'n' | 'N' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 78 or self.input.LA(1) == 110:
                     self.input.consume()
@@ -2757,7 +2754,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:508:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:512:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop97
                     alt97 = 2
                     LA97_0 = self.input.LA(1)
@@ -2786,10 +2783,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt103 == 2:
-                # lesscss.g:509:19: '\\\\' ( 'n' | 'N' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'E' | 'e' ) )
+                # lesscss.g:513:19: '\\\\' ( 'n' | 'N' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'E' | 'e' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:510:25: ( 'n' | 'N' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'E' | 'e' ) )
+                # lesscss.g:514:25: ( 'n' | 'N' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'E' | 'e' ) )
                 alt102 = 3
                 LA102 = self.input.LA(1)
                 if LA102 == 110:
@@ -2807,58 +2804,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt102 == 1:
-                    # lesscss.g:511:31: 'n'
+                    # lesscss.g:515:31: 'n'
                     pass 
                     self.match(110)
 
 
                 elif alt102 == 2:
-                    # lesscss.g:512:31: 'N'
+                    # lesscss.g:516:31: 'N'
                     pass 
                     self.match(78)
 
 
                 elif alt102 == 3:
-                    # lesscss.g:513:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'E' | 'e' )
+                    # lesscss.g:517:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'E' | 'e' )
                     pass 
-                    # lesscss.g:513:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:517:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt101 = 2
                     LA101_0 = self.input.LA(1)
 
                     if (LA101_0 == 48) :
                         alt101 = 1
                     if alt101 == 1:
-                        # lesscss.g:513:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:517:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:513:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:517:36: ( '0' ( '0' ( '0' )? )? )?
                         alt100 = 2
                         LA100_0 = self.input.LA(1)
 
                         if (LA100_0 == 48) :
                             alt100 = 1
                         if alt100 == 1:
-                            # lesscss.g:513:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:517:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:513:41: ( '0' ( '0' )? )?
+                            # lesscss.g:517:41: ( '0' ( '0' )? )?
                             alt99 = 2
                             LA99_0 = self.input.LA(1)
 
                             if (LA99_0 == 48) :
                                 alt99 = 1
                             if alt99 == 1:
-                                # lesscss.g:513:42: '0' ( '0' )?
+                                # lesscss.g:517:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:513:46: ( '0' )?
+                                # lesscss.g:517:46: ( '0' )?
                                 alt98 = 2
                                 LA98_0 = self.input.LA(1)
 
                                 if (LA98_0 == 48) :
                                     alt98 = 1
                                 if alt98 == 1:
-                                    # lesscss.g:513:46: '0'
+                                    # lesscss.g:517:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -2911,7 +2908,7 @@ class lesscssLexer(Lexer):
     def mO(self, ):
 
         try:
-            # lesscss.g:516:17: ( ( 'o' | 'O' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'o' | 'O' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'F' | 'f' ) ) )
+            # lesscss.g:520:17: ( ( 'o' | 'O' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'o' | 'O' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'F' | 'f' ) ) )
             alt110 = 2
             LA110_0 = self.input.LA(1)
 
@@ -2928,7 +2925,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt110 == 1:
-                # lesscss.g:516:21: ( 'o' | 'O' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:520:21: ( 'o' | 'O' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 79 or self.input.LA(1) == 111:
                     self.input.consume()
@@ -2940,7 +2937,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:516:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:520:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop104
                     alt104 = 2
                     LA104_0 = self.input.LA(1)
@@ -2969,10 +2966,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt110 == 2:
-                # lesscss.g:517:19: '\\\\' ( 'o' | 'O' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'F' | 'f' ) )
+                # lesscss.g:521:19: '\\\\' ( 'o' | 'O' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'F' | 'f' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:518:25: ( 'o' | 'O' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'F' | 'f' ) )
+                # lesscss.g:522:25: ( 'o' | 'O' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'F' | 'f' ) )
                 alt109 = 3
                 LA109 = self.input.LA(1)
                 if LA109 == 111:
@@ -2990,58 +2987,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt109 == 1:
-                    # lesscss.g:519:31: 'o'
+                    # lesscss.g:523:31: 'o'
                     pass 
                     self.match(111)
 
 
                 elif alt109 == 2:
-                    # lesscss.g:520:31: 'O'
+                    # lesscss.g:524:31: 'O'
                     pass 
                     self.match(79)
 
 
                 elif alt109 == 3:
-                    # lesscss.g:521:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'F' | 'f' )
+                    # lesscss.g:525:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '4' | '6' ) ( 'F' | 'f' )
                     pass 
-                    # lesscss.g:521:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:525:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt108 = 2
                     LA108_0 = self.input.LA(1)
 
                     if (LA108_0 == 48) :
                         alt108 = 1
                     if alt108 == 1:
-                        # lesscss.g:521:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:525:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:521:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:525:36: ( '0' ( '0' ( '0' )? )? )?
                         alt107 = 2
                         LA107_0 = self.input.LA(1)
 
                         if (LA107_0 == 48) :
                             alt107 = 1
                         if alt107 == 1:
-                            # lesscss.g:521:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:525:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:521:41: ( '0' ( '0' )? )?
+                            # lesscss.g:525:41: ( '0' ( '0' )? )?
                             alt106 = 2
                             LA106_0 = self.input.LA(1)
 
                             if (LA106_0 == 48) :
                                 alt106 = 1
                             if alt106 == 1:
-                                # lesscss.g:521:42: '0' ( '0' )?
+                                # lesscss.g:525:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:521:46: ( '0' )?
+                                # lesscss.g:525:46: ( '0' )?
                                 alt105 = 2
                                 LA105_0 = self.input.LA(1)
 
                                 if (LA105_0 == 48) :
                                     alt105 = 1
                                 if alt105 == 1:
-                                    # lesscss.g:521:46: '0'
+                                    # lesscss.g:525:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -3094,7 +3091,7 @@ class lesscssLexer(Lexer):
     def mP(self, ):
 
         try:
-            # lesscss.g:524:17: ( ( 'p' | 'P' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'p' | 'P' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '0' ) ) )
+            # lesscss.g:528:17: ( ( 'p' | 'P' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'p' | 'P' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '0' ) ) )
             alt117 = 2
             LA117_0 = self.input.LA(1)
 
@@ -3111,7 +3108,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt117 == 1:
-                # lesscss.g:524:21: ( 'p' | 'P' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:528:21: ( 'p' | 'P' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 80 or self.input.LA(1) == 112:
                     self.input.consume()
@@ -3123,7 +3120,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:524:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:528:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop111
                     alt111 = 2
                     LA111_0 = self.input.LA(1)
@@ -3152,10 +3149,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt117 == 2:
-                # lesscss.g:525:19: '\\\\' ( 'p' | 'P' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '0' ) )
+                # lesscss.g:529:19: '\\\\' ( 'p' | 'P' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '0' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:526:25: ( 'p' | 'P' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '0' ) )
+                # lesscss.g:530:25: ( 'p' | 'P' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '0' ) )
                 alt116 = 3
                 LA116 = self.input.LA(1)
                 if LA116 == 112:
@@ -3173,58 +3170,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt116 == 1:
-                    # lesscss.g:527:31: 'p'
+                    # lesscss.g:531:31: 'p'
                     pass 
                     self.match(112)
 
 
                 elif alt116 == 2:
-                    # lesscss.g:528:31: 'P'
+                    # lesscss.g:532:31: 'P'
                     pass 
                     self.match(80)
 
 
                 elif alt116 == 3:
-                    # lesscss.g:529:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '0' )
+                    # lesscss.g:533:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '0' )
                     pass 
-                    # lesscss.g:529:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:533:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt115 = 2
                     LA115_0 = self.input.LA(1)
 
                     if (LA115_0 == 48) :
                         alt115 = 1
                     if alt115 == 1:
-                        # lesscss.g:529:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:533:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:529:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:533:36: ( '0' ( '0' ( '0' )? )? )?
                         alt114 = 2
                         LA114_0 = self.input.LA(1)
 
                         if (LA114_0 == 48) :
                             alt114 = 1
                         if alt114 == 1:
-                            # lesscss.g:529:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:533:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:529:41: ( '0' ( '0' )? )?
+                            # lesscss.g:533:41: ( '0' ( '0' )? )?
                             alt113 = 2
                             LA113_0 = self.input.LA(1)
 
                             if (LA113_0 == 48) :
                                 alt113 = 1
                             if alt113 == 1:
-                                # lesscss.g:529:42: '0' ( '0' )?
+                                # lesscss.g:533:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:529:46: ( '0' )?
+                                # lesscss.g:533:46: ( '0' )?
                                 alt112 = 2
                                 LA112_0 = self.input.LA(1)
 
                                 if (LA112_0 == 48) :
                                     alt112 = 1
                                 if alt112 == 1:
-                                    # lesscss.g:529:46: '0'
+                                    # lesscss.g:533:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -3249,8 +3246,8 @@ class lesscssLexer(Lexer):
                         self.recover(mse)
                         raise mse
 
-                    # lesscss.g:529:66: ( '0' )
-                    # lesscss.g:529:67: '0'
+                    # lesscss.g:533:66: ( '0' )
+                    # lesscss.g:533:67: '0'
                     pass 
                     self.match(48)
 
@@ -3274,7 +3271,7 @@ class lesscssLexer(Lexer):
     def mQ(self, ):
 
         try:
-            # lesscss.g:532:17: ( ( 'q' | 'Q' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'q' | 'Q' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '1' ) ) )
+            # lesscss.g:536:17: ( ( 'q' | 'Q' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'q' | 'Q' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '1' ) ) )
             alt124 = 2
             LA124_0 = self.input.LA(1)
 
@@ -3291,7 +3288,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt124 == 1:
-                # lesscss.g:532:21: ( 'q' | 'Q' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:536:21: ( 'q' | 'Q' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 81 or self.input.LA(1) == 113:
                     self.input.consume()
@@ -3303,7 +3300,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:532:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:536:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop118
                     alt118 = 2
                     LA118_0 = self.input.LA(1)
@@ -3332,10 +3329,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt124 == 2:
-                # lesscss.g:533:19: '\\\\' ( 'q' | 'Q' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '1' ) )
+                # lesscss.g:537:19: '\\\\' ( 'q' | 'Q' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '1' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:534:25: ( 'q' | 'Q' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '1' ) )
+                # lesscss.g:538:25: ( 'q' | 'Q' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '1' ) )
                 alt123 = 3
                 LA123 = self.input.LA(1)
                 if LA123 == 113:
@@ -3353,58 +3350,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt123 == 1:
-                    # lesscss.g:535:31: 'q'
+                    # lesscss.g:539:31: 'q'
                     pass 
                     self.match(113)
 
 
                 elif alt123 == 2:
-                    # lesscss.g:536:31: 'Q'
+                    # lesscss.g:540:31: 'Q'
                     pass 
                     self.match(81)
 
 
                 elif alt123 == 3:
-                    # lesscss.g:537:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '1' )
+                    # lesscss.g:541:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '1' )
                     pass 
-                    # lesscss.g:537:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:541:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt122 = 2
                     LA122_0 = self.input.LA(1)
 
                     if (LA122_0 == 48) :
                         alt122 = 1
                     if alt122 == 1:
-                        # lesscss.g:537:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:541:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:537:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:541:36: ( '0' ( '0' ( '0' )? )? )?
                         alt121 = 2
                         LA121_0 = self.input.LA(1)
 
                         if (LA121_0 == 48) :
                             alt121 = 1
                         if alt121 == 1:
-                            # lesscss.g:537:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:541:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:537:41: ( '0' ( '0' )? )?
+                            # lesscss.g:541:41: ( '0' ( '0' )? )?
                             alt120 = 2
                             LA120_0 = self.input.LA(1)
 
                             if (LA120_0 == 48) :
                                 alt120 = 1
                             if alt120 == 1:
-                                # lesscss.g:537:42: '0' ( '0' )?
+                                # lesscss.g:541:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:537:46: ( '0' )?
+                                # lesscss.g:541:46: ( '0' )?
                                 alt119 = 2
                                 LA119_0 = self.input.LA(1)
 
                                 if (LA119_0 == 48) :
                                     alt119 = 1
                                 if alt119 == 1:
-                                    # lesscss.g:537:46: '0'
+                                    # lesscss.g:541:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -3429,8 +3426,8 @@ class lesscssLexer(Lexer):
                         self.recover(mse)
                         raise mse
 
-                    # lesscss.g:537:66: ( '1' )
-                    # lesscss.g:537:67: '1'
+                    # lesscss.g:541:66: ( '1' )
+                    # lesscss.g:541:67: '1'
                     pass 
                     self.match(49)
 
@@ -3454,7 +3451,7 @@ class lesscssLexer(Lexer):
     def mR(self, ):
 
         try:
-            # lesscss.g:540:17: ( ( 'r' | 'R' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'r' | 'R' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '2' ) ) )
+            # lesscss.g:544:17: ( ( 'r' | 'R' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'r' | 'R' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '2' ) ) )
             alt131 = 2
             LA131_0 = self.input.LA(1)
 
@@ -3471,7 +3468,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt131 == 1:
-                # lesscss.g:540:21: ( 'r' | 'R' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:544:21: ( 'r' | 'R' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 82 or self.input.LA(1) == 114:
                     self.input.consume()
@@ -3483,7 +3480,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:540:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:544:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop125
                     alt125 = 2
                     LA125_0 = self.input.LA(1)
@@ -3512,10 +3509,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt131 == 2:
-                # lesscss.g:541:19: '\\\\' ( 'r' | 'R' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '2' ) )
+                # lesscss.g:545:19: '\\\\' ( 'r' | 'R' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '2' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:542:25: ( 'r' | 'R' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '2' ) )
+                # lesscss.g:546:25: ( 'r' | 'R' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '2' ) )
                 alt130 = 3
                 LA130 = self.input.LA(1)
                 if LA130 == 114:
@@ -3533,58 +3530,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt130 == 1:
-                    # lesscss.g:543:31: 'r'
+                    # lesscss.g:547:31: 'r'
                     pass 
                     self.match(114)
 
 
                 elif alt130 == 2:
-                    # lesscss.g:544:31: 'R'
+                    # lesscss.g:548:31: 'R'
                     pass 
                     self.match(82)
 
 
                 elif alt130 == 3:
-                    # lesscss.g:545:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '2' )
+                    # lesscss.g:549:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '2' )
                     pass 
-                    # lesscss.g:545:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:549:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt129 = 2
                     LA129_0 = self.input.LA(1)
 
                     if (LA129_0 == 48) :
                         alt129 = 1
                     if alt129 == 1:
-                        # lesscss.g:545:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:549:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:545:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:549:36: ( '0' ( '0' ( '0' )? )? )?
                         alt128 = 2
                         LA128_0 = self.input.LA(1)
 
                         if (LA128_0 == 48) :
                             alt128 = 1
                         if alt128 == 1:
-                            # lesscss.g:545:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:549:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:545:41: ( '0' ( '0' )? )?
+                            # lesscss.g:549:41: ( '0' ( '0' )? )?
                             alt127 = 2
                             LA127_0 = self.input.LA(1)
 
                             if (LA127_0 == 48) :
                                 alt127 = 1
                             if alt127 == 1:
-                                # lesscss.g:545:42: '0' ( '0' )?
+                                # lesscss.g:549:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:545:46: ( '0' )?
+                                # lesscss.g:549:46: ( '0' )?
                                 alt126 = 2
                                 LA126_0 = self.input.LA(1)
 
                                 if (LA126_0 == 48) :
                                     alt126 = 1
                                 if alt126 == 1:
-                                    # lesscss.g:545:46: '0'
+                                    # lesscss.g:549:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -3609,8 +3606,8 @@ class lesscssLexer(Lexer):
                         self.recover(mse)
                         raise mse
 
-                    # lesscss.g:545:66: ( '2' )
-                    # lesscss.g:545:67: '2'
+                    # lesscss.g:549:66: ( '2' )
+                    # lesscss.g:549:67: '2'
                     pass 
                     self.match(50)
 
@@ -3634,7 +3631,7 @@ class lesscssLexer(Lexer):
     def mS(self, ):
 
         try:
-            # lesscss.g:548:17: ( ( 's' | 'S' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 's' | 'S' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '3' ) ) )
+            # lesscss.g:552:17: ( ( 's' | 'S' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 's' | 'S' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '3' ) ) )
             alt138 = 2
             LA138_0 = self.input.LA(1)
 
@@ -3651,7 +3648,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt138 == 1:
-                # lesscss.g:548:21: ( 's' | 'S' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:552:21: ( 's' | 'S' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 83 or self.input.LA(1) == 115:
                     self.input.consume()
@@ -3663,7 +3660,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:548:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:552:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop132
                     alt132 = 2
                     LA132_0 = self.input.LA(1)
@@ -3692,10 +3689,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt138 == 2:
-                # lesscss.g:549:19: '\\\\' ( 's' | 'S' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '3' ) )
+                # lesscss.g:553:19: '\\\\' ( 's' | 'S' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '3' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:550:25: ( 's' | 'S' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '3' ) )
+                # lesscss.g:554:25: ( 's' | 'S' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '3' ) )
                 alt137 = 3
                 LA137 = self.input.LA(1)
                 if LA137 == 115:
@@ -3713,58 +3710,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt137 == 1:
-                    # lesscss.g:551:31: 's'
+                    # lesscss.g:555:31: 's'
                     pass 
                     self.match(115)
 
 
                 elif alt137 == 2:
-                    # lesscss.g:552:31: 'S'
+                    # lesscss.g:556:31: 'S'
                     pass 
                     self.match(83)
 
 
                 elif alt137 == 3:
-                    # lesscss.g:553:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '3' )
+                    # lesscss.g:557:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '3' )
                     pass 
-                    # lesscss.g:553:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:557:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt136 = 2
                     LA136_0 = self.input.LA(1)
 
                     if (LA136_0 == 48) :
                         alt136 = 1
                     if alt136 == 1:
-                        # lesscss.g:553:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:557:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:553:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:557:36: ( '0' ( '0' ( '0' )? )? )?
                         alt135 = 2
                         LA135_0 = self.input.LA(1)
 
                         if (LA135_0 == 48) :
                             alt135 = 1
                         if alt135 == 1:
-                            # lesscss.g:553:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:557:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:553:41: ( '0' ( '0' )? )?
+                            # lesscss.g:557:41: ( '0' ( '0' )? )?
                             alt134 = 2
                             LA134_0 = self.input.LA(1)
 
                             if (LA134_0 == 48) :
                                 alt134 = 1
                             if alt134 == 1:
-                                # lesscss.g:553:42: '0' ( '0' )?
+                                # lesscss.g:557:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:553:46: ( '0' )?
+                                # lesscss.g:557:46: ( '0' )?
                                 alt133 = 2
                                 LA133_0 = self.input.LA(1)
 
                                 if (LA133_0 == 48) :
                                     alt133 = 1
                                 if alt133 == 1:
-                                    # lesscss.g:553:46: '0'
+                                    # lesscss.g:557:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -3789,8 +3786,8 @@ class lesscssLexer(Lexer):
                         self.recover(mse)
                         raise mse
 
-                    # lesscss.g:553:66: ( '3' )
-                    # lesscss.g:553:67: '3'
+                    # lesscss.g:557:66: ( '3' )
+                    # lesscss.g:557:67: '3'
                     pass 
                     self.match(51)
 
@@ -3814,7 +3811,7 @@ class lesscssLexer(Lexer):
     def mT(self, ):
 
         try:
-            # lesscss.g:556:17: ( ( 't' | 'T' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 't' | 'T' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '4' ) ) )
+            # lesscss.g:560:17: ( ( 't' | 'T' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 't' | 'T' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '4' ) ) )
             alt145 = 2
             LA145_0 = self.input.LA(1)
 
@@ -3831,7 +3828,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt145 == 1:
-                # lesscss.g:556:21: ( 't' | 'T' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:560:21: ( 't' | 'T' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 84 or self.input.LA(1) == 116:
                     self.input.consume()
@@ -3843,7 +3840,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:556:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:560:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop139
                     alt139 = 2
                     LA139_0 = self.input.LA(1)
@@ -3872,10 +3869,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt145 == 2:
-                # lesscss.g:557:19: '\\\\' ( 't' | 'T' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '4' ) )
+                # lesscss.g:561:19: '\\\\' ( 't' | 'T' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '4' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:558:25: ( 't' | 'T' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '4' ) )
+                # lesscss.g:562:25: ( 't' | 'T' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '4' ) )
                 alt144 = 3
                 LA144 = self.input.LA(1)
                 if LA144 == 116:
@@ -3893,58 +3890,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt144 == 1:
-                    # lesscss.g:559:31: 't'
+                    # lesscss.g:563:31: 't'
                     pass 
                     self.match(116)
 
 
                 elif alt144 == 2:
-                    # lesscss.g:560:31: 'T'
+                    # lesscss.g:564:31: 'T'
                     pass 
                     self.match(84)
 
 
                 elif alt144 == 3:
-                    # lesscss.g:561:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '4' )
+                    # lesscss.g:565:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '4' )
                     pass 
-                    # lesscss.g:561:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:565:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt143 = 2
                     LA143_0 = self.input.LA(1)
 
                     if (LA143_0 == 48) :
                         alt143 = 1
                     if alt143 == 1:
-                        # lesscss.g:561:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:565:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:561:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:565:36: ( '0' ( '0' ( '0' )? )? )?
                         alt142 = 2
                         LA142_0 = self.input.LA(1)
 
                         if (LA142_0 == 48) :
                             alt142 = 1
                         if alt142 == 1:
-                            # lesscss.g:561:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:565:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:561:41: ( '0' ( '0' )? )?
+                            # lesscss.g:565:41: ( '0' ( '0' )? )?
                             alt141 = 2
                             LA141_0 = self.input.LA(1)
 
                             if (LA141_0 == 48) :
                                 alt141 = 1
                             if alt141 == 1:
-                                # lesscss.g:561:42: '0' ( '0' )?
+                                # lesscss.g:565:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:561:46: ( '0' )?
+                                # lesscss.g:565:46: ( '0' )?
                                 alt140 = 2
                                 LA140_0 = self.input.LA(1)
 
                                 if (LA140_0 == 48) :
                                     alt140 = 1
                                 if alt140 == 1:
-                                    # lesscss.g:561:46: '0'
+                                    # lesscss.g:565:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -3969,8 +3966,8 @@ class lesscssLexer(Lexer):
                         self.recover(mse)
                         raise mse
 
-                    # lesscss.g:561:66: ( '4' )
-                    # lesscss.g:561:67: '4'
+                    # lesscss.g:565:66: ( '4' )
+                    # lesscss.g:565:67: '4'
                     pass 
                     self.match(52)
 
@@ -3994,7 +3991,7 @@ class lesscssLexer(Lexer):
     def mU(self, ):
 
         try:
-            # lesscss.g:564:17: ( ( 'u' | 'U' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'u' | 'U' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '5' ) ) )
+            # lesscss.g:568:17: ( ( 'u' | 'U' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'u' | 'U' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '5' ) ) )
             alt152 = 2
             LA152_0 = self.input.LA(1)
 
@@ -4011,7 +4008,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt152 == 1:
-                # lesscss.g:564:21: ( 'u' | 'U' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:568:21: ( 'u' | 'U' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 85 or self.input.LA(1) == 117:
                     self.input.consume()
@@ -4023,7 +4020,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:564:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:568:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop146
                     alt146 = 2
                     LA146_0 = self.input.LA(1)
@@ -4052,10 +4049,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt152 == 2:
-                # lesscss.g:565:19: '\\\\' ( 'u' | 'U' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '5' ) )
+                # lesscss.g:569:19: '\\\\' ( 'u' | 'U' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '5' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:566:25: ( 'u' | 'U' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '5' ) )
+                # lesscss.g:570:25: ( 'u' | 'U' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '5' ) )
                 alt151 = 3
                 LA151 = self.input.LA(1)
                 if LA151 == 117:
@@ -4073,58 +4070,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt151 == 1:
-                    # lesscss.g:567:31: 'u'
+                    # lesscss.g:571:31: 'u'
                     pass 
                     self.match(117)
 
 
                 elif alt151 == 2:
-                    # lesscss.g:568:31: 'U'
+                    # lesscss.g:572:31: 'U'
                     pass 
                     self.match(85)
 
 
                 elif alt151 == 3:
-                    # lesscss.g:569:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '5' )
+                    # lesscss.g:573:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '5' )
                     pass 
-                    # lesscss.g:569:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:573:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt150 = 2
                     LA150_0 = self.input.LA(1)
 
                     if (LA150_0 == 48) :
                         alt150 = 1
                     if alt150 == 1:
-                        # lesscss.g:569:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:573:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:569:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:573:36: ( '0' ( '0' ( '0' )? )? )?
                         alt149 = 2
                         LA149_0 = self.input.LA(1)
 
                         if (LA149_0 == 48) :
                             alt149 = 1
                         if alt149 == 1:
-                            # lesscss.g:569:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:573:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:569:41: ( '0' ( '0' )? )?
+                            # lesscss.g:573:41: ( '0' ( '0' )? )?
                             alt148 = 2
                             LA148_0 = self.input.LA(1)
 
                             if (LA148_0 == 48) :
                                 alt148 = 1
                             if alt148 == 1:
-                                # lesscss.g:569:42: '0' ( '0' )?
+                                # lesscss.g:573:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:569:46: ( '0' )?
+                                # lesscss.g:573:46: ( '0' )?
                                 alt147 = 2
                                 LA147_0 = self.input.LA(1)
 
                                 if (LA147_0 == 48) :
                                     alt147 = 1
                                 if alt147 == 1:
-                                    # lesscss.g:569:46: '0'
+                                    # lesscss.g:573:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -4149,8 +4146,8 @@ class lesscssLexer(Lexer):
                         self.recover(mse)
                         raise mse
 
-                    # lesscss.g:569:66: ( '5' )
-                    # lesscss.g:569:67: '5'
+                    # lesscss.g:573:66: ( '5' )
+                    # lesscss.g:573:67: '5'
                     pass 
                     self.match(53)
 
@@ -4174,7 +4171,7 @@ class lesscssLexer(Lexer):
     def mV(self, ):
 
         try:
-            # lesscss.g:572:17: ( ( 'v' | 'V' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'v' | 'V' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '6' ) ) )
+            # lesscss.g:576:17: ( ( 'v' | 'V' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'v' | 'V' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '6' ) ) )
             alt159 = 2
             LA159_0 = self.input.LA(1)
 
@@ -4191,7 +4188,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt159 == 1:
-                # lesscss.g:572:21: ( 'v' | 'V' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:576:21: ( 'v' | 'V' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 86 or self.input.LA(1) == 118:
                     self.input.consume()
@@ -4203,7 +4200,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:572:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:576:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop153
                     alt153 = 2
                     LA153_0 = self.input.LA(1)
@@ -4232,10 +4229,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt159 == 2:
-                # lesscss.g:573:19: '\\\\' ( 'v' | 'V' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '6' ) )
+                # lesscss.g:577:19: '\\\\' ( 'v' | 'V' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '6' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:574:25: ( 'v' | 'V' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '6' ) )
+                # lesscss.g:578:25: ( 'v' | 'V' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '6' ) )
                 alt158 = 3
                 LA158 = self.input.LA(1)
                 if LA158 == 118:
@@ -4253,58 +4250,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt158 == 1:
-                    # lesscss.g:574:31: 'v'
+                    # lesscss.g:578:31: 'v'
                     pass 
                     self.match(118)
 
 
                 elif alt158 == 2:
-                    # lesscss.g:575:31: 'V'
+                    # lesscss.g:579:31: 'V'
                     pass 
                     self.match(86)
 
 
                 elif alt158 == 3:
-                    # lesscss.g:576:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '6' )
+                    # lesscss.g:580:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '6' )
                     pass 
-                    # lesscss.g:576:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:580:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt157 = 2
                     LA157_0 = self.input.LA(1)
 
                     if (LA157_0 == 48) :
                         alt157 = 1
                     if alt157 == 1:
-                        # lesscss.g:576:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:580:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:576:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:580:36: ( '0' ( '0' ( '0' )? )? )?
                         alt156 = 2
                         LA156_0 = self.input.LA(1)
 
                         if (LA156_0 == 48) :
                             alt156 = 1
                         if alt156 == 1:
-                            # lesscss.g:576:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:580:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:576:41: ( '0' ( '0' )? )?
+                            # lesscss.g:580:41: ( '0' ( '0' )? )?
                             alt155 = 2
                             LA155_0 = self.input.LA(1)
 
                             if (LA155_0 == 48) :
                                 alt155 = 1
                             if alt155 == 1:
-                                # lesscss.g:576:42: '0' ( '0' )?
+                                # lesscss.g:580:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:576:46: ( '0' )?
+                                # lesscss.g:580:46: ( '0' )?
                                 alt154 = 2
                                 LA154_0 = self.input.LA(1)
 
                                 if (LA154_0 == 48) :
                                     alt154 = 1
                                 if alt154 == 1:
-                                    # lesscss.g:576:46: '0'
+                                    # lesscss.g:580:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -4329,8 +4326,8 @@ class lesscssLexer(Lexer):
                         self.recover(mse)
                         raise mse
 
-                    # lesscss.g:576:66: ( '6' )
-                    # lesscss.g:576:67: '6'
+                    # lesscss.g:580:66: ( '6' )
+                    # lesscss.g:580:67: '6'
                     pass 
                     self.match(54)
 
@@ -4354,7 +4351,7 @@ class lesscssLexer(Lexer):
     def mW(self, ):
 
         try:
-            # lesscss.g:579:17: ( ( 'w' | 'W' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'w' | 'W' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '7' ) ) )
+            # lesscss.g:583:17: ( ( 'w' | 'W' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'w' | 'W' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '7' ) ) )
             alt166 = 2
             LA166_0 = self.input.LA(1)
 
@@ -4371,7 +4368,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt166 == 1:
-                # lesscss.g:579:21: ( 'w' | 'W' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:583:21: ( 'w' | 'W' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 87 or self.input.LA(1) == 119:
                     self.input.consume()
@@ -4383,7 +4380,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:579:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:583:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop160
                     alt160 = 2
                     LA160_0 = self.input.LA(1)
@@ -4412,10 +4409,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt166 == 2:
-                # lesscss.g:580:19: '\\\\' ( 'w' | 'W' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '7' ) )
+                # lesscss.g:584:19: '\\\\' ( 'w' | 'W' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '7' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:581:25: ( 'w' | 'W' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '7' ) )
+                # lesscss.g:585:25: ( 'w' | 'W' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '7' ) )
                 alt165 = 3
                 LA165 = self.input.LA(1)
                 if LA165 == 119:
@@ -4433,58 +4430,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt165 == 1:
-                    # lesscss.g:582:31: 'w'
+                    # lesscss.g:586:31: 'w'
                     pass 
                     self.match(119)
 
 
                 elif alt165 == 2:
-                    # lesscss.g:583:31: 'W'
+                    # lesscss.g:587:31: 'W'
                     pass 
                     self.match(87)
 
 
                 elif alt165 == 3:
-                    # lesscss.g:584:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '7' )
+                    # lesscss.g:588:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '7' )
                     pass 
-                    # lesscss.g:584:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:588:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt164 = 2
                     LA164_0 = self.input.LA(1)
 
                     if (LA164_0 == 48) :
                         alt164 = 1
                     if alt164 == 1:
-                        # lesscss.g:584:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:588:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:584:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:588:36: ( '0' ( '0' ( '0' )? )? )?
                         alt163 = 2
                         LA163_0 = self.input.LA(1)
 
                         if (LA163_0 == 48) :
                             alt163 = 1
                         if alt163 == 1:
-                            # lesscss.g:584:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:588:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:584:41: ( '0' ( '0' )? )?
+                            # lesscss.g:588:41: ( '0' ( '0' )? )?
                             alt162 = 2
                             LA162_0 = self.input.LA(1)
 
                             if (LA162_0 == 48) :
                                 alt162 = 1
                             if alt162 == 1:
-                                # lesscss.g:584:42: '0' ( '0' )?
+                                # lesscss.g:588:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:584:46: ( '0' )?
+                                # lesscss.g:588:46: ( '0' )?
                                 alt161 = 2
                                 LA161_0 = self.input.LA(1)
 
                                 if (LA161_0 == 48) :
                                     alt161 = 1
                                 if alt161 == 1:
-                                    # lesscss.g:584:46: '0'
+                                    # lesscss.g:588:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -4509,8 +4506,8 @@ class lesscssLexer(Lexer):
                         self.recover(mse)
                         raise mse
 
-                    # lesscss.g:584:66: ( '7' )
-                    # lesscss.g:584:67: '7'
+                    # lesscss.g:588:66: ( '7' )
+                    # lesscss.g:588:67: '7'
                     pass 
                     self.match(55)
 
@@ -4534,7 +4531,7 @@ class lesscssLexer(Lexer):
     def mX(self, ):
 
         try:
-            # lesscss.g:587:17: ( ( 'x' | 'X' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'x' | 'X' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '8' ) ) )
+            # lesscss.g:591:17: ( ( 'x' | 'X' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'x' | 'X' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '8' ) ) )
             alt173 = 2
             LA173_0 = self.input.LA(1)
 
@@ -4551,7 +4548,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt173 == 1:
-                # lesscss.g:587:21: ( 'x' | 'X' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:591:21: ( 'x' | 'X' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 88 or self.input.LA(1) == 120:
                     self.input.consume()
@@ -4563,7 +4560,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:587:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:591:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop167
                     alt167 = 2
                     LA167_0 = self.input.LA(1)
@@ -4592,10 +4589,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt173 == 2:
-                # lesscss.g:588:19: '\\\\' ( 'x' | 'X' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '8' ) )
+                # lesscss.g:592:19: '\\\\' ( 'x' | 'X' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '8' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:589:25: ( 'x' | 'X' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '8' ) )
+                # lesscss.g:593:25: ( 'x' | 'X' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '8' ) )
                 alt172 = 3
                 LA172 = self.input.LA(1)
                 if LA172 == 120:
@@ -4613,58 +4610,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt172 == 1:
-                    # lesscss.g:590:31: 'x'
+                    # lesscss.g:594:31: 'x'
                     pass 
                     self.match(120)
 
 
                 elif alt172 == 2:
-                    # lesscss.g:591:31: 'X'
+                    # lesscss.g:595:31: 'X'
                     pass 
                     self.match(88)
 
 
                 elif alt172 == 3:
-                    # lesscss.g:592:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '8' )
+                    # lesscss.g:596:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '8' )
                     pass 
-                    # lesscss.g:592:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:596:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt171 = 2
                     LA171_0 = self.input.LA(1)
 
                     if (LA171_0 == 48) :
                         alt171 = 1
                     if alt171 == 1:
-                        # lesscss.g:592:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:596:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:592:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:596:36: ( '0' ( '0' ( '0' )? )? )?
                         alt170 = 2
                         LA170_0 = self.input.LA(1)
 
                         if (LA170_0 == 48) :
                             alt170 = 1
                         if alt170 == 1:
-                            # lesscss.g:592:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:596:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:592:41: ( '0' ( '0' )? )?
+                            # lesscss.g:596:41: ( '0' ( '0' )? )?
                             alt169 = 2
                             LA169_0 = self.input.LA(1)
 
                             if (LA169_0 == 48) :
                                 alt169 = 1
                             if alt169 == 1:
-                                # lesscss.g:592:42: '0' ( '0' )?
+                                # lesscss.g:596:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:592:46: ( '0' )?
+                                # lesscss.g:596:46: ( '0' )?
                                 alt168 = 2
                                 LA168_0 = self.input.LA(1)
 
                                 if (LA168_0 == 48) :
                                     alt168 = 1
                                 if alt168 == 1:
-                                    # lesscss.g:592:46: '0'
+                                    # lesscss.g:596:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -4689,8 +4686,8 @@ class lesscssLexer(Lexer):
                         self.recover(mse)
                         raise mse
 
-                    # lesscss.g:592:66: ( '8' )
-                    # lesscss.g:592:67: '8'
+                    # lesscss.g:596:66: ( '8' )
+                    # lesscss.g:596:67: '8'
                     pass 
                     self.match(56)
 
@@ -4714,7 +4711,7 @@ class lesscssLexer(Lexer):
     def mY(self, ):
 
         try:
-            # lesscss.g:595:17: ( ( 'y' | 'Y' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'y' | 'Y' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '9' ) ) )
+            # lesscss.g:599:17: ( ( 'y' | 'Y' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'y' | 'Y' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '9' ) ) )
             alt180 = 2
             LA180_0 = self.input.LA(1)
 
@@ -4731,7 +4728,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt180 == 1:
-                # lesscss.g:595:21: ( 'y' | 'Y' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:599:21: ( 'y' | 'Y' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 89 or self.input.LA(1) == 121:
                     self.input.consume()
@@ -4743,7 +4740,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:595:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:599:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop174
                     alt174 = 2
                     LA174_0 = self.input.LA(1)
@@ -4772,10 +4769,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt180 == 2:
-                # lesscss.g:596:19: '\\\\' ( 'y' | 'Y' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '9' ) )
+                # lesscss.g:600:19: '\\\\' ( 'y' | 'Y' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '9' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:597:25: ( 'y' | 'Y' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '9' ) )
+                # lesscss.g:601:25: ( 'y' | 'Y' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '9' ) )
                 alt179 = 3
                 LA179 = self.input.LA(1)
                 if LA179 == 121:
@@ -4793,58 +4790,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt179 == 1:
-                    # lesscss.g:598:31: 'y'
+                    # lesscss.g:602:31: 'y'
                     pass 
                     self.match(121)
 
 
                 elif alt179 == 2:
-                    # lesscss.g:599:31: 'Y'
+                    # lesscss.g:603:31: 'Y'
                     pass 
                     self.match(89)
 
 
                 elif alt179 == 3:
-                    # lesscss.g:600:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '9' )
+                    # lesscss.g:604:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( '9' )
                     pass 
-                    # lesscss.g:600:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:604:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt178 = 2
                     LA178_0 = self.input.LA(1)
 
                     if (LA178_0 == 48) :
                         alt178 = 1
                     if alt178 == 1:
-                        # lesscss.g:600:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:604:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:600:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:604:36: ( '0' ( '0' ( '0' )? )? )?
                         alt177 = 2
                         LA177_0 = self.input.LA(1)
 
                         if (LA177_0 == 48) :
                             alt177 = 1
                         if alt177 == 1:
-                            # lesscss.g:600:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:604:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:600:41: ( '0' ( '0' )? )?
+                            # lesscss.g:604:41: ( '0' ( '0' )? )?
                             alt176 = 2
                             LA176_0 = self.input.LA(1)
 
                             if (LA176_0 == 48) :
                                 alt176 = 1
                             if alt176 == 1:
-                                # lesscss.g:600:42: '0' ( '0' )?
+                                # lesscss.g:604:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:600:46: ( '0' )?
+                                # lesscss.g:604:46: ( '0' )?
                                 alt175 = 2
                                 LA175_0 = self.input.LA(1)
 
                                 if (LA175_0 == 48) :
                                     alt175 = 1
                                 if alt175 == 1:
-                                    # lesscss.g:600:46: '0'
+                                    # lesscss.g:604:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -4869,8 +4866,8 @@ class lesscssLexer(Lexer):
                         self.recover(mse)
                         raise mse
 
-                    # lesscss.g:600:66: ( '9' )
-                    # lesscss.g:600:67: '9'
+                    # lesscss.g:604:66: ( '9' )
+                    # lesscss.g:604:67: '9'
                     pass 
                     self.match(57)
 
@@ -4894,7 +4891,7 @@ class lesscssLexer(Lexer):
     def mZ(self, ):
 
         try:
-            # lesscss.g:603:17: ( ( 'z' | 'Z' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'z' | 'Z' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( 'A' | 'a' ) ) )
+            # lesscss.g:607:17: ( ( 'z' | 'Z' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* | '\\\\' ( 'z' | 'Z' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( 'A' | 'a' ) ) )
             alt187 = 2
             LA187_0 = self.input.LA(1)
 
@@ -4911,7 +4908,7 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt187 == 1:
-                # lesscss.g:603:21: ( 'z' | 'Z' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:607:21: ( 'z' | 'Z' ) ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 if self.input.LA(1) == 90 or self.input.LA(1) == 122:
                     self.input.consume()
@@ -4923,7 +4920,7 @@ class lesscssLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # lesscss.g:603:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:607:31: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop181
                     alt181 = 2
                     LA181_0 = self.input.LA(1)
@@ -4952,10 +4949,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt187 == 2:
-                # lesscss.g:604:19: '\\\\' ( 'z' | 'Z' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( 'A' | 'a' ) )
+                # lesscss.g:608:19: '\\\\' ( 'z' | 'Z' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( 'A' | 'a' ) )
                 pass 
                 self.match(92)
-                # lesscss.g:605:25: ( 'z' | 'Z' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( 'A' | 'a' ) )
+                # lesscss.g:609:25: ( 'z' | 'Z' | ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( 'A' | 'a' ) )
                 alt186 = 3
                 LA186 = self.input.LA(1)
                 if LA186 == 122:
@@ -4973,58 +4970,58 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt186 == 1:
-                    # lesscss.g:606:31: 'z'
+                    # lesscss.g:610:31: 'z'
                     pass 
                     self.match(122)
 
 
                 elif alt186 == 2:
-                    # lesscss.g:607:31: 'Z'
+                    # lesscss.g:611:31: 'Z'
                     pass 
                     self.match(90)
 
 
                 elif alt186 == 3:
-                    # lesscss.g:608:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( 'A' | 'a' )
+                    # lesscss.g:612:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )? ( '5' | '7' ) ( 'A' | 'a' )
                     pass 
-                    # lesscss.g:608:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
+                    # lesscss.g:612:31: ( '0' ( '0' ( '0' ( '0' )? )? )? )?
                     alt185 = 2
                     LA185_0 = self.input.LA(1)
 
                     if (LA185_0 == 48) :
                         alt185 = 1
                     if alt185 == 1:
-                        # lesscss.g:608:32: '0' ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:612:32: '0' ( '0' ( '0' ( '0' )? )? )?
                         pass 
                         self.match(48)
-                        # lesscss.g:608:36: ( '0' ( '0' ( '0' )? )? )?
+                        # lesscss.g:612:36: ( '0' ( '0' ( '0' )? )? )?
                         alt184 = 2
                         LA184_0 = self.input.LA(1)
 
                         if (LA184_0 == 48) :
                             alt184 = 1
                         if alt184 == 1:
-                            # lesscss.g:608:37: '0' ( '0' ( '0' )? )?
+                            # lesscss.g:612:37: '0' ( '0' ( '0' )? )?
                             pass 
                             self.match(48)
-                            # lesscss.g:608:41: ( '0' ( '0' )? )?
+                            # lesscss.g:612:41: ( '0' ( '0' )? )?
                             alt183 = 2
                             LA183_0 = self.input.LA(1)
 
                             if (LA183_0 == 48) :
                                 alt183 = 1
                             if alt183 == 1:
-                                # lesscss.g:608:42: '0' ( '0' )?
+                                # lesscss.g:612:42: '0' ( '0' )?
                                 pass 
                                 self.match(48)
-                                # lesscss.g:608:46: ( '0' )?
+                                # lesscss.g:612:46: ( '0' )?
                                 alt182 = 2
                                 LA182_0 = self.input.LA(1)
 
                                 if (LA182_0 == 48) :
                                     alt182 = 1
                                 if alt182 == 1:
-                                    # lesscss.g:608:46: '0'
+                                    # lesscss.g:612:46: '0'
                                     pass 
                                     self.match(48)
 
@@ -5080,14 +5077,14 @@ class lesscssLexer(Lexer):
             _type = COMMENT
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:619:17: ( '/*' ( options {greedy=false; } : ( . )* ) '*/' )
-            # lesscss.g:619:19: '/*' ( options {greedy=false; } : ( . )* ) '*/'
+            # lesscss.g:623:17: ( '/*' ( options {greedy=false; } : ( . )* ) '*/' )
+            # lesscss.g:623:19: '/*' ( options {greedy=false; } : ( . )* ) '*/'
             pass 
             self.match("/*")
-            # lesscss.g:619:24: ( options {greedy=false; } : ( . )* )
-            # lesscss.g:619:54: ( . )*
+            # lesscss.g:623:24: ( options {greedy=false; } : ( . )* )
+            # lesscss.g:623:54: ( . )*
             pass 
-            # lesscss.g:619:54: ( . )*
+            # lesscss.g:623:54: ( . )*
             while True: #loop188
                 alt188 = 2
                 LA188_0 = self.input.LA(1)
@@ -5106,7 +5103,7 @@ class lesscssLexer(Lexer):
 
 
                 if alt188 == 1:
-                    # lesscss.g:619:54: .
+                    # lesscss.g:623:54: .
                     pass 
                     self.matchAny()
 
@@ -5143,8 +5140,8 @@ class lesscssLexer(Lexer):
             _type = CDO
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:632:17: ( '<!--' )
-            # lesscss.g:632:19: '<!--'
+            # lesscss.g:636:17: ( '<!--' )
+            # lesscss.g:636:19: '<!--'
             pass 
             self.match("<!--")
             if self._state.backtracking == 0:
@@ -5173,8 +5170,8 @@ class lesscssLexer(Lexer):
             _type = CDC
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:645:17: ( '-->' )
-            # lesscss.g:645:19: '-->'
+            # lesscss.g:649:17: ( '-->' )
+            # lesscss.g:649:19: '-->'
             pass 
             self.match("-->")
             if self._state.backtracking == 0:
@@ -5203,8 +5200,8 @@ class lesscssLexer(Lexer):
             _type = INCLUDES
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:652:17: ( '~=' )
-            # lesscss.g:652:19: '~='
+            # lesscss.g:656:17: ( '~=' )
+            # lesscss.g:656:19: '~='
             pass 
             self.match("~=")
 
@@ -5228,8 +5225,8 @@ class lesscssLexer(Lexer):
             _type = DASHMATCH
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:653:17: ( '|=' )
-            # lesscss.g:653:19: '|='
+            # lesscss.g:657:17: ( '|=' )
+            # lesscss.g:657:19: '|='
             pass 
             self.match("|=")
 
@@ -5253,8 +5250,8 @@ class lesscssLexer(Lexer):
             _type = PREFIXMATCH
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:654:17: ( '^=' )
-            # lesscss.g:654:19: '^='
+            # lesscss.g:658:17: ( '^=' )
+            # lesscss.g:658:19: '^='
             pass 
             self.match("^=")
 
@@ -5278,8 +5275,8 @@ class lesscssLexer(Lexer):
             _type = SUFFIXMATCH
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:655:17: ( '$=' )
-            # lesscss.g:655:19: '$='
+            # lesscss.g:659:17: ( '$=' )
+            # lesscss.g:659:19: '$='
             pass 
             self.match("$=")
 
@@ -5303,8 +5300,8 @@ class lesscssLexer(Lexer):
             _type = SUBSTRINGMATCH
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:656:17: ( '*=' )
-            # lesscss.g:656:19: '*='
+            # lesscss.g:660:17: ( '*=' )
+            # lesscss.g:660:19: '*='
             pass 
             self.match("*=")
 
@@ -5328,8 +5325,8 @@ class lesscssLexer(Lexer):
             _type = GREATER
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:659:17: ( '>' )
-            # lesscss.g:659:19: '>'
+            # lesscss.g:663:17: ( '>' )
+            # lesscss.g:663:19: '>'
             pass 
             self.match(62)
 
@@ -5353,8 +5350,8 @@ class lesscssLexer(Lexer):
             _type = LBRACE
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:660:17: ( '{' )
-            # lesscss.g:660:19: '{'
+            # lesscss.g:664:17: ( '{' )
+            # lesscss.g:664:19: '{'
             pass 
             self.match(123)
 
@@ -5378,8 +5375,8 @@ class lesscssLexer(Lexer):
             _type = RBRACE
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:661:17: ( '}' )
-            # lesscss.g:661:19: '}'
+            # lesscss.g:665:17: ( '}' )
+            # lesscss.g:665:19: '}'
             pass 
             self.match(125)
 
@@ -5403,8 +5400,8 @@ class lesscssLexer(Lexer):
             _type = LBRACKET
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:662:17: ( '[' )
-            # lesscss.g:662:19: '['
+            # lesscss.g:666:17: ( '[' )
+            # lesscss.g:666:19: '['
             pass 
             self.match(91)
 
@@ -5428,8 +5425,8 @@ class lesscssLexer(Lexer):
             _type = RBRACKET
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:663:17: ( ']' )
-            # lesscss.g:663:19: ']'
+            # lesscss.g:667:17: ( ']' )
+            # lesscss.g:667:19: ']'
             pass 
             self.match(93)
 
@@ -5453,8 +5450,8 @@ class lesscssLexer(Lexer):
             _type = OPEQ
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:664:17: ( '=' )
-            # lesscss.g:664:19: '='
+            # lesscss.g:668:17: ( '=' )
+            # lesscss.g:668:19: '='
             pass 
             self.match(61)
 
@@ -5478,8 +5475,8 @@ class lesscssLexer(Lexer):
             _type = SEMI
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:665:17: ( ';' )
-            # lesscss.g:665:19: ';'
+            # lesscss.g:669:17: ( ';' )
+            # lesscss.g:669:19: ';'
             pass 
             self.match(59)
 
@@ -5503,8 +5500,8 @@ class lesscssLexer(Lexer):
             _type = COLON
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:666:17: ( ':' )
-            # lesscss.g:666:19: ':'
+            # lesscss.g:670:17: ( ':' )
+            # lesscss.g:670:19: ':'
             pass 
             self.match(58)
 
@@ -5528,8 +5525,8 @@ class lesscssLexer(Lexer):
             _type = SOLIDUS
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:667:17: ( '/' )
-            # lesscss.g:667:19: '/'
+            # lesscss.g:671:17: ( '/' )
+            # lesscss.g:671:19: '/'
             pass 
             self.match(47)
 
@@ -5553,8 +5550,8 @@ class lesscssLexer(Lexer):
             _type = MINUS
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:668:17: ( '-' )
-            # lesscss.g:668:19: '-'
+            # lesscss.g:672:17: ( '-' )
+            # lesscss.g:672:19: '-'
             pass 
             self.match(45)
 
@@ -5578,8 +5575,8 @@ class lesscssLexer(Lexer):
             _type = PLUS
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:669:17: ( '+' )
-            # lesscss.g:669:19: '+'
+            # lesscss.g:673:17: ( '+' )
+            # lesscss.g:673:19: '+'
             pass 
             self.match(43)
 
@@ -5603,8 +5600,8 @@ class lesscssLexer(Lexer):
             _type = STAR
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:670:17: ( '*' )
-            # lesscss.g:670:19: '*'
+            # lesscss.g:674:17: ( '*' )
+            # lesscss.g:674:19: '*'
             pass 
             self.match(42)
 
@@ -5628,8 +5625,8 @@ class lesscssLexer(Lexer):
             _type = LPAREN
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:671:17: ( '(' )
-            # lesscss.g:671:19: '('
+            # lesscss.g:675:17: ( '(' )
+            # lesscss.g:675:19: '('
             pass 
             self.match(40)
 
@@ -5653,8 +5650,8 @@ class lesscssLexer(Lexer):
             _type = RPAREN
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:672:17: ( ')' )
-            # lesscss.g:672:19: ')'
+            # lesscss.g:676:17: ( ')' )
+            # lesscss.g:676:19: ')'
             pass 
             self.match(41)
 
@@ -5678,8 +5675,8 @@ class lesscssLexer(Lexer):
             _type = COMMA
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:673:17: ( ',' )
-            # lesscss.g:673:19: ','
+            # lesscss.g:677:17: ( ',' )
+            # lesscss.g:677:19: ','
             pass 
             self.match(44)
 
@@ -5703,8 +5700,8 @@ class lesscssLexer(Lexer):
             _type = DOT
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:674:17: ( '.' )
-            # lesscss.g:674:19: '.'
+            # lesscss.g:678:17: ( '.' )
+            # lesscss.g:678:19: '.'
             pass 
             self.match(46)
 
@@ -5728,7 +5725,7 @@ class lesscssLexer(Lexer):
             _type = STRING
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:680:9: ( '\"' ( STRINGESC | ~ ( '\"' | '\\\\' | '\\n' | '\\r' ) )* '\"' | '\\'' ( STRINGESC | ~ ( '\\'' | '\\\\' | '\\n' | '\\r' ) )* '\\'' )
+            # lesscss.g:684:9: ( '\"' ( STRINGESC | ~ ( '\"' | '\\\\' | '\\n' | '\\r' ) )* '\"' | '\\'' ( STRINGESC | ~ ( '\\'' | '\\\\' | '\\n' | '\\r' ) )* '\\'' )
             alt191 = 2
             LA191_0 = self.input.LA(1)
 
@@ -5745,10 +5742,10 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt191 == 1:
-                # lesscss.g:680:13: '\"' ( STRINGESC | ~ ( '\"' | '\\\\' | '\\n' | '\\r' ) )* '\"'
+                # lesscss.g:684:13: '\"' ( STRINGESC | ~ ( '\"' | '\\\\' | '\\n' | '\\r' ) )* '\"'
                 pass 
                 self.match(34)
-                # lesscss.g:680:17: ( STRINGESC | ~ ( '\"' | '\\\\' | '\\n' | '\\r' ) )*
+                # lesscss.g:684:17: ( STRINGESC | ~ ( '\"' | '\\\\' | '\\n' | '\\r' ) )*
                 while True: #loop189
                     alt189 = 3
                     LA189_0 = self.input.LA(1)
@@ -5760,13 +5757,13 @@ class lesscssLexer(Lexer):
 
 
                     if alt189 == 1:
-                        # lesscss.g:680:19: STRINGESC
+                        # lesscss.g:684:19: STRINGESC
                         pass 
                         self.mSTRINGESC()
 
 
                     elif alt189 == 2:
-                        # lesscss.g:680:31: ~ ( '\"' | '\\\\' | '\\n' | '\\r' )
+                        # lesscss.g:684:31: ~ ( '\"' | '\\\\' | '\\n' | '\\r' )
                         pass 
                         if (0 <= self.input.LA(1) <= 9) or (11 <= self.input.LA(1) <= 12) or (14 <= self.input.LA(1) <= 33) or (35 <= self.input.LA(1) <= 91) or (93 <= self.input.LA(1) <= 65535):
                             self.input.consume()
@@ -5786,10 +5783,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt191 == 2:
-                # lesscss.g:681:13: '\\'' ( STRINGESC | ~ ( '\\'' | '\\\\' | '\\n' | '\\r' ) )* '\\''
+                # lesscss.g:685:13: '\\'' ( STRINGESC | ~ ( '\\'' | '\\\\' | '\\n' | '\\r' ) )* '\\''
                 pass 
                 self.match(39)
-                # lesscss.g:681:18: ( STRINGESC | ~ ( '\\'' | '\\\\' | '\\n' | '\\r' ) )*
+                # lesscss.g:685:18: ( STRINGESC | ~ ( '\\'' | '\\\\' | '\\n' | '\\r' ) )*
                 while True: #loop190
                     alt190 = 3
                     LA190_0 = self.input.LA(1)
@@ -5801,13 +5798,13 @@ class lesscssLexer(Lexer):
 
 
                     if alt190 == 1:
-                        # lesscss.g:681:20: STRINGESC
+                        # lesscss.g:685:20: STRINGESC
                         pass 
                         self.mSTRINGESC()
 
 
                     elif alt190 == 2:
-                        # lesscss.g:681:32: ~ ( '\\'' | '\\\\' | '\\n' | '\\r' )
+                        # lesscss.g:685:32: ~ ( '\\'' | '\\\\' | '\\n' | '\\r' )
                         pass 
                         if (0 <= self.input.LA(1) <= 9) or (11 <= self.input.LA(1) <= 12) or (14 <= self.input.LA(1) <= 38) or (40 <= self.input.LA(1) <= 91) or (93 <= self.input.LA(1) <= 65535):
                             self.input.consume()
@@ -5841,59 +5838,59 @@ class lesscssLexer(Lexer):
     def mSTRINGESC(self, ):
 
         try:
-            # lesscss.g:685:9: ( '\\\\' ( 'n' | 'r' | 't' | HEXCHAR | '\"' | '\\'' | '\\\\' | ( 'u' )+ HEXCHAR HEXCHAR HEXCHAR HEXCHAR | HEXCHAR HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* ) )
-            # lesscss.g:685:13: '\\\\' ( 'n' | 'r' | 't' | HEXCHAR | '\"' | '\\'' | '\\\\' | ( 'u' )+ HEXCHAR HEXCHAR HEXCHAR HEXCHAR | HEXCHAR HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* )
+            # lesscss.g:689:9: ( '\\\\' ( 'n' | 'r' | 't' | HEXCHAR | '\"' | '\\'' | '\\\\' | ( 'u' )+ HEXCHAR HEXCHAR HEXCHAR HEXCHAR | HEXCHAR HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* ) )
+            # lesscss.g:689:13: '\\\\' ( 'n' | 'r' | 't' | HEXCHAR | '\"' | '\\'' | '\\\\' | ( 'u' )+ HEXCHAR HEXCHAR HEXCHAR HEXCHAR | HEXCHAR HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* )
             pass 
             self.match(92)
-            # lesscss.g:686:13: ( 'n' | 'r' | 't' | HEXCHAR | '\"' | '\\'' | '\\\\' | ( 'u' )+ HEXCHAR HEXCHAR HEXCHAR HEXCHAR | HEXCHAR HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* )
+            # lesscss.g:690:13: ( 'n' | 'r' | 't' | HEXCHAR | '\"' | '\\'' | '\\\\' | ( 'u' )+ HEXCHAR HEXCHAR HEXCHAR HEXCHAR | HEXCHAR HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )* )
             alt198 = 9
             alt198 = self.dfa198.predict(self.input)
             if alt198 == 1:
-                # lesscss.g:686:17: 'n'
+                # lesscss.g:690:17: 'n'
                 pass 
                 self.match(110)
 
 
             elif alt198 == 2:
-                # lesscss.g:687:17: 'r'
+                # lesscss.g:691:17: 'r'
                 pass 
                 self.match(114)
 
 
             elif alt198 == 3:
-                # lesscss.g:688:17: 't'
+                # lesscss.g:692:17: 't'
                 pass 
                 self.match(116)
 
 
             elif alt198 == 4:
-                # lesscss.g:689:17: HEXCHAR
+                # lesscss.g:693:17: HEXCHAR
                 pass 
                 self.mHEXCHAR()
 
 
             elif alt198 == 5:
-                # lesscss.g:690:17: '\"'
+                # lesscss.g:694:17: '\"'
                 pass 
                 self.match(34)
 
 
             elif alt198 == 6:
-                # lesscss.g:691:17: '\\''
+                # lesscss.g:695:17: '\\''
                 pass 
                 self.match(39)
 
 
             elif alt198 == 7:
-                # lesscss.g:692:17: '\\\\'
+                # lesscss.g:696:17: '\\\\'
                 pass 
                 self.match(92)
 
 
             elif alt198 == 8:
-                # lesscss.g:693:17: ( 'u' )+ HEXCHAR HEXCHAR HEXCHAR HEXCHAR
+                # lesscss.g:697:17: ( 'u' )+ HEXCHAR HEXCHAR HEXCHAR HEXCHAR
                 pass 
-                # lesscss.g:693:17: ( 'u' )+
+                # lesscss.g:697:17: ( 'u' )+
                 cnt192 = 0
                 while True: #loop192
                     alt192 = 2
@@ -5904,7 +5901,7 @@ class lesscssLexer(Lexer):
 
 
                     if alt192 == 1:
-                        # lesscss.g:693:18: 'u'
+                        # lesscss.g:697:18: 'u'
                         pass 
                         self.match(117)
 
@@ -5927,48 +5924,48 @@ class lesscssLexer(Lexer):
 
 
             elif alt198 == 9:
-                # lesscss.g:695:17: HEXCHAR HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:699:17: HEXCHAR HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )? ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 pass 
                 self.mHEXCHAR()
                 self.mHEXCHAR()
-                # lesscss.g:696:21: ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )?
+                # lesscss.g:700:21: ( HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )? )?
                 alt196 = 2
                 LA196_0 = self.input.LA(1)
 
                 if ((48 <= LA196_0 <= 57) or (65 <= LA196_0 <= 70) or (97 <= LA196_0 <= 102)) :
                     alt196 = 1
                 if alt196 == 1:
-                    # lesscss.g:696:22: HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )?
+                    # lesscss.g:700:22: HEXCHAR ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )?
                     pass 
                     self.mHEXCHAR()
-                    # lesscss.g:697:25: ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )?
+                    # lesscss.g:701:25: ( HEXCHAR ( HEXCHAR ( HEXCHAR )? )? )?
                     alt195 = 2
                     LA195_0 = self.input.LA(1)
 
                     if ((48 <= LA195_0 <= 57) or (65 <= LA195_0 <= 70) or (97 <= LA195_0 <= 102)) :
                         alt195 = 1
                     if alt195 == 1:
-                        # lesscss.g:697:26: HEXCHAR ( HEXCHAR ( HEXCHAR )? )?
+                        # lesscss.g:701:26: HEXCHAR ( HEXCHAR ( HEXCHAR )? )?
                         pass 
                         self.mHEXCHAR()
-                        # lesscss.g:698:29: ( HEXCHAR ( HEXCHAR )? )?
+                        # lesscss.g:702:29: ( HEXCHAR ( HEXCHAR )? )?
                         alt194 = 2
                         LA194_0 = self.input.LA(1)
 
                         if ((48 <= LA194_0 <= 57) or (65 <= LA194_0 <= 70) or (97 <= LA194_0 <= 102)) :
                             alt194 = 1
                         if alt194 == 1:
-                            # lesscss.g:698:30: HEXCHAR ( HEXCHAR )?
+                            # lesscss.g:702:30: HEXCHAR ( HEXCHAR )?
                             pass 
                             self.mHEXCHAR()
-                            # lesscss.g:698:38: ( HEXCHAR )?
+                            # lesscss.g:702:38: ( HEXCHAR )?
                             alt193 = 2
                             LA193_0 = self.input.LA(1)
 
                             if ((48 <= LA193_0 <= 57) or (65 <= LA193_0 <= 70) or (97 <= LA193_0 <= 102)) :
                                 alt193 = 1
                             if alt193 == 1:
-                                # lesscss.g:698:38: HEXCHAR
+                                # lesscss.g:702:38: HEXCHAR
                                 pass 
                                 self.mHEXCHAR()
 
@@ -5983,7 +5980,7 @@ class lesscssLexer(Lexer):
 
 
 
-                # lesscss.g:701:17: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
+                # lesscss.g:705:17: ( '\\r' | '\\n' | '\\t' | '\\f' | ' ' )*
                 while True: #loop197
                     alt197 = 2
                     LA197_0 = self.input.LA(1)
@@ -6031,24 +6028,24 @@ class lesscssLexer(Lexer):
             _type = IDENT
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:708:9: ( ( '-' )? NMSTART ( NMCHAR )* )
-            # lesscss.g:708:11: ( '-' )? NMSTART ( NMCHAR )*
+            # lesscss.g:712:9: ( ( '-' )? NMSTART ( NMCHAR )* )
+            # lesscss.g:712:11: ( '-' )? NMSTART ( NMCHAR )*
             pass 
-            # lesscss.g:708:11: ( '-' )?
+            # lesscss.g:712:11: ( '-' )?
             alt199 = 2
             LA199_0 = self.input.LA(1)
 
             if (LA199_0 == 45) :
                 alt199 = 1
             if alt199 == 1:
-                # lesscss.g:708:11: '-'
+                # lesscss.g:712:11: '-'
                 pass 
                 self.match(45)
 
 
 
             self.mNMSTART()
-            # lesscss.g:708:24: ( NMCHAR )*
+            # lesscss.g:712:24: ( NMCHAR )*
             while True: #loop200
                 alt200 = 2
                 LA200_0 = self.input.LA(1)
@@ -6058,7 +6055,7 @@ class lesscssLexer(Lexer):
 
 
                 if alt200 == 1:
-                    # lesscss.g:708:24: NMCHAR
+                    # lesscss.g:712:24: NMCHAR
                     pass 
                     self.mNMCHAR()
 
@@ -6086,8 +6083,8 @@ class lesscssLexer(Lexer):
             _type = FUNCTION
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:713:17: ( IDENT LPAREN )
-            # lesscss.g:713:19: IDENT LPAREN
+            # lesscss.g:717:17: ( IDENT LPAREN )
+            # lesscss.g:717:19: IDENT LPAREN
             pass 
             self.mIDENT()
             self.mLPAREN()
@@ -6112,8 +6109,8 @@ class lesscssLexer(Lexer):
             _type = HASH
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:719:17: ( '#' NAME )
-            # lesscss.g:719:19: '#' NAME
+            # lesscss.g:723:17: ( '#' NAME )
+            # lesscss.g:723:19: '#' NAME
             pass 
             self.match(35)
             self.mNAME()
@@ -6138,8 +6135,8 @@ class lesscssLexer(Lexer):
             _type = IMPORT_SYM
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:721:17: ( '@' I M P O R T )
-            # lesscss.g:721:19: '@' I M P O R T
+            # lesscss.g:725:17: ( '@' I M P O R T )
+            # lesscss.g:725:19: '@' I M P O R T
             pass 
             self.match(64)
             self.mI()
@@ -6169,8 +6166,8 @@ class lesscssLexer(Lexer):
             _type = PAGE_SYM
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:722:17: ( '@' P A G E )
-            # lesscss.g:722:19: '@' P A G E
+            # lesscss.g:726:17: ( '@' P A G E )
+            # lesscss.g:726:19: '@' P A G E
             pass 
             self.match(64)
             self.mP()
@@ -6198,8 +6195,8 @@ class lesscssLexer(Lexer):
             _type = MEDIA_SYM
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:723:17: ( '@' M E D I A )
-            # lesscss.g:723:19: '@' M E D I A
+            # lesscss.g:727:17: ( '@' M E D I A )
+            # lesscss.g:727:19: '@' M E D I A
             pass 
             self.match(64)
             self.mM()
@@ -6228,8 +6225,8 @@ class lesscssLexer(Lexer):
             _type = FONTFACE_SYM
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:724:17: ( '@' F O N T '-' F A C E )
-            # lesscss.g:724:19: '@' F O N T '-' F A C E
+            # lesscss.g:728:17: ( '@' F O N T '-' F A C E )
+            # lesscss.g:728:19: '@' F O N T '-' F A C E
             pass 
             self.match(64)
             self.mF()
@@ -6262,8 +6259,8 @@ class lesscssLexer(Lexer):
             _type = CHARSET_SYM
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:725:17: ( '@charset' )
-            # lesscss.g:725:19: '@charset'
+            # lesscss.g:729:17: ( '@charset' )
+            # lesscss.g:729:19: '@charset'
             pass 
             self.match("@charset")
 
@@ -6287,11 +6284,11 @@ class lesscssLexer(Lexer):
             _type = KEYFRAMES_SYM
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:726:17: ( '@' K E Y F R A M E S | '@' '-' W E B K I T '-' K E Y F R A M E S | '@' '-' M O Z '-' K E Y F R A M E S | '@' '-' M S '-' K E Y F R A M E S | '@' '-' O '-' K E Y F R A M E S )
+            # lesscss.g:730:17: ( '@' K E Y F R A M E S | '@' '-' W E B K I T '-' K E Y F R A M E S | '@' '-' M O Z '-' K E Y F R A M E S | '@' '-' M S '-' K E Y F R A M E S | '@' '-' O '-' K E Y F R A M E S )
             alt201 = 5
             alt201 = self.dfa201.predict(self.input)
             if alt201 == 1:
-                # lesscss.g:726:19: '@' K E Y F R A M E S
+                # lesscss.g:730:19: '@' K E Y F R A M E S
                 pass 
                 self.match(64)
                 self.mK()
@@ -6306,7 +6303,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt201 == 2:
-                # lesscss.g:727:19: '@' '-' W E B K I T '-' K E Y F R A M E S
+                # lesscss.g:731:19: '@' '-' W E B K I T '-' K E Y F R A M E S
                 pass 
                 self.match(64)
                 self.match(45)
@@ -6329,7 +6326,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt201 == 3:
-                # lesscss.g:728:19: '@' '-' M O Z '-' K E Y F R A M E S
+                # lesscss.g:732:19: '@' '-' M O Z '-' K E Y F R A M E S
                 pass 
                 self.match(64)
                 self.match(45)
@@ -6349,7 +6346,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt201 == 4:
-                # lesscss.g:729:19: '@' '-' M S '-' K E Y F R A M E S
+                # lesscss.g:733:19: '@' '-' M S '-' K E Y F R A M E S
                 pass 
                 self.match(64)
                 self.match(45)
@@ -6368,7 +6365,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt201 == 5:
-                # lesscss.g:730:19: '@' '-' O '-' K E Y F R A M E S
+                # lesscss.g:734:19: '@' '-' O '-' K E Y F R A M E S
                 pass 
                 self.match(64)
                 self.match(45)
@@ -6403,11 +6400,11 @@ class lesscssLexer(Lexer):
             _type = IMPORTANT_SYM
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:733:17: ( '!' ( WS | COMMENT )* I M P O R T A N T )
-            # lesscss.g:733:19: '!' ( WS | COMMENT )* I M P O R T A N T
+            # lesscss.g:737:17: ( '!' ( WS | COMMENT )* I M P O R T A N T )
+            # lesscss.g:737:19: '!' ( WS | COMMENT )* I M P O R T A N T
             pass 
             self.match(33)
-            # lesscss.g:733:23: ( WS | COMMENT )*
+            # lesscss.g:737:23: ( WS | COMMENT )*
             while True: #loop202
                 alt202 = 3
                 LA202_0 = self.input.LA(1)
@@ -6419,13 +6416,13 @@ class lesscssLexer(Lexer):
 
 
                 if alt202 == 1:
-                    # lesscss.g:733:24: WS
+                    # lesscss.g:737:24: WS
                     pass 
                     self.mWS()
 
 
                 elif alt202 == 2:
-                    # lesscss.g:733:27: COMMENT
+                    # lesscss.g:737:27: COMMENT
                     pass 
                     self.mCOMMENT()
 
@@ -6459,8 +6456,8 @@ class lesscssLexer(Lexer):
     def mEMS(self, ):
 
         try:
-            # lesscss.g:745:25: ()
-            # lesscss.g:745:26: 
+            # lesscss.g:749:25: ()
+            # lesscss.g:749:26: 
             pass 
 
 
@@ -6477,8 +6474,8 @@ class lesscssLexer(Lexer):
     def mEXS(self, ):
 
         try:
-            # lesscss.g:746:25: ()
-            # lesscss.g:746:26: 
+            # lesscss.g:750:25: ()
+            # lesscss.g:750:26: 
             pass 
 
 
@@ -6495,8 +6492,8 @@ class lesscssLexer(Lexer):
     def mLENGTH(self, ):
 
         try:
-            # lesscss.g:747:25: ()
-            # lesscss.g:747:26: 
+            # lesscss.g:751:25: ()
+            # lesscss.g:751:26: 
             pass 
 
 
@@ -6513,8 +6510,8 @@ class lesscssLexer(Lexer):
     def mANGLE(self, ):
 
         try:
-            # lesscss.g:748:25: ()
-            # lesscss.g:748:26: 
+            # lesscss.g:752:25: ()
+            # lesscss.g:752:26: 
             pass 
 
 
@@ -6531,8 +6528,8 @@ class lesscssLexer(Lexer):
     def mTIME(self, ):
 
         try:
-            # lesscss.g:749:25: ()
-            # lesscss.g:749:26: 
+            # lesscss.g:753:25: ()
+            # lesscss.g:753:26: 
             pass 
 
 
@@ -6549,8 +6546,8 @@ class lesscssLexer(Lexer):
     def mFREQ(self, ):
 
         try:
-            # lesscss.g:750:25: ()
-            # lesscss.g:750:26: 
+            # lesscss.g:754:25: ()
+            # lesscss.g:754:26: 
             pass 
 
 
@@ -6567,8 +6564,8 @@ class lesscssLexer(Lexer):
     def mDIMENSION(self, ):
 
         try:
-            # lesscss.g:751:25: ()
-            # lesscss.g:751:26: 
+            # lesscss.g:755:25: ()
+            # lesscss.g:755:26: 
             pass 
 
 
@@ -6585,8 +6582,8 @@ class lesscssLexer(Lexer):
     def mPERCENTAGE(self, ):
 
         try:
-            # lesscss.g:752:25: ()
-            # lesscss.g:752:26: 
+            # lesscss.g:756:25: ()
+            # lesscss.g:756:26: 
             pass 
 
 
@@ -6603,8 +6600,8 @@ class lesscssLexer(Lexer):
     def mRESOLUTION(self, ):
 
         try:
-            # lesscss.g:753:25: ()
-            # lesscss.g:753:26: 
+            # lesscss.g:757:25: ()
+            # lesscss.g:757:26: 
             pass 
 
 
@@ -6624,10 +6621,10 @@ class lesscssLexer(Lexer):
             _type = NUMBER
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:756:5: ( ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )? | '.' ( '0' .. '9' )+ ) ( ( E ( M | X ) )=> E ( M | X ) | ( P ( X | T | C ) )=> P ( X | T | C ) | ( C M )=> C M | ( M ( M | S ) )=> M ( M | S ) | ( I N )=> I N | ( D E G )=> D E G | ( R A D )=> R A D | ( S )=> S | ( ( K )? H Z )=> ( K )? H Z | ( D P I )=> D P I | ( D P C M )=> D P C M | IDENT | '%' | ) )
-            # lesscss.g:757:9: ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )? | '.' ( '0' .. '9' )+ ) ( ( E ( M | X ) )=> E ( M | X ) | ( P ( X | T | C ) )=> P ( X | T | C ) | ( C M )=> C M | ( M ( M | S ) )=> M ( M | S ) | ( I N )=> I N | ( D E G )=> D E G | ( R A D )=> R A D | ( S )=> S | ( ( K )? H Z )=> ( K )? H Z | ( D P I )=> D P I | ( D P C M )=> D P C M | IDENT | '%' | )
+            # lesscss.g:760:5: ( ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )? | '.' ( '0' .. '9' )+ ) ( ( E ( M | X ) )=> E ( M | X ) | ( P ( X | T | C ) )=> P ( X | T | C ) | ( C M )=> C M | ( M ( M | S ) )=> M ( M | S ) | ( I N )=> I N | ( D E G )=> D E G | ( R A D )=> R A D | ( S )=> S | ( ( K )? H Z )=> ( K )? H Z | ( D P I )=> D P I | ( D P C M )=> D P C M | IDENT | '%' | ) )
+            # lesscss.g:761:9: ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )? | '.' ( '0' .. '9' )+ ) ( ( E ( M | X ) )=> E ( M | X ) | ( P ( X | T | C ) )=> P ( X | T | C ) | ( C M )=> C M | ( M ( M | S ) )=> M ( M | S ) | ( I N )=> I N | ( D E G )=> D E G | ( R A D )=> R A D | ( S )=> S | ( ( K )? H Z )=> ( K )? H Z | ( D P I )=> D P I | ( D P C M )=> D P C M | IDENT | '%' | )
             pass 
-            # lesscss.g:757:9: ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )? | '.' ( '0' .. '9' )+ )
+            # lesscss.g:761:9: ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )? | '.' ( '0' .. '9' )+ )
             alt207 = 2
             LA207_0 = self.input.LA(1)
 
@@ -6644,9 +6641,9 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt207 == 1:
-                # lesscss.g:758:15: ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )?
+                # lesscss.g:762:15: ( '0' .. '9' )+ ( '.' ( '0' .. '9' )+ )?
                 pass 
-                # lesscss.g:758:15: ( '0' .. '9' )+
+                # lesscss.g:762:15: ( '0' .. '9' )+
                 cnt203 = 0
                 while True: #loop203
                     alt203 = 2
@@ -6657,7 +6654,7 @@ class lesscssLexer(Lexer):
 
 
                     if alt203 == 1:
-                        # lesscss.g:758:15: '0' .. '9'
+                        # lesscss.g:762:15: '0' .. '9'
                         pass 
                         self.matchRange(48, 57)
 
@@ -6673,17 +6670,17 @@ class lesscssLexer(Lexer):
                         raise eee
 
                     cnt203 += 1
-                # lesscss.g:758:25: ( '.' ( '0' .. '9' )+ )?
+                # lesscss.g:762:25: ( '.' ( '0' .. '9' )+ )?
                 alt205 = 2
                 LA205_0 = self.input.LA(1)
 
                 if (LA205_0 == 46) :
                     alt205 = 1
                 if alt205 == 1:
-                    # lesscss.g:758:26: '.' ( '0' .. '9' )+
+                    # lesscss.g:762:26: '.' ( '0' .. '9' )+
                     pass 
                     self.match(46)
-                    # lesscss.g:758:30: ( '0' .. '9' )+
+                    # lesscss.g:762:30: ( '0' .. '9' )+
                     cnt204 = 0
                     while True: #loop204
                         alt204 = 2
@@ -6694,7 +6691,7 @@ class lesscssLexer(Lexer):
 
 
                         if alt204 == 1:
-                            # lesscss.g:758:30: '0' .. '9'
+                            # lesscss.g:762:30: '0' .. '9'
                             pass 
                             self.matchRange(48, 57)
 
@@ -6716,10 +6713,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt207 == 2:
-                # lesscss.g:759:15: '.' ( '0' .. '9' )+
+                # lesscss.g:763:15: '.' ( '0' .. '9' )+
                 pass 
                 self.match(46)
-                # lesscss.g:759:19: ( '0' .. '9' )+
+                # lesscss.g:763:19: ( '0' .. '9' )+
                 cnt206 = 0
                 while True: #loop206
                     alt206 = 2
@@ -6730,7 +6727,7 @@ class lesscssLexer(Lexer):
 
 
                     if alt206 == 1:
-                        # lesscss.g:759:19: '0' .. '9'
+                        # lesscss.g:763:19: '0' .. '9'
                         pass 
                         self.matchRange(48, 57)
 
@@ -6749,14 +6746,14 @@ class lesscssLexer(Lexer):
 
 
 
-            # lesscss.g:761:9: ( ( E ( M | X ) )=> E ( M | X ) | ( P ( X | T | C ) )=> P ( X | T | C ) | ( C M )=> C M | ( M ( M | S ) )=> M ( M | S ) | ( I N )=> I N | ( D E G )=> D E G | ( R A D )=> R A D | ( S )=> S | ( ( K )? H Z )=> ( K )? H Z | ( D P I )=> D P I | ( D P C M )=> D P C M | IDENT | '%' | )
+            # lesscss.g:765:9: ( ( E ( M | X ) )=> E ( M | X ) | ( P ( X | T | C ) )=> P ( X | T | C ) | ( C M )=> C M | ( M ( M | S ) )=> M ( M | S ) | ( I N )=> I N | ( D E G )=> D E G | ( R A D )=> R A D | ( S )=> S | ( ( K )? H Z )=> ( K )? H Z | ( D P I )=> D P I | ( D P C M )=> D P C M | IDENT | '%' | )
             alt212 = 14
             alt212 = self.dfa212.predict(self.input)
             if alt212 == 1:
-                # lesscss.g:762:15: ( E ( M | X ) )=> E ( M | X )
+                # lesscss.g:766:15: ( E ( M | X ) )=> E ( M | X )
                 pass 
                 self.mE()
-                # lesscss.g:764:17: ( M | X )
+                # lesscss.g:768:17: ( M | X )
                 alt208 = 2
                 LA208 = self.input.LA(1)
                 if LA208 == 77 or LA208 == 109:
@@ -6843,7 +6840,7 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt208 == 1:
-                    # lesscss.g:765:23: M
+                    # lesscss.g:769:23: M
                     pass 
                     self.mM()
                     if self._state.backtracking == 0:
@@ -6852,7 +6849,7 @@ class lesscssLexer(Lexer):
 
 
                 elif alt208 == 2:
-                    # lesscss.g:766:23: X
+                    # lesscss.g:770:23: X
                     pass 
                     self.mX()
                     if self._state.backtracking == 0:
@@ -6864,26 +6861,26 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 2:
-                # lesscss.g:768:15: ( P ( X | T | C ) )=> P ( X | T | C )
+                # lesscss.g:772:15: ( P ( X | T | C ) )=> P ( X | T | C )
                 pass 
                 self.mP()
-                # lesscss.g:770:17: ( X | T | C )
+                # lesscss.g:774:17: ( X | T | C )
                 alt209 = 3
                 alt209 = self.dfa209.predict(self.input)
                 if alt209 == 1:
-                    # lesscss.g:771:23: X
+                    # lesscss.g:775:23: X
                     pass 
                     self.mX()
 
 
                 elif alt209 == 2:
-                    # lesscss.g:772:23: T
+                    # lesscss.g:776:23: T
                     pass 
                     self.mT()
 
 
                 elif alt209 == 3:
-                    # lesscss.g:773:23: C
+                    # lesscss.g:777:23: C
                     pass 
                     self.mC()
 
@@ -6895,7 +6892,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 3:
-                # lesscss.g:776:15: ( C M )=> C M
+                # lesscss.g:780:15: ( C M )=> C M
                 pass 
                 self.mC()
                 self.mM()
@@ -6905,10 +6902,10 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 4:
-                # lesscss.g:778:15: ( M ( M | S ) )=> M ( M | S )
+                # lesscss.g:782:15: ( M ( M | S ) )=> M ( M | S )
                 pass 
                 self.mM()
-                # lesscss.g:780:17: ( M | S )
+                # lesscss.g:784:17: ( M | S )
                 alt210 = 2
                 LA210 = self.input.LA(1)
                 if LA210 == 77 or LA210 == 109:
@@ -6995,7 +6992,7 @@ class lesscssLexer(Lexer):
                     raise nvae
 
                 if alt210 == 1:
-                    # lesscss.g:781:23: M
+                    # lesscss.g:785:23: M
                     pass 
                     self.mM()
                     if self._state.backtracking == 0:
@@ -7004,7 +7001,7 @@ class lesscssLexer(Lexer):
 
 
                 elif alt210 == 2:
-                    # lesscss.g:783:23: S
+                    # lesscss.g:787:23: S
                     pass 
                     self.mS()
                     if self._state.backtracking == 0:
@@ -7016,7 +7013,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 5:
-                # lesscss.g:785:15: ( I N )=> I N
+                # lesscss.g:789:15: ( I N )=> I N
                 pass 
                 self.mI()
                 self.mN()
@@ -7026,7 +7023,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 6:
-                # lesscss.g:788:15: ( D E G )=> D E G
+                # lesscss.g:792:15: ( D E G )=> D E G
                 pass 
                 self.mD()
                 self.mE()
@@ -7037,7 +7034,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 7:
-                # lesscss.g:790:15: ( R A D )=> R A D
+                # lesscss.g:794:15: ( R A D )=> R A D
                 pass 
                 self.mR()
                 self.mA()
@@ -7048,7 +7045,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 8:
-                # lesscss.g:793:15: ( S )=> S
+                # lesscss.g:797:15: ( S )=> S
                 pass 
                 self.mS()
                 if self._state.backtracking == 0:
@@ -7057,9 +7054,9 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 9:
-                # lesscss.g:795:15: ( ( K )? H Z )=> ( K )? H Z
+                # lesscss.g:799:15: ( ( K )? H Z )=> ( K )? H Z
                 pass 
-                # lesscss.g:796:17: ( K )?
+                # lesscss.g:800:17: ( K )?
                 alt211 = 2
                 LA211_0 = self.input.LA(1)
 
@@ -7107,7 +7104,7 @@ class lesscssLexer(Lexer):
                     elif LA211 == 75 or LA211 == 107:
                         alt211 = 1
                 if alt211 == 1:
-                    # lesscss.g:796:17: K
+                    # lesscss.g:800:17: K
                     pass 
                     self.mK()
 
@@ -7121,7 +7118,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 10:
-                # lesscss.g:798:15: ( D P I )=> D P I
+                # lesscss.g:802:15: ( D P I )=> D P I
                 pass 
                 self.mD()
                 self.mP()
@@ -7132,7 +7129,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 11:
-                # lesscss.g:800:15: ( D P C M )=> D P C M
+                # lesscss.g:804:15: ( D P C M )=> D P C M
                 pass 
                 self.mD()
                 self.mP()
@@ -7144,7 +7141,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 12:
-                # lesscss.g:803:15: IDENT
+                # lesscss.g:807:15: IDENT
                 pass 
                 self.mIDENT()
                 if self._state.backtracking == 0:
@@ -7153,7 +7150,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 13:
-                # lesscss.g:805:15: '%'
+                # lesscss.g:809:15: '%'
                 pass 
                 self.match(37)
                 if self._state.backtracking == 0:
@@ -7162,7 +7159,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt212 == 14:
-                # lesscss.g:808:9: 
+                # lesscss.g:812:9: 
                 pass 
 
 
@@ -7187,14 +7184,14 @@ class lesscssLexer(Lexer):
             _type = URI
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:814:5: ( U R L '(' ( ( WS )=> WS )? ( URL | STRING ) ( WS )? ')' )
-            # lesscss.g:814:9: U R L '(' ( ( WS )=> WS )? ( URL | STRING ) ( WS )? ')'
+            # lesscss.g:818:5: ( U R L '(' ( ( WS )=> WS )? ( URL | STRING ) ( WS )? ')' )
+            # lesscss.g:818:9: U R L '(' ( ( WS )=> WS )? ( URL | STRING ) ( WS )? ')'
             pass 
             self.mU()
             self.mR()
             self.mL()
             self.match(40)
-            # lesscss.g:816:13: ( ( WS )=> WS )?
+            # lesscss.g:820:13: ( ( WS )=> WS )?
             alt213 = 2
             LA213_0 = self.input.LA(1)
 
@@ -7204,13 +7201,13 @@ class lesscssLexer(Lexer):
                 if (self.synpred12_lesscss()) :
                     alt213 = 1
             if alt213 == 1:
-                # lesscss.g:816:14: ( WS )=> WS
+                # lesscss.g:820:14: ( WS )=> WS
                 pass 
                 self.mWS()
 
 
 
-            # lesscss.g:816:25: ( URL | STRING )
+            # lesscss.g:820:25: ( URL | STRING )
             alt214 = 2
             LA214_0 = self.input.LA(1)
 
@@ -7227,26 +7224,26 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt214 == 1:
-                # lesscss.g:816:26: URL
+                # lesscss.g:820:26: URL
                 pass 
                 self.mURL()
 
 
             elif alt214 == 2:
-                # lesscss.g:816:30: STRING
+                # lesscss.g:820:30: STRING
                 pass 
                 self.mSTRING()
 
 
 
-            # lesscss.g:816:38: ( WS )?
+            # lesscss.g:820:38: ( WS )?
             alt215 = 2
             LA215_0 = self.input.LA(1)
 
             if (LA215_0 == 9 or LA215_0 == 32) :
                 alt215 = 1
             if alt215 == 1:
-                # lesscss.g:816:38: WS
+                # lesscss.g:820:38: WS
                 pass 
                 self.mWS()
 
@@ -7274,10 +7271,10 @@ class lesscssLexer(Lexer):
             _type = WS
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:825:9: ( ( ' ' | '\\t' )+ )
-            # lesscss.g:825:11: ( ' ' | '\\t' )+
+            # lesscss.g:829:9: ( ( ' ' | '\\t' )+ )
+            # lesscss.g:829:11: ( ' ' | '\\t' )+
             pass 
-            # lesscss.g:825:11: ( ' ' | '\\t' )+
+            # lesscss.g:829:11: ( ' ' | '\\t' )+
             cnt216 = 0
             while True: #loop216
                 alt216 = 2
@@ -7337,10 +7334,10 @@ class lesscssLexer(Lexer):
             _type = NL
             _channel = DEFAULT_CHANNEL
 
-            # lesscss.g:826:9: ( ( '\\r' ( '\\n' )? | '\\n' ) )
-            # lesscss.g:826:11: ( '\\r' ( '\\n' )? | '\\n' )
+            # lesscss.g:830:9: ( ( '\\r' ( '\\n' )? | '\\n' ) )
+            # lesscss.g:830:11: ( '\\r' ( '\\n' )? | '\\n' )
             pass 
-            # lesscss.g:826:11: ( '\\r' ( '\\n' )? | '\\n' )
+            # lesscss.g:830:11: ( '\\r' ( '\\n' )? | '\\n' )
             alt218 = 2
             LA218_0 = self.input.LA(1)
 
@@ -7357,17 +7354,17 @@ class lesscssLexer(Lexer):
                 raise nvae
 
             if alt218 == 1:
-                # lesscss.g:826:12: '\\r' ( '\\n' )?
+                # lesscss.g:830:12: '\\r' ( '\\n' )?
                 pass 
                 self.match(13)
-                # lesscss.g:826:17: ( '\\n' )?
+                # lesscss.g:830:17: ( '\\n' )?
                 alt217 = 2
                 LA217_0 = self.input.LA(1)
 
                 if (LA217_0 == 10) :
                     alt217 = 1
                 if alt217 == 1:
-                    # lesscss.g:826:17: '\\n'
+                    # lesscss.g:830:17: '\\n'
                     pass 
                     self.match(10)
 
@@ -7376,7 +7373,7 @@ class lesscssLexer(Lexer):
 
 
             elif alt218 == 2:
-                # lesscss.g:826:25: '\\n'
+                # lesscss.g:830:25: '\\n'
                 pass 
                 self.match(10)
 
@@ -7643,11 +7640,11 @@ class lesscssLexer(Lexer):
 
     # $ANTLR start "synpred1_lesscss"
     def synpred1_lesscss_fragment(self, ):
-        # lesscss.g:762:15: ( E ( M | X ) )
-        # lesscss.g:762:16: E ( M | X )
+        # lesscss.g:766:15: ( E ( M | X ) )
+        # lesscss.g:766:16: E ( M | X )
         pass 
         self.mE()
-        # lesscss.g:762:18: ( M | X )
+        # lesscss.g:766:18: ( M | X )
         alt220 = 2
         LA220 = self.input.LA(1)
         if LA220 == 77 or LA220 == 109:
@@ -7734,13 +7731,13 @@ class lesscssLexer(Lexer):
             raise nvae
 
         if alt220 == 1:
-            # lesscss.g:762:19: M
+            # lesscss.g:766:19: M
             pass 
             self.mM()
 
 
         elif alt220 == 2:
-            # lesscss.g:762:21: X
+            # lesscss.g:766:21: X
             pass 
             self.mX()
 
@@ -7754,27 +7751,27 @@ class lesscssLexer(Lexer):
 
     # $ANTLR start "synpred2_lesscss"
     def synpred2_lesscss_fragment(self, ):
-        # lesscss.g:768:15: ( P ( X | T | C ) )
-        # lesscss.g:768:16: P ( X | T | C )
+        # lesscss.g:772:15: ( P ( X | T | C ) )
+        # lesscss.g:772:16: P ( X | T | C )
         pass 
         self.mP()
-        # lesscss.g:768:17: ( X | T | C )
+        # lesscss.g:772:17: ( X | T | C )
         alt221 = 3
         alt221 = self.dfa221.predict(self.input)
         if alt221 == 1:
-            # lesscss.g:768:18: X
+            # lesscss.g:772:18: X
             pass 
             self.mX()
 
 
         elif alt221 == 2:
-            # lesscss.g:768:20: T
+            # lesscss.g:772:20: T
             pass 
             self.mT()
 
 
         elif alt221 == 3:
-            # lesscss.g:768:22: C
+            # lesscss.g:772:22: C
             pass 
             self.mC()
 
@@ -7788,8 +7785,8 @@ class lesscssLexer(Lexer):
 
     # $ANTLR start "synpred3_lesscss"
     def synpred3_lesscss_fragment(self, ):
-        # lesscss.g:776:15: ( C M )
-        # lesscss.g:776:16: C M
+        # lesscss.g:780:15: ( C M )
+        # lesscss.g:780:16: C M
         pass 
         self.mC()
         self.mM()
@@ -7801,11 +7798,11 @@ class lesscssLexer(Lexer):
 
     # $ANTLR start "synpred4_lesscss"
     def synpred4_lesscss_fragment(self, ):
-        # lesscss.g:778:15: ( M ( M | S ) )
-        # lesscss.g:778:16: M ( M | S )
+        # lesscss.g:782:15: ( M ( M | S ) )
+        # lesscss.g:782:16: M ( M | S )
         pass 
         self.mM()
-        # lesscss.g:778:18: ( M | S )
+        # lesscss.g:782:18: ( M | S )
         alt222 = 2
         LA222 = self.input.LA(1)
         if LA222 == 77 or LA222 == 109:
@@ -7892,13 +7889,13 @@ class lesscssLexer(Lexer):
             raise nvae
 
         if alt222 == 1:
-            # lesscss.g:778:19: M
+            # lesscss.g:782:19: M
             pass 
             self.mM()
 
 
         elif alt222 == 2:
-            # lesscss.g:778:21: S
+            # lesscss.g:782:21: S
             pass 
             self.mS()
 
@@ -7912,8 +7909,8 @@ class lesscssLexer(Lexer):
 
     # $ANTLR start "synpred5_lesscss"
     def synpred5_lesscss_fragment(self, ):
-        # lesscss.g:785:15: ( I N )
-        # lesscss.g:785:16: I N
+        # lesscss.g:789:15: ( I N )
+        # lesscss.g:789:16: I N
         pass 
         self.mI()
         self.mN()
@@ -7925,8 +7922,8 @@ class lesscssLexer(Lexer):
 
     # $ANTLR start "synpred6_lesscss"
     def synpred6_lesscss_fragment(self, ):
-        # lesscss.g:788:15: ( D E G )
-        # lesscss.g:788:16: D E G
+        # lesscss.g:792:15: ( D E G )
+        # lesscss.g:792:16: D E G
         pass 
         self.mD()
         self.mE()
@@ -7939,8 +7936,8 @@ class lesscssLexer(Lexer):
 
     # $ANTLR start "synpred7_lesscss"
     def synpred7_lesscss_fragment(self, ):
-        # lesscss.g:790:15: ( R A D )
-        # lesscss.g:790:16: R A D
+        # lesscss.g:794:15: ( R A D )
+        # lesscss.g:794:16: R A D
         pass 
         self.mR()
         self.mA()
@@ -7953,8 +7950,8 @@ class lesscssLexer(Lexer):
 
     # $ANTLR start "synpred8_lesscss"
     def synpred8_lesscss_fragment(self, ):
-        # lesscss.g:793:15: ( S )
-        # lesscss.g:793:16: S
+        # lesscss.g:797:15: ( S )
+        # lesscss.g:797:16: S
         pass 
         self.mS()
 
@@ -7965,10 +7962,10 @@ class lesscssLexer(Lexer):
 
     # $ANTLR start "synpred9_lesscss"
     def synpred9_lesscss_fragment(self, ):
-        # lesscss.g:795:15: ( ( K )? H Z )
-        # lesscss.g:795:16: ( K )? H Z
+        # lesscss.g:799:15: ( ( K )? H Z )
+        # lesscss.g:799:16: ( K )? H Z
         pass 
-        # lesscss.g:795:16: ( K )?
+        # lesscss.g:799:16: ( K )?
         alt223 = 2
         LA223_0 = self.input.LA(1)
 
@@ -8016,7 +8013,7 @@ class lesscssLexer(Lexer):
                 if (LA223_5 == 66 or LA223_5 == 98) :
                     alt223 = 1
         if alt223 == 1:
-            # lesscss.g:795:16: K
+            # lesscss.g:799:16: K
             pass 
             self.mK()
 
@@ -8032,8 +8029,8 @@ class lesscssLexer(Lexer):
 
     # $ANTLR start "synpred10_lesscss"
     def synpred10_lesscss_fragment(self, ):
-        # lesscss.g:798:15: ( D P I )
-        # lesscss.g:798:16: D P I
+        # lesscss.g:802:15: ( D P I )
+        # lesscss.g:802:16: D P I
         pass 
         self.mD()
         self.mP()
@@ -8046,8 +8043,8 @@ class lesscssLexer(Lexer):
 
     # $ANTLR start "synpred11_lesscss"
     def synpred11_lesscss_fragment(self, ):
-        # lesscss.g:800:15: ( D P C M )
-        # lesscss.g:800:16: D P C M
+        # lesscss.g:804:15: ( D P C M )
+        # lesscss.g:804:16: D P C M
         pass 
         self.mD()
         self.mP()
@@ -8061,8 +8058,8 @@ class lesscssLexer(Lexer):
 
     # $ANTLR start "synpred12_lesscss"
     def synpred12_lesscss_fragment(self, ):
-        # lesscss.g:816:14: ( WS )
-        # lesscss.g:816:15: WS
+        # lesscss.g:820:14: ( WS )
+        # lesscss.g:820:15: WS
         pass 
         self.mWS()
 

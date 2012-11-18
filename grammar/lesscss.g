@@ -40,21 +40,18 @@ options {
 
 tokens {
     N_StyleSheet;
-    N_CharSet;
-    N_Import;
-    N_FontFace;
-    N_Page;
-    N_Media;
     N_MediaQuery;
     N_MediaExpr;
     N_RuleSet;
+    N_KeyframeBlock;
+    M_KeyframeSelector;
     N_Selector;
-    N_Declarations;
     N_Declaration;
     N_Function;
     N_Attrib;
     N_Space;
     N_Pseudo;
+    N_PseudoFunction;
 }
 
 
@@ -77,16 +74,14 @@ styleSheet
 // Character set.   Picks up the user specified character set, should it be present.
 //
 charSet
-    :   CHARSET_SYM STRING SEMI
-        -> ^(N_CharSet STRING)
+    :   CHARSET_SYM^ STRING SEMI !
     ;
 
 // ---------
 // Import.  Location of an external style sheet to include in the ruleset.
 //
 imports
-    :   IMPORT_SYM importUrl media_query_list? SEMI
-        -> ^(N_Import importUrl media_query_list?)
+    :   IMPORT_SYM^ importUrl media_query_list? SEMI!
     ;
 
 importUrl
@@ -94,16 +89,32 @@ importUrl
     | URI
     ;
 
+
+// ---------
+// Body
+//
+bodylist
+    : bodyset*
+    ;
+
+bodyset
+    : ruleSet
+    | media
+    | page
+    | fontface
+    | keyframes
+    ;   
+
+
 // ---------
 // Media.   Introduce a set of rules that are to be used if the consumer indicates
 //          it belongs to the signified medium.
 //
 media
-    : MEDIA_SYM media_query_list?
-        LBRACE
+    : MEDIA_SYM^ media_query_list?
+        LBRACE!
             ruleSet*
-        RBRACE
-        -> ^(N_Media media_query_list? ruleSet*)
+        RBRACE!
     ;
 
 // ---------    
@@ -136,63 +147,44 @@ media_feature
 // Font face
 //
 fontface
-    : FONTFACE_SYM LBRACE declarationset RBRACE
-        -> ^(N_FontFace declarationset)
-    ;
- 
-
-// ---------
-// Keyframes.   From CSS3 Animation
-//
-
- keyframes
-    : KEYFRAMES_SYM IDENT LBRACE keyframes_block* RBRACE
-    ;
-
-keyframes_block
-    : keyframe_selector LBRACE declarationset RBRACE
-    ;
-
-
-keyframe_selector
-    : ( IDENT | PERCENTAGE ) ( COMMA ( IDENT | PERCENTAGE ) )*
+    : FONTFACE_SYM^ LBRACE! declarationset RBRACE!
     ;
 
 // ---------
-// Body
+// Page
 //
-bodylist
-    : bodyset*
-    ;
-
-bodyset
-    : ruleSet
-    | media
-    | page
-    | fontface
-    | keyframes
-    ;   
-
 page
-    : PAGE_SYM pseudoPage? LBRACE declarationset RBRACE
-        -> ^(N_Page pseudoPage? declarationset)
+    : PAGE_SYM^ pseudoPage? LBRACE! declarationset RBRACE!
     ;
 
 pseudoPage
-    : COLON IDENT -> IDENT
-    ;
-    
-property
-    : IDENT
-
-    // This is 'star property hack'
-    // See: http://stackoverflow.com/questions/1667531/what-does-a-star-preceded-property-mean-in-css
-    | STAR a=IDENT
-        { $a.setText('*' + $a.getText()); } // Add '*' to IDENT token
+    : COLON a=IDENT
+        { $a.setText(':' + $a.getText()); } // Add ':' to IDENT token
         -> IDENT
     ;
 
 
+// ---------
+// Keyframes.   From CSS3 Animation
+//
+keyframes
+    : KEYFRAMES_SYM^ IDENT LBRACE! keyframes_block* RBRACE!
+    ;
+
+keyframes_block
+    : keyframe_selector ( COMMA keyframe_selector )* LBRACE declarationset RBRACE
+        -> ^(N_KeyframeBlock ^(M_KeyframeSelector keyframe_selector)+ declarationset )
+    ;
+
+
+keyframe_selector
+    : ( IDENT | PERCENTAGE )
+    ;
+
+
+// ---------
+// Rules
+//
 ruleSet
     : selector (COMMA selector)* LBRACE declarationset RBRACE
         -> ^(N_RuleSet ^(N_Selector selector)+ declarationset)
@@ -239,9 +231,9 @@ pseudo
     : a=COLON b=COLON? IDENT
         -> ^(N_Pseudo $a $b? IDENT)
     | c=COLON d=COLON? FUNCTION expr RPAREN
-        -> ^(N_Pseudo $c $d? ^(N_Function FUNCTION expr ) )
+        -> ^(N_Pseudo $c $d? ^(N_PseudoFunction FUNCTION expr ) )
     | e=COLON f=COLON? FUNCTION LBRACKET expr RBRACKET RPAREN
-        -> ^(N_Pseudo $e $f? ^(N_Function FUNCTION LBRACKET expr RBRACKET ) )
+        -> ^(N_Pseudo $e $f? ^(N_PseudoFunction FUNCTION LBRACKET expr RBRACKET ) )
     ;
 
 attrib
@@ -265,11 +257,23 @@ attribBody
     ;
 
 declarationset
-    : declaration (SEMI declaration)* SEMI? -> declaration+
+    : declaration (SEMI declaration)* SEMI?
+         -> declaration+
     ;
 
 declaration
-    : property COLON expr prio? -> ^(N_Declaration property expr prio?)
+    : property COLON expr prio?
+        -> ^(N_Declaration property expr prio?)
+    ;
+
+property
+    : IDENT
+
+    // This is 'star property hack'
+    // See: http://stackoverflow.com/questions/1667531/what-does-a-star-preceded-property-mean-in-css
+    | STAR a=IDENT
+        { $a.setText('*' + $a.getText()); } // Add '*' to IDENT token
+        -> IDENT
     ;
 
 prio
@@ -322,7 +326,7 @@ function
     ;
 
 fnct_name
-    : (IDENT (COLON|DOT)+ )* FUNCTION
+    : (IDENT (COLON|DOT)+ )* FUNCTION^
     ;
 
 fragment fnct_args

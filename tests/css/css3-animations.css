@@ -60,7 +60,7 @@ div {
 		animation-timing-function: ease-out;
 	}
 
-	75% {
+	75%, 80%, 90% {
 		top: 75px;
 		animation-timing-function: ease-in;
 	}

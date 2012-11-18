@@ -15,6 +15,6 @@ div { width: 99%; height: 1px }
 
 /* @page */
 @page :left { margin: 0.5cm }
-@page :left { margin: 0.5cm; }
-@page :left { margin: 0.5cm; margin: 1cm; }
-@page :left { margin: 0.5cm; margin: 1cm }
+@page :right { margin: 0.5cm; }
+@page :first { margin: 0.5cm; margin: 1cm; }
+@page { margin: 0.5cm; margin: 1cm }
