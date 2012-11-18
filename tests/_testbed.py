@@ -1,6 +1,7 @@
 import unittest, glob, os
 import pyless
 from pyless.antlr3 import tree
+from pyless.lesscssParser import tokenNames
 
 ##
 
@@ -28,10 +29,24 @@ class FileBasedParserTest(unittest.TestCase):
 		###
 
 		fout = open(fname+'.dot', "w")
-		fout.write('digraph {0} {{\nratio = fill;splines=curved;packMode=graph;\n'.format(os.path.basename(fname)[:-4].replace('-','_')))
-
+		fout.write('digraph {0} {{\nratio = fill;packMode=graph;\n'.format(os.path.basename(fname)[:-4].replace('-','_')))
+		fout.write('node [style="filled",fontname=Arial];\n')
 		def twalker(t):
-			fout.write('"{0}" [shape=box,label="{1}"];\n'.format(id(t), "{0}".format(t).replace('"','\\"')))
+			tname = tokenNames[t.getType()]
+			if tname == str(t):
+				fout.write('"{0}" [shape=ellipse,label="{1}",fillcolor=paleturquoise];\n'.format(
+					id(t),
+					"{0}".format(t).replace('"','\\"'),
+					)
+				)
+			else:
+				fout.write('"{0}" [shape=record,label="{{{2}|{1}}}",fillcolor=palegreen];\n'.format(
+					id(t),
+					"{0}".format(t).replace('"','\\"'),
+					tname
+					)
+				)
+
 			if t.parent is not None:
 				fout.write('"{0}" -> "{1}";\n'.format(id(t.parent), id(t)))
 
