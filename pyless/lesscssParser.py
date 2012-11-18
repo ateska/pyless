@@ -1,4 +1,4 @@
-# $ANTLR 3.1.3 Mar 18, 2009 10:09:25 lesscss.g 2012-11-18 01:05:44
+# $ANTLR 3.1.3 Mar 18, 2009 10:09:25 lesscss.g 2012-11-18 02:01:41
 
 import sys
 from antlr3 import *
@@ -19,56 +19,56 @@ MEDIA_SYM=22
 INCLUDES=43
 LBRACKET=38
 RPAREN=29
-NAME=65
+NAME=66
 GREATER=35
-ESCAPE=62
-DIMENSION=98
-STRINGESC=96
-NL=99
-COMMENT=93
-D=70
-E=71
-F=72
-G=73
-A=67
+ESCAPE=63
+DIMENSION=99
+STRINGESC=97
+NL=100
+COMMENT=94
+D=71
+E=72
+F=73
+G=74
+A=68
 RBRACE=24
-B=68
-C=69
-L=78
+B=69
+C=70
+L=79
 IMPORT_SYM=20
-NMCHAR=64
-M=79
+NMCHAR=65
+M=80
 SUBSTRINGMATCH=47
-N=80
-O=81
-H=74
-I=75
-J=76
+N=81
+O=82
+H=75
+I=76
+J=77
 NUMBER=50
-K=77
-U=87
-T=86
-W=89
-V=88
-Q=83
-P=82
-S=85
-CDO=94
-R=84
-CDC=95
+K=78
+U=88
+T=87
+W=90
+V=89
+Q=84
+P=83
+S=86
+CDO=95
+R=85
+CDC=96
+Y=92
 PERCENTAGE=33
-URL=66
-Y=91
-X=90
-Z=92
+URL=67
+X=91
+Z=93
 URI=21
 PAGE_SYM=31
-WS=97
+WS=98
 DASHMATCH=44
 EMS=52
 N_PseudoFunction=16
 N_RuleSet=7
-NONASCII=60
+NONASCII=61
 N_MediaQuery=5
 N_Selector=10
 LBRACE=23
@@ -76,28 +76,29 @@ LPAREN=27
 LENGTH=51
 IMPORTANT_SYM=48
 N_Function=12
-TIME=55
+TIME=56
 KEYFRAMES_SYM=32
 COMMA=25
 N_StyleSheet=4
 IDENT=26
 PLUS=34
-FREQ=56
+FREQ=57
 RBRACKET=41
 DOT=37
 CHARSET_SYM=17
-ANGLE=54
+ANGLE=55
+REMS=54
 HASH=36
-HEXCHAR=59
-RESOLUTION=57
+HEXCHAR=60
+RESOLUTION=58
 PREFIXMATCH=45
-MINUS=58
+MINUS=59
 N_Pseudo=15
 SOLIDUS=49
 SEMI=19
-UNICODE=61
+UNICODE=62
 COLON=28
-NMSTART=63
+NMSTART=64
 N_Declaration=11
 OPEQ=42
 FONTFACE_SYM=30
@@ -121,11 +122,11 @@ tokenNames = [
     "PERCENTAGE", "PLUS", "GREATER", "HASH", "DOT", "LBRACKET", "STAR", 
     "FUNCTION", "RBRACKET", "OPEQ", "INCLUDES", "DASHMATCH", "PREFIXMATCH", 
     "SUFFIXMATCH", "SUBSTRINGMATCH", "IMPORTANT_SYM", "SOLIDUS", "NUMBER", 
-    "LENGTH", "EMS", "EXS", "ANGLE", "TIME", "FREQ", "RESOLUTION", "MINUS", 
-    "HEXCHAR", "NONASCII", "UNICODE", "ESCAPE", "NMSTART", "NMCHAR", "NAME", 
-    "URL", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
-    "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "COMMENT", 
-    "CDO", "CDC", "STRINGESC", "WS", "DIMENSION", "NL"
+    "LENGTH", "EMS", "EXS", "REMS", "ANGLE", "TIME", "FREQ", "RESOLUTION", 
+    "MINUS", "HEXCHAR", "NONASCII", "UNICODE", "ESCAPE", "NMSTART", "NMCHAR", 
+    "NAME", "URL", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", 
+    "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", 
+    "Z", "COMMENT", "CDO", "CDC", "STRINGESC", "WS", "DIMENSION", "NL"
 ]
 
 
@@ -154,15 +155,15 @@ class lesscssParser(Parser):
             transition = self.DFA21_transition
             )
 
-        self.dfa38 = self.DFA38(
-            self, 38,
-            eot = self.DFA38_eot,
-            eof = self.DFA38_eof,
-            min = self.DFA38_min,
-            max = self.DFA38_max,
-            accept = self.DFA38_accept,
-            special = self.DFA38_special,
-            transition = self.DFA38_transition
+        self.dfa39 = self.DFA39(
+            self, 39,
+            eot = self.DFA39_eot,
+            eof = self.DFA39_eof,
+            min = self.DFA39_min,
+            max = self.DFA39_max,
+            accept = self.DFA39_accept,
+            special = self.DFA39_special,
+            transition = self.DFA39_transition
             )
 
 
@@ -2847,7 +2848,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "pseudo"
-    # lesscss.g:230:1: pseudo : (a= COLON (b= COLON )? IDENT -> ^( N_Pseudo $a ( $b)? IDENT ) | c= COLON (d= COLON )? FUNCTION expr RPAREN -> ^( N_Pseudo $c ( $d)? ^( N_PseudoFunction FUNCTION expr ) ) | e= COLON (f= COLON )? FUNCTION LBRACKET expr RBRACKET RPAREN -> ^( N_Pseudo $e ( $f)? ^( N_PseudoFunction FUNCTION LBRACKET expr RBRACKET ) ) );
+    # lesscss.g:230:1: pseudo : (a= COLON (b= COLON )? IDENT -> ^( N_Pseudo $a ( $b)? IDENT ) | c= COLON (d= COLON )? FUNCTION expr RPAREN -> ^( N_Pseudo $c ( $d)? ^( N_PseudoFunction FUNCTION expr ) ) | e= COLON (f= COLON )? FUNCTION LBRACKET expr RBRACKET RPAREN -> ^( N_Pseudo $e ( $f)? ^( N_PseudoFunction FUNCTION LBRACKET expr RBRACKET ) ) | g= COLON (h= COLON )? FUNCTION pseudo RPAREN -> ^( N_Pseudo $g ( $h)? ^( N_PseudoFunction FUNCTION pseudo ) ) );
     def pseudo(self, ):
 
         retval = self.pseudo_return()
@@ -2861,6 +2862,8 @@ class lesscssParser(Parser):
         d = None
         e = None
         f = None
+        g = None
+        h = None
         IDENT85 = None
         FUNCTION86 = None
         RPAREN88 = None
@@ -2868,9 +2871,13 @@ class lesscssParser(Parser):
         LBRACKET90 = None
         RBRACKET92 = None
         RPAREN93 = None
+        FUNCTION94 = None
+        RPAREN96 = None
         expr87 = None
 
         expr91 = None
+
+        pseudo95 = None
 
 
         a_tree = None
@@ -2879,6 +2886,8 @@ class lesscssParser(Parser):
         d_tree = None
         e_tree = None
         f_tree = None
+        g_tree = None
+        h_tree = None
         IDENT85_tree = None
         FUNCTION86_tree = None
         RPAREN88_tree = None
@@ -2886,63 +2895,68 @@ class lesscssParser(Parser):
         LBRACKET90_tree = None
         RBRACKET92_tree = None
         RPAREN93_tree = None
+        FUNCTION94_tree = None
+        RPAREN96_tree = None
         stream_LBRACKET = RewriteRuleTokenStream(self._adaptor, "token LBRACKET")
         stream_FUNCTION = RewriteRuleTokenStream(self._adaptor, "token FUNCTION")
         stream_COLON = RewriteRuleTokenStream(self._adaptor, "token COLON")
         stream_RPAREN = RewriteRuleTokenStream(self._adaptor, "token RPAREN")
         stream_IDENT = RewriteRuleTokenStream(self._adaptor, "token IDENT")
         stream_RBRACKET = RewriteRuleTokenStream(self._adaptor, "token RBRACKET")
+        stream_pseudo = RewriteRuleSubtreeStream(self._adaptor, "rule pseudo")
         stream_expr = RewriteRuleSubtreeStream(self._adaptor, "rule expr")
         try:
             try:
-                # lesscss.g:231:5: (a= COLON (b= COLON )? IDENT -> ^( N_Pseudo $a ( $b)? IDENT ) | c= COLON (d= COLON )? FUNCTION expr RPAREN -> ^( N_Pseudo $c ( $d)? ^( N_PseudoFunction FUNCTION expr ) ) | e= COLON (f= COLON )? FUNCTION LBRACKET expr RBRACKET RPAREN -> ^( N_Pseudo $e ( $f)? ^( N_PseudoFunction FUNCTION LBRACKET expr RBRACKET ) ) )
-                alt28 = 3
-                LA28_0 = self.input.LA(1)
+                # lesscss.g:231:5: (a= COLON (b= COLON )? IDENT -> ^( N_Pseudo $a ( $b)? IDENT ) | c= COLON (d= COLON )? FUNCTION expr RPAREN -> ^( N_Pseudo $c ( $d)? ^( N_PseudoFunction FUNCTION expr ) ) | e= COLON (f= COLON )? FUNCTION LBRACKET expr RBRACKET RPAREN -> ^( N_Pseudo $e ( $f)? ^( N_PseudoFunction FUNCTION LBRACKET expr RBRACKET ) ) | g= COLON (h= COLON )? FUNCTION pseudo RPAREN -> ^( N_Pseudo $g ( $h)? ^( N_PseudoFunction FUNCTION pseudo ) ) )
+                alt29 = 4
+                LA29_0 = self.input.LA(1)
 
-                if (LA28_0 == COLON) :
-                    LA28 = self.input.LA(2)
-                    if LA28 == COLON:
-                        LA28_2 = self.input.LA(3)
+                if (LA29_0 == COLON) :
+                    LA29 = self.input.LA(2)
+                    if LA29 == COLON:
+                        LA29_2 = self.input.LA(3)
 
-                        if (LA28_2 == IDENT) :
-                            alt28 = 1
-                        elif (LA28_2 == FUNCTION) :
-                            LA28_4 = self.input.LA(4)
-
-                            if (LA28_4 == LBRACKET) :
-                                alt28 = 3
-                            elif (LA28_4 == STRING or LA28_4 == URI or LA28_4 == IDENT or (PERCENTAGE <= LA28_4 <= PLUS) or LA28_4 == HASH or LA28_4 == FUNCTION or (NUMBER <= LA28_4 <= MINUS)) :
-                                alt28 = 2
+                        if (LA29_2 == FUNCTION) :
+                            LA29 = self.input.LA(4)
+                            if LA29 == LBRACKET:
+                                alt29 = 3
+                            elif LA29 == STRING or LA29 == URI or LA29 == IDENT or LA29 == PERCENTAGE or LA29 == PLUS or LA29 == HASH or LA29 == FUNCTION or LA29 == NUMBER or LA29 == LENGTH or LA29 == EMS or LA29 == EXS or LA29 == REMS or LA29 == ANGLE or LA29 == TIME or LA29 == FREQ or LA29 == RESOLUTION or LA29 == MINUS:
+                                alt29 = 2
+                            elif LA29 == COLON:
+                                alt29 = 4
                             else:
                                 if self._state.backtracking > 0:
                                     raise BacktrackingFailed
 
-                                nvae = NoViableAltException("", 28, 4, self.input)
+                                nvae = NoViableAltException("", 29, 4, self.input)
 
                                 raise nvae
 
+                        elif (LA29_2 == IDENT) :
+                            alt29 = 1
                         else:
                             if self._state.backtracking > 0:
                                 raise BacktrackingFailed
 
-                            nvae = NoViableAltException("", 28, 2, self.input)
+                            nvae = NoViableAltException("", 29, 2, self.input)
 
                             raise nvae
 
-                    elif LA28 == IDENT:
-                        alt28 = 1
-                    elif LA28 == FUNCTION:
-                        LA28_4 = self.input.LA(3)
-
-                        if (LA28_4 == LBRACKET) :
-                            alt28 = 3
-                        elif (LA28_4 == STRING or LA28_4 == URI or LA28_4 == IDENT or (PERCENTAGE <= LA28_4 <= PLUS) or LA28_4 == HASH or LA28_4 == FUNCTION or (NUMBER <= LA28_4 <= MINUS)) :
-                            alt28 = 2
+                    elif LA29 == IDENT:
+                        alt29 = 1
+                    elif LA29 == FUNCTION:
+                        LA29 = self.input.LA(3)
+                        if LA29 == LBRACKET:
+                            alt29 = 3
+                        elif LA29 == STRING or LA29 == URI or LA29 == IDENT or LA29 == PERCENTAGE or LA29 == PLUS or LA29 == HASH or LA29 == FUNCTION or LA29 == NUMBER or LA29 == LENGTH or LA29 == EMS or LA29 == EXS or LA29 == REMS or LA29 == ANGLE or LA29 == TIME or LA29 == FREQ or LA29 == RESOLUTION or LA29 == MINUS:
+                            alt29 = 2
+                        elif LA29 == COLON:
+                            alt29 = 4
                         else:
                             if self._state.backtracking > 0:
                                 raise BacktrackingFailed
 
-                            nvae = NoViableAltException("", 28, 4, self.input)
+                            nvae = NoViableAltException("", 29, 4, self.input)
 
                             raise nvae
 
@@ -2950,7 +2964,7 @@ class lesscssParser(Parser):
                         if self._state.backtracking > 0:
                             raise BacktrackingFailed
 
-                        nvae = NoViableAltException("", 28, 1, self.input)
+                        nvae = NoViableAltException("", 29, 1, self.input)
 
                         raise nvae
 
@@ -2958,11 +2972,11 @@ class lesscssParser(Parser):
                     if self._state.backtracking > 0:
                         raise BacktrackingFailed
 
-                    nvae = NoViableAltException("", 28, 0, self.input)
+                    nvae = NoViableAltException("", 29, 0, self.input)
 
                     raise nvae
 
-                if alt28 == 1:
+                if alt29 == 1:
                     # lesscss.g:231:7: a= COLON (b= COLON )? IDENT
                     pass 
                     a=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo1183) 
@@ -3028,37 +3042,37 @@ class lesscssParser(Parser):
                         retval.tree = root_0
 
 
-                elif alt28 == 2:
-                    # lesscss.g:233:7: c= COLON (d= COLON )? FUNCTION expr RPAREN
+                elif alt29 == 2:
+                    # lesscss.g:234:7: c= COLON (d= COLON )? FUNCTION expr RPAREN
                     pass 
-                    c=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo1223) 
+                    c=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo1228) 
                     if self._state.backtracking == 0:
                         stream_COLON.add(c)
-                    # lesscss.g:233:16: (d= COLON )?
+                    # lesscss.g:234:16: (d= COLON )?
                     alt26 = 2
                     LA26_0 = self.input.LA(1)
 
                     if (LA26_0 == COLON) :
                         alt26 = 1
                     if alt26 == 1:
-                        # lesscss.g:233:16: d= COLON
+                        # lesscss.g:234:16: d= COLON
                         pass 
-                        d=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo1227) 
+                        d=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo1232) 
                         if self._state.backtracking == 0:
                             stream_COLON.add(d)
 
 
 
-                    FUNCTION86=self.match(self.input, FUNCTION, self.FOLLOW_FUNCTION_in_pseudo1230) 
+                    FUNCTION86=self.match(self.input, FUNCTION, self.FOLLOW_FUNCTION_in_pseudo1235) 
                     if self._state.backtracking == 0:
                         stream_FUNCTION.add(FUNCTION86)
-                    self._state.following.append(self.FOLLOW_expr_in_pseudo1232)
+                    self._state.following.append(self.FOLLOW_expr_in_pseudo1237)
                     expr87 = self.expr()
 
                     self._state.following.pop()
                     if self._state.backtracking == 0:
                         stream_expr.add(expr87.tree)
-                    RPAREN88=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_pseudo1234) 
+                    RPAREN88=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_pseudo1239) 
                     if self._state.backtracking == 0:
                         stream_RPAREN.add(RPAREN88)
 
@@ -3082,19 +3096,19 @@ class lesscssParser(Parser):
 
 
                         root_0 = self._adaptor.nil()
-                        # 234:9: -> ^( N_Pseudo $c ( $d)? ^( N_PseudoFunction FUNCTION expr ) )
-                        # lesscss.g:234:12: ^( N_Pseudo $c ( $d)? ^( N_PseudoFunction FUNCTION expr ) )
+                        # 235:9: -> ^( N_Pseudo $c ( $d)? ^( N_PseudoFunction FUNCTION expr ) )
+                        # lesscss.g:235:12: ^( N_Pseudo $c ( $d)? ^( N_PseudoFunction FUNCTION expr ) )
                         root_1 = self._adaptor.nil()
                         root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(N_Pseudo, "N_Pseudo"), root_1)
 
                         self._adaptor.addChild(root_1, stream_c.nextNode())
-                        # lesscss.g:234:26: ( $d)?
+                        # lesscss.g:235:26: ( $d)?
                         if stream_d.hasNext():
                             self._adaptor.addChild(root_1, stream_d.nextNode())
 
 
                         stream_d.reset();
-                        # lesscss.g:234:30: ^( N_PseudoFunction FUNCTION expr )
+                        # lesscss.g:235:30: ^( N_PseudoFunction FUNCTION expr )
                         root_2 = self._adaptor.nil()
                         root_2 = self._adaptor.becomeRoot(self._adaptor.createFromType(N_PseudoFunction, "N_PseudoFunction"), root_2)
 
@@ -3110,43 +3124,43 @@ class lesscssParser(Parser):
                         retval.tree = root_0
 
 
-                elif alt28 == 3:
-                    # lesscss.g:235:7: e= COLON (f= COLON )? FUNCTION LBRACKET expr RBRACKET RPAREN
+                elif alt29 == 3:
+                    # lesscss.g:237:7: e= COLON (f= COLON )? FUNCTION LBRACKET expr RBRACKET RPAREN
                     pass 
-                    e=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo1275) 
+                    e=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo1281) 
                     if self._state.backtracking == 0:
                         stream_COLON.add(e)
-                    # lesscss.g:235:16: (f= COLON )?
+                    # lesscss.g:237:16: (f= COLON )?
                     alt27 = 2
                     LA27_0 = self.input.LA(1)
 
                     if (LA27_0 == COLON) :
                         alt27 = 1
                     if alt27 == 1:
-                        # lesscss.g:235:16: f= COLON
+                        # lesscss.g:237:16: f= COLON
                         pass 
-                        f=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo1279) 
+                        f=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo1285) 
                         if self._state.backtracking == 0:
                             stream_COLON.add(f)
 
 
 
-                    FUNCTION89=self.match(self.input, FUNCTION, self.FOLLOW_FUNCTION_in_pseudo1282) 
+                    FUNCTION89=self.match(self.input, FUNCTION, self.FOLLOW_FUNCTION_in_pseudo1288) 
                     if self._state.backtracking == 0:
                         stream_FUNCTION.add(FUNCTION89)
-                    LBRACKET90=self.match(self.input, LBRACKET, self.FOLLOW_LBRACKET_in_pseudo1284) 
+                    LBRACKET90=self.match(self.input, LBRACKET, self.FOLLOW_LBRACKET_in_pseudo1290) 
                     if self._state.backtracking == 0:
                         stream_LBRACKET.add(LBRACKET90)
-                    self._state.following.append(self.FOLLOW_expr_in_pseudo1286)
+                    self._state.following.append(self.FOLLOW_expr_in_pseudo1292)
                     expr91 = self.expr()
 
                     self._state.following.pop()
                     if self._state.backtracking == 0:
                         stream_expr.add(expr91.tree)
-                    RBRACKET92=self.match(self.input, RBRACKET, self.FOLLOW_RBRACKET_in_pseudo1288) 
+                    RBRACKET92=self.match(self.input, RBRACKET, self.FOLLOW_RBRACKET_in_pseudo1294) 
                     if self._state.backtracking == 0:
                         stream_RBRACKET.add(RBRACKET92)
-                    RPAREN93=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_pseudo1290) 
+                    RPAREN93=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_pseudo1296) 
                     if self._state.backtracking == 0:
                         stream_RPAREN.add(RPAREN93)
 
@@ -3170,19 +3184,19 @@ class lesscssParser(Parser):
 
 
                         root_0 = self._adaptor.nil()
-                        # 236:9: -> ^( N_Pseudo $e ( $f)? ^( N_PseudoFunction FUNCTION LBRACKET expr RBRACKET ) )
-                        # lesscss.g:236:12: ^( N_Pseudo $e ( $f)? ^( N_PseudoFunction FUNCTION LBRACKET expr RBRACKET ) )
+                        # 238:9: -> ^( N_Pseudo $e ( $f)? ^( N_PseudoFunction FUNCTION LBRACKET expr RBRACKET ) )
+                        # lesscss.g:238:12: ^( N_Pseudo $e ( $f)? ^( N_PseudoFunction FUNCTION LBRACKET expr RBRACKET ) )
                         root_1 = self._adaptor.nil()
                         root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(N_Pseudo, "N_Pseudo"), root_1)
 
                         self._adaptor.addChild(root_1, stream_e.nextNode())
-                        # lesscss.g:236:26: ( $f)?
+                        # lesscss.g:238:26: ( $f)?
                         if stream_f.hasNext():
                             self._adaptor.addChild(root_1, stream_f.nextNode())
 
 
                         stream_f.reset();
-                        # lesscss.g:236:30: ^( N_PseudoFunction FUNCTION LBRACKET expr RBRACKET )
+                        # lesscss.g:238:30: ^( N_PseudoFunction FUNCTION LBRACKET expr RBRACKET )
                         root_2 = self._adaptor.nil()
                         root_2 = self._adaptor.becomeRoot(self._adaptor.createFromType(N_PseudoFunction, "N_PseudoFunction"), root_2)
 
@@ -3190,6 +3204,88 @@ class lesscssParser(Parser):
                         self._adaptor.addChild(root_2, stream_LBRACKET.nextNode())
                         self._adaptor.addChild(root_2, stream_expr.nextTree())
                         self._adaptor.addChild(root_2, stream_RBRACKET.nextNode())
+
+                        self._adaptor.addChild(root_1, root_2)
+
+                        self._adaptor.addChild(root_0, root_1)
+
+
+
+                        retval.tree = root_0
+
+
+                elif alt29 == 4:
+                    # lesscss.g:240:7: g= COLON (h= COLON )? FUNCTION pseudo RPAREN
+                    pass 
+                    g=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo1342) 
+                    if self._state.backtracking == 0:
+                        stream_COLON.add(g)
+                    # lesscss.g:240:16: (h= COLON )?
+                    alt28 = 2
+                    LA28_0 = self.input.LA(1)
+
+                    if (LA28_0 == COLON) :
+                        alt28 = 1
+                    if alt28 == 1:
+                        # lesscss.g:240:16: h= COLON
+                        pass 
+                        h=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo1346) 
+                        if self._state.backtracking == 0:
+                            stream_COLON.add(h)
+
+
+
+                    FUNCTION94=self.match(self.input, FUNCTION, self.FOLLOW_FUNCTION_in_pseudo1349) 
+                    if self._state.backtracking == 0:
+                        stream_FUNCTION.add(FUNCTION94)
+                    self._state.following.append(self.FOLLOW_pseudo_in_pseudo1351)
+                    pseudo95 = self.pseudo()
+
+                    self._state.following.pop()
+                    if self._state.backtracking == 0:
+                        stream_pseudo.add(pseudo95.tree)
+                    RPAREN96=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_pseudo1353) 
+                    if self._state.backtracking == 0:
+                        stream_RPAREN.add(RPAREN96)
+
+                    # AST Rewrite
+                    # elements: pseudo, h, g, FUNCTION
+                    # token labels: g, h
+                    # rule labels: retval
+                    # token list labels: 
+                    # rule list labels: 
+                    # wildcard labels: 
+                    if self._state.backtracking == 0:
+
+                        retval.tree = root_0
+                        stream_g = RewriteRuleTokenStream(self._adaptor, "token g", g)
+                        stream_h = RewriteRuleTokenStream(self._adaptor, "token h", h)
+
+                        if retval is not None:
+                            stream_retval = RewriteRuleSubtreeStream(self._adaptor, "rule retval", retval.tree)
+                        else:
+                            stream_retval = RewriteRuleSubtreeStream(self._adaptor, "token retval", None)
+
+
+                        root_0 = self._adaptor.nil()
+                        # 241:9: -> ^( N_Pseudo $g ( $h)? ^( N_PseudoFunction FUNCTION pseudo ) )
+                        # lesscss.g:241:12: ^( N_Pseudo $g ( $h)? ^( N_PseudoFunction FUNCTION pseudo ) )
+                        root_1 = self._adaptor.nil()
+                        root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(N_Pseudo, "N_Pseudo"), root_1)
+
+                        self._adaptor.addChild(root_1, stream_g.nextNode())
+                        # lesscss.g:241:26: ( $h)?
+                        if stream_h.hasNext():
+                            self._adaptor.addChild(root_1, stream_h.nextNode())
+
+
+                        stream_h.reset();
+                        # lesscss.g:241:30: ^( N_PseudoFunction FUNCTION pseudo )
+                        root_2 = self._adaptor.nil()
+                        root_2 = self._adaptor.becomeRoot(self._adaptor.createFromType(N_PseudoFunction, "N_PseudoFunction"), root_2)
+
+                        self._adaptor.addChild(root_2, stream_FUNCTION.nextNode())
+                        self._adaptor.addChild(root_2, stream_pseudo.nextTree())
 
                         self._adaptor.addChild(root_1, root_2)
 
@@ -3229,7 +3325,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "attrib"
-    # lesscss.g:239:1: attrib : LBRACKET attribBody RBRACKET -> ^( N_Attrib attribBody ) ;
+    # lesscss.g:245:1: attrib : LBRACKET attribBody RBRACKET -> ^( N_Attrib attribBody ) ;
     def attrib(self, ):
 
         retval = self.attrib_return()
@@ -3237,33 +3333,33 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        LBRACKET94 = None
-        RBRACKET96 = None
-        attribBody95 = None
+        LBRACKET97 = None
+        RBRACKET99 = None
+        attribBody98 = None
 
 
-        LBRACKET94_tree = None
-        RBRACKET96_tree = None
+        LBRACKET97_tree = None
+        RBRACKET99_tree = None
         stream_LBRACKET = RewriteRuleTokenStream(self._adaptor, "token LBRACKET")
         stream_RBRACKET = RewriteRuleTokenStream(self._adaptor, "token RBRACKET")
         stream_attribBody = RewriteRuleSubtreeStream(self._adaptor, "rule attribBody")
         try:
             try:
-                # lesscss.g:240:5: ( LBRACKET attribBody RBRACKET -> ^( N_Attrib attribBody ) )
-                # lesscss.g:240:7: LBRACKET attribBody RBRACKET
+                # lesscss.g:246:5: ( LBRACKET attribBody RBRACKET -> ^( N_Attrib attribBody ) )
+                # lesscss.g:246:7: LBRACKET attribBody RBRACKET
                 pass 
-                LBRACKET94=self.match(self.input, LBRACKET, self.FOLLOW_LBRACKET_in_attrib1342) 
+                LBRACKET97=self.match(self.input, LBRACKET, self.FOLLOW_LBRACKET_in_attrib1402) 
                 if self._state.backtracking == 0:
-                    stream_LBRACKET.add(LBRACKET94)
-                self._state.following.append(self.FOLLOW_attribBody_in_attrib1344)
-                attribBody95 = self.attribBody()
+                    stream_LBRACKET.add(LBRACKET97)
+                self._state.following.append(self.FOLLOW_attribBody_in_attrib1404)
+                attribBody98 = self.attribBody()
 
                 self._state.following.pop()
                 if self._state.backtracking == 0:
-                    stream_attribBody.add(attribBody95.tree)
-                RBRACKET96=self.match(self.input, RBRACKET, self.FOLLOW_RBRACKET_in_attrib1346) 
+                    stream_attribBody.add(attribBody98.tree)
+                RBRACKET99=self.match(self.input, RBRACKET, self.FOLLOW_RBRACKET_in_attrib1406) 
                 if self._state.backtracking == 0:
-                    stream_RBRACKET.add(RBRACKET96)
+                    stream_RBRACKET.add(RBRACKET99)
 
                 # AST Rewrite
                 # elements: attribBody
@@ -3283,8 +3379,8 @@ class lesscssParser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 241:9: -> ^( N_Attrib attribBody )
-                    # lesscss.g:241:13: ^( N_Attrib attribBody )
+                    # 247:9: -> ^( N_Attrib attribBody )
+                    # lesscss.g:247:13: ^( N_Attrib attribBody )
                     root_1 = self._adaptor.nil()
                     root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(N_Attrib, "N_Attrib"), root_1)
 
@@ -3327,7 +3423,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "attribBody"
-    # lesscss.g:244:1: attribBody : ( IDENT | IDENT ( OPEQ | INCLUDES | DASHMATCH | PREFIXMATCH | SUFFIXMATCH | SUBSTRINGMATCH ) ( IDENT | STRING ) );
+    # lesscss.g:250:1: attribBody : ( IDENT | IDENT ( OPEQ | INCLUDES | DASHMATCH | PREFIXMATCH | SUFFIXMATCH | SUBSTRINGMATCH ) ( IDENT | STRING ) );
     def attribBody(self, ):
 
         retval = self.attribBody_return()
@@ -3335,34 +3431,34 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        IDENT97 = None
-        IDENT98 = None
-        set99 = None
-        set100 = None
+        IDENT100 = None
+        IDENT101 = None
+        set102 = None
+        set103 = None
 
-        IDENT97_tree = None
-        IDENT98_tree = None
-        set99_tree = None
-        set100_tree = None
+        IDENT100_tree = None
+        IDENT101_tree = None
+        set102_tree = None
+        set103_tree = None
 
         try:
             try:
-                # lesscss.g:245:5: ( IDENT | IDENT ( OPEQ | INCLUDES | DASHMATCH | PREFIXMATCH | SUFFIXMATCH | SUBSTRINGMATCH ) ( IDENT | STRING ) )
-                alt29 = 2
-                LA29_0 = self.input.LA(1)
+                # lesscss.g:251:5: ( IDENT | IDENT ( OPEQ | INCLUDES | DASHMATCH | PREFIXMATCH | SUFFIXMATCH | SUBSTRINGMATCH ) ( IDENT | STRING ) )
+                alt30 = 2
+                LA30_0 = self.input.LA(1)
 
-                if (LA29_0 == IDENT) :
-                    LA29_1 = self.input.LA(2)
+                if (LA30_0 == IDENT) :
+                    LA30_1 = self.input.LA(2)
 
-                    if ((OPEQ <= LA29_1 <= SUBSTRINGMATCH)) :
-                        alt29 = 2
-                    elif (LA29_1 == RBRACKET) :
-                        alt29 = 1
+                    if ((OPEQ <= LA30_1 <= SUBSTRINGMATCH)) :
+                        alt30 = 2
+                    elif (LA30_1 == RBRACKET) :
+                        alt30 = 1
                     else:
                         if self._state.backtracking > 0:
                             raise BacktrackingFailed
 
-                        nvae = NoViableAltException("", 29, 1, self.input)
+                        nvae = NoViableAltException("", 30, 1, self.input)
 
                         raise nvae
 
@@ -3370,40 +3466,40 @@ class lesscssParser(Parser):
                     if self._state.backtracking > 0:
                         raise BacktrackingFailed
 
-                    nvae = NoViableAltException("", 29, 0, self.input)
+                    nvae = NoViableAltException("", 30, 0, self.input)
 
                     raise nvae
 
-                if alt29 == 1:
-                    # lesscss.g:245:7: IDENT
+                if alt30 == 1:
+                    # lesscss.g:251:7: IDENT
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    IDENT97=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_attribBody1381)
+                    IDENT100=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_attribBody1441)
                     if self._state.backtracking == 0:
 
-                        IDENT97_tree = self._adaptor.createWithPayload(IDENT97)
-                        self._adaptor.addChild(root_0, IDENT97_tree)
+                        IDENT100_tree = self._adaptor.createWithPayload(IDENT100)
+                        self._adaptor.addChild(root_0, IDENT100_tree)
 
 
 
-                elif alt29 == 2:
-                    # lesscss.g:246:7: IDENT ( OPEQ | INCLUDES | DASHMATCH | PREFIXMATCH | SUFFIXMATCH | SUBSTRINGMATCH ) ( IDENT | STRING )
+                elif alt30 == 2:
+                    # lesscss.g:252:7: IDENT ( OPEQ | INCLUDES | DASHMATCH | PREFIXMATCH | SUFFIXMATCH | SUBSTRINGMATCH ) ( IDENT | STRING )
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    IDENT98=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_attribBody1389)
+                    IDENT101=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_attribBody1449)
                     if self._state.backtracking == 0:
 
-                        IDENT98_tree = self._adaptor.createWithPayload(IDENT98)
-                        self._adaptor.addChild(root_0, IDENT98_tree)
+                        IDENT101_tree = self._adaptor.createWithPayload(IDENT101)
+                        self._adaptor.addChild(root_0, IDENT101_tree)
 
-                    set99 = self.input.LT(1)
-                    set99 = self.input.LT(1)
+                    set102 = self.input.LT(1)
+                    set102 = self.input.LT(1)
                     if (OPEQ <= self.input.LA(1) <= SUBSTRINGMATCH):
                         self.input.consume()
                         if self._state.backtracking == 0:
-                            root_0 = self._adaptor.becomeRoot(self._adaptor.createWithPayload(set99), root_0)
+                            root_0 = self._adaptor.becomeRoot(self._adaptor.createWithPayload(set102), root_0)
                         self._state.errorRecovery = False
 
                     else:
@@ -3414,11 +3510,11 @@ class lesscssParser(Parser):
                         raise mse
 
 
-                    set100 = self.input.LT(1)
+                    set103 = self.input.LT(1)
                     if self.input.LA(1) == STRING or self.input.LA(1) == IDENT:
                         self.input.consume()
                         if self._state.backtracking == 0:
-                            self._adaptor.addChild(root_0, self._adaptor.createWithPayload(set100))
+                            self._adaptor.addChild(root_0, self._adaptor.createWithPayload(set103))
                         self._state.errorRecovery = False
 
                     else:
@@ -3460,7 +3556,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "declarationset"
-    # lesscss.g:259:1: declarationset : declaration ( SEMI declaration )* ( SEMI )? -> ( declaration )+ ;
+    # lesscss.g:265:1: declarationset : declaration ( SEMI declaration )* ( SEMI )? -> ( declaration )+ ;
     def declarationset(self, ):
 
         retval = self.declarationset_return()
@@ -3468,70 +3564,70 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        SEMI102 = None
-        SEMI104 = None
-        declaration101 = None
+        SEMI105 = None
+        SEMI107 = None
+        declaration104 = None
 
-        declaration103 = None
+        declaration106 = None
 
 
-        SEMI102_tree = None
-        SEMI104_tree = None
+        SEMI105_tree = None
+        SEMI107_tree = None
         stream_SEMI = RewriteRuleTokenStream(self._adaptor, "token SEMI")
         stream_declaration = RewriteRuleSubtreeStream(self._adaptor, "rule declaration")
         try:
             try:
-                # lesscss.g:260:5: ( declaration ( SEMI declaration )* ( SEMI )? -> ( declaration )+ )
-                # lesscss.g:260:7: declaration ( SEMI declaration )* ( SEMI )?
+                # lesscss.g:266:5: ( declaration ( SEMI declaration )* ( SEMI )? -> ( declaration )+ )
+                # lesscss.g:266:7: declaration ( SEMI declaration )* ( SEMI )?
                 pass 
-                self._state.following.append(self.FOLLOW_declaration_in_declarationset1530)
-                declaration101 = self.declaration()
+                self._state.following.append(self.FOLLOW_declaration_in_declarationset1590)
+                declaration104 = self.declaration()
 
                 self._state.following.pop()
                 if self._state.backtracking == 0:
-                    stream_declaration.add(declaration101.tree)
-                # lesscss.g:260:19: ( SEMI declaration )*
-                while True: #loop30
-                    alt30 = 2
-                    LA30_0 = self.input.LA(1)
+                    stream_declaration.add(declaration104.tree)
+                # lesscss.g:266:19: ( SEMI declaration )*
+                while True: #loop31
+                    alt31 = 2
+                    LA31_0 = self.input.LA(1)
 
-                    if (LA30_0 == SEMI) :
-                        LA30_1 = self.input.LA(2)
+                    if (LA31_0 == SEMI) :
+                        LA31_1 = self.input.LA(2)
 
-                        if (LA30_1 == IDENT or LA30_1 == STAR) :
-                            alt30 = 1
-
-
+                        if (LA31_1 == IDENT or LA31_1 == STAR) :
+                            alt31 = 1
 
 
-                    if alt30 == 1:
-                        # lesscss.g:260:20: SEMI declaration
+
+
+                    if alt31 == 1:
+                        # lesscss.g:266:20: SEMI declaration
                         pass 
-                        SEMI102=self.match(self.input, SEMI, self.FOLLOW_SEMI_in_declarationset1533) 
+                        SEMI105=self.match(self.input, SEMI, self.FOLLOW_SEMI_in_declarationset1593) 
                         if self._state.backtracking == 0:
-                            stream_SEMI.add(SEMI102)
-                        self._state.following.append(self.FOLLOW_declaration_in_declarationset1535)
-                        declaration103 = self.declaration()
+                            stream_SEMI.add(SEMI105)
+                        self._state.following.append(self.FOLLOW_declaration_in_declarationset1595)
+                        declaration106 = self.declaration()
 
                         self._state.following.pop()
                         if self._state.backtracking == 0:
-                            stream_declaration.add(declaration103.tree)
+                            stream_declaration.add(declaration106.tree)
 
 
                     else:
-                        break #loop30
-                # lesscss.g:260:39: ( SEMI )?
-                alt31 = 2
-                LA31_0 = self.input.LA(1)
+                        break #loop31
+                # lesscss.g:266:39: ( SEMI )?
+                alt32 = 2
+                LA32_0 = self.input.LA(1)
 
-                if (LA31_0 == SEMI) :
-                    alt31 = 1
-                if alt31 == 1:
-                    # lesscss.g:260:39: SEMI
+                if (LA32_0 == SEMI) :
+                    alt32 = 1
+                if alt32 == 1:
+                    # lesscss.g:266:39: SEMI
                     pass 
-                    SEMI104=self.match(self.input, SEMI, self.FOLLOW_SEMI_in_declarationset1539) 
+                    SEMI107=self.match(self.input, SEMI, self.FOLLOW_SEMI_in_declarationset1599) 
                     if self._state.backtracking == 0:
-                        stream_SEMI.add(SEMI104)
+                        stream_SEMI.add(SEMI107)
 
 
 
@@ -3554,8 +3650,8 @@ class lesscssParser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 261:10: -> ( declaration )+
-                    # lesscss.g:261:13: ( declaration )+
+                    # 267:10: -> ( declaration )+
+                    # lesscss.g:267:13: ( declaration )+
                     if not (stream_declaration.hasNext()):
                         raise RewriteEarlyExitException()
 
@@ -3600,7 +3696,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "declaration"
-    # lesscss.g:264:1: declaration : property COLON expr ( prio )? -> ^( N_Declaration property expr ( prio )? ) ;
+    # lesscss.g:270:1: declaration : property COLON expr ( prio )? -> ^( N_Declaration property expr ( prio )? ) ;
     def declaration(self, ):
 
         retval = self.declaration_return()
@@ -3608,60 +3704,60 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        COLON106 = None
-        property105 = None
+        COLON109 = None
+        property108 = None
 
-        expr107 = None
+        expr110 = None
 
-        prio108 = None
+        prio111 = None
 
 
-        COLON106_tree = None
+        COLON109_tree = None
         stream_COLON = RewriteRuleTokenStream(self._adaptor, "token COLON")
         stream_property = RewriteRuleSubtreeStream(self._adaptor, "rule property")
         stream_expr = RewriteRuleSubtreeStream(self._adaptor, "rule expr")
         stream_prio = RewriteRuleSubtreeStream(self._adaptor, "rule prio")
         try:
             try:
-                # lesscss.g:265:5: ( property COLON expr ( prio )? -> ^( N_Declaration property expr ( prio )? ) )
-                # lesscss.g:265:7: property COLON expr ( prio )?
+                # lesscss.g:271:5: ( property COLON expr ( prio )? -> ^( N_Declaration property expr ( prio )? ) )
+                # lesscss.g:271:7: property COLON expr ( prio )?
                 pass 
-                self._state.following.append(self.FOLLOW_property_in_declaration1571)
-                property105 = self.property()
+                self._state.following.append(self.FOLLOW_property_in_declaration1631)
+                property108 = self.property()
 
                 self._state.following.pop()
                 if self._state.backtracking == 0:
-                    stream_property.add(property105.tree)
-                COLON106=self.match(self.input, COLON, self.FOLLOW_COLON_in_declaration1573) 
+                    stream_property.add(property108.tree)
+                COLON109=self.match(self.input, COLON, self.FOLLOW_COLON_in_declaration1633) 
                 if self._state.backtracking == 0:
-                    stream_COLON.add(COLON106)
-                self._state.following.append(self.FOLLOW_expr_in_declaration1575)
-                expr107 = self.expr()
+                    stream_COLON.add(COLON109)
+                self._state.following.append(self.FOLLOW_expr_in_declaration1635)
+                expr110 = self.expr()
 
                 self._state.following.pop()
                 if self._state.backtracking == 0:
-                    stream_expr.add(expr107.tree)
-                # lesscss.g:265:27: ( prio )?
-                alt32 = 2
-                LA32_0 = self.input.LA(1)
+                    stream_expr.add(expr110.tree)
+                # lesscss.g:271:27: ( prio )?
+                alt33 = 2
+                LA33_0 = self.input.LA(1)
 
-                if (LA32_0 == IMPORTANT_SYM) :
-                    alt32 = 1
-                if alt32 == 1:
-                    # lesscss.g:265:27: prio
+                if (LA33_0 == IMPORTANT_SYM) :
+                    alt33 = 1
+                if alt33 == 1:
+                    # lesscss.g:271:27: prio
                     pass 
-                    self._state.following.append(self.FOLLOW_prio_in_declaration1577)
-                    prio108 = self.prio()
+                    self._state.following.append(self.FOLLOW_prio_in_declaration1637)
+                    prio111 = self.prio()
 
                     self._state.following.pop()
                     if self._state.backtracking == 0:
-                        stream_prio.add(prio108.tree)
+                        stream_prio.add(prio111.tree)
 
 
 
 
                 # AST Rewrite
-                # elements: property, expr, prio
+                # elements: expr, prio, property
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -3678,14 +3774,14 @@ class lesscssParser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 266:9: -> ^( N_Declaration property expr ( prio )? )
-                    # lesscss.g:266:12: ^( N_Declaration property expr ( prio )? )
+                    # 272:9: -> ^( N_Declaration property expr ( prio )? )
+                    # lesscss.g:272:12: ^( N_Declaration property expr ( prio )? )
                     root_1 = self._adaptor.nil()
                     root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(N_Declaration, "N_Declaration"), root_1)
 
                     self._adaptor.addChild(root_1, stream_property.nextTree())
                     self._adaptor.addChild(root_1, stream_expr.nextTree())
-                    # lesscss.g:266:42: ( prio )?
+                    # lesscss.g:272:42: ( prio )?
                     if stream_prio.hasNext():
                         self._adaptor.addChild(root_1, stream_prio.nextTree())
 
@@ -3729,7 +3825,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "property"
-    # lesscss.g:269:1: property : ( IDENT | STAR a= IDENT -> IDENT );
+    # lesscss.g:275:1: property : ( IDENT | STAR a= IDENT -> IDENT );
     def property(self, ):
 
         retval = self.property_return()
@@ -3738,53 +3834,53 @@ class lesscssParser(Parser):
         root_0 = None
 
         a = None
-        IDENT109 = None
-        STAR110 = None
+        IDENT112 = None
+        STAR113 = None
 
         a_tree = None
-        IDENT109_tree = None
-        STAR110_tree = None
+        IDENT112_tree = None
+        STAR113_tree = None
         stream_IDENT = RewriteRuleTokenStream(self._adaptor, "token IDENT")
         stream_STAR = RewriteRuleTokenStream(self._adaptor, "token STAR")
 
         try:
             try:
-                # lesscss.g:270:5: ( IDENT | STAR a= IDENT -> IDENT )
-                alt33 = 2
-                LA33_0 = self.input.LA(1)
+                # lesscss.g:276:5: ( IDENT | STAR a= IDENT -> IDENT )
+                alt34 = 2
+                LA34_0 = self.input.LA(1)
 
-                if (LA33_0 == IDENT) :
-                    alt33 = 1
-                elif (LA33_0 == STAR) :
-                    alt33 = 2
+                if (LA34_0 == IDENT) :
+                    alt34 = 1
+                elif (LA34_0 == STAR) :
+                    alt34 = 2
                 else:
                     if self._state.backtracking > 0:
                         raise BacktrackingFailed
 
-                    nvae = NoViableAltException("", 33, 0, self.input)
+                    nvae = NoViableAltException("", 34, 0, self.input)
 
                     raise nvae
 
-                if alt33 == 1:
-                    # lesscss.g:270:7: IDENT
+                if alt34 == 1:
+                    # lesscss.g:276:7: IDENT
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    IDENT109=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_property1616)
+                    IDENT112=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_property1676)
                     if self._state.backtracking == 0:
 
-                        IDENT109_tree = self._adaptor.createWithPayload(IDENT109)
-                        self._adaptor.addChild(root_0, IDENT109_tree)
+                        IDENT112_tree = self._adaptor.createWithPayload(IDENT112)
+                        self._adaptor.addChild(root_0, IDENT112_tree)
 
 
 
-                elif alt33 == 2:
-                    # lesscss.g:274:7: STAR a= IDENT
+                elif alt34 == 2:
+                    # lesscss.g:280:7: STAR a= IDENT
                     pass 
-                    STAR110=self.match(self.input, STAR, self.FOLLOW_STAR_in_property1635) 
+                    STAR113=self.match(self.input, STAR, self.FOLLOW_STAR_in_property1695) 
                     if self._state.backtracking == 0:
-                        stream_STAR.add(STAR110)
-                    a=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_property1639) 
+                        stream_STAR.add(STAR113)
+                    a=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_property1699) 
                     if self._state.backtracking == 0:
                         stream_IDENT.add(a)
                     if self._state.backtracking == 0:
@@ -3809,7 +3905,7 @@ class lesscssParser(Parser):
 
 
                         root_0 = self._adaptor.nil()
-                        # 276:9: -> IDENT
+                        # 282:9: -> IDENT
                         self._adaptor.addChild(root_0, stream_IDENT.nextNode())
 
 
@@ -3846,7 +3942,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "prio"
-    # lesscss.g:279:1: prio : IMPORTANT_SYM ;
+    # lesscss.g:285:1: prio : IMPORTANT_SYM ;
     def prio(self, ):
 
         retval = self.prio_return()
@@ -3854,22 +3950,22 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        IMPORTANT_SYM111 = None
+        IMPORTANT_SYM114 = None
 
-        IMPORTANT_SYM111_tree = None
+        IMPORTANT_SYM114_tree = None
 
         try:
             try:
-                # lesscss.g:280:5: ( IMPORTANT_SYM )
-                # lesscss.g:280:7: IMPORTANT_SYM
+                # lesscss.g:286:5: ( IMPORTANT_SYM )
+                # lesscss.g:286:7: IMPORTANT_SYM
                 pass 
                 root_0 = self._adaptor.nil()
 
-                IMPORTANT_SYM111=self.match(self.input, IMPORTANT_SYM, self.FOLLOW_IMPORTANT_SYM_in_prio1679)
+                IMPORTANT_SYM114=self.match(self.input, IMPORTANT_SYM, self.FOLLOW_IMPORTANT_SYM_in_prio1739)
                 if self._state.backtracking == 0:
 
-                    IMPORTANT_SYM111_tree = self._adaptor.createWithPayload(IMPORTANT_SYM111)
-                    self._adaptor.addChild(root_0, IMPORTANT_SYM111_tree)
+                    IMPORTANT_SYM114_tree = self._adaptor.createWithPayload(IMPORTANT_SYM114)
+                    self._adaptor.addChild(root_0, IMPORTANT_SYM114_tree)
 
 
 
@@ -3903,7 +3999,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "expr"
-    # lesscss.g:283:1: expr : term ( operator term )* ;
+    # lesscss.g:289:1: expr : term ( operator term )* ;
     def expr(self, ):
 
         retval = self.expr_return()
@@ -3911,69 +4007,69 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        term112 = None
+        term115 = None
 
-        operator113 = None
+        operator116 = None
 
-        term114 = None
+        term117 = None
 
 
 
         try:
             try:
-                # lesscss.g:284:5: ( term ( operator term )* )
-                # lesscss.g:284:7: term ( operator term )*
+                # lesscss.g:290:5: ( term ( operator term )* )
+                # lesscss.g:290:7: term ( operator term )*
                 pass 
                 root_0 = self._adaptor.nil()
 
-                self._state.following.append(self.FOLLOW_term_in_expr1696)
-                term112 = self.term()
+                self._state.following.append(self.FOLLOW_term_in_expr1756)
+                term115 = self.term()
 
                 self._state.following.pop()
                 if self._state.backtracking == 0:
-                    self._adaptor.addChild(root_0, term112.tree)
-                # lesscss.g:284:12: ( operator term )*
-                while True: #loop34
-                    alt34 = 2
-                    LA34_0 = self.input.LA(1)
+                    self._adaptor.addChild(root_0, term115.tree)
+                # lesscss.g:290:12: ( operator term )*
+                while True: #loop35
+                    alt35 = 2
+                    LA35_0 = self.input.LA(1)
 
-                    if (LA34_0 == COMMA) :
-                        LA34_2 = self.input.LA(2)
+                    if (LA35_0 == COMMA) :
+                        LA35_2 = self.input.LA(2)
 
-                        if (LA34_2 == STRING or LA34_2 == URI or (PERCENTAGE <= LA34_2 <= PLUS) or LA34_2 == HASH or LA34_2 == FUNCTION or (NUMBER <= LA34_2 <= MINUS)) :
-                            alt34 = 1
-                        elif (LA34_2 == IDENT) :
-                            LA34_4 = self.input.LA(3)
+                        if (LA35_2 == IDENT) :
+                            LA35_4 = self.input.LA(3)
 
-                            if ((STRING <= LA34_4 <= SEMI) or LA34_4 == URI or (RBRACE <= LA34_4 <= IDENT) or (COLON <= LA34_4 <= RPAREN) or (PERCENTAGE <= LA34_4 <= PLUS) or (HASH <= LA34_4 <= DOT) or (FUNCTION <= LA34_4 <= RBRACKET) or (IMPORTANT_SYM <= LA34_4 <= MINUS)) :
-                                alt34 = 1
+                            if ((STRING <= LA35_4 <= SEMI) or LA35_4 == URI or (RBRACE <= LA35_4 <= IDENT) or (COLON <= LA35_4 <= RPAREN) or (PERCENTAGE <= LA35_4 <= PLUS) or (HASH <= LA35_4 <= DOT) or (FUNCTION <= LA35_4 <= RBRACKET) or (IMPORTANT_SYM <= LA35_4 <= MINUS)) :
+                                alt35 = 1
 
 
+                        elif (LA35_2 == STRING or LA35_2 == URI or (PERCENTAGE <= LA35_2 <= PLUS) or LA35_2 == HASH or LA35_2 == FUNCTION or (NUMBER <= LA35_2 <= MINUS)) :
+                            alt35 = 1
 
 
-                    elif (LA34_0 == STRING or LA34_0 == URI or LA34_0 == IDENT or (PERCENTAGE <= LA34_0 <= PLUS) or LA34_0 == HASH or LA34_0 == FUNCTION or (SOLIDUS <= LA34_0 <= MINUS)) :
-                        alt34 = 1
+                    elif (LA35_0 == STRING or LA35_0 == URI or LA35_0 == IDENT or (PERCENTAGE <= LA35_0 <= PLUS) or LA35_0 == HASH or LA35_0 == FUNCTION or (SOLIDUS <= LA35_0 <= MINUS)) :
+                        alt35 = 1
 
 
-                    if alt34 == 1:
-                        # lesscss.g:284:13: operator term
+                    if alt35 == 1:
+                        # lesscss.g:290:13: operator term
                         pass 
-                        self._state.following.append(self.FOLLOW_operator_in_expr1699)
-                        operator113 = self.operator()
+                        self._state.following.append(self.FOLLOW_operator_in_expr1759)
+                        operator116 = self.operator()
 
                         self._state.following.pop()
                         if self._state.backtracking == 0:
-                            root_0 = self._adaptor.becomeRoot(operator113.tree, root_0)
-                        self._state.following.append(self.FOLLOW_term_in_expr1702)
-                        term114 = self.term()
+                            root_0 = self._adaptor.becomeRoot(operator116.tree, root_0)
+                        self._state.following.append(self.FOLLOW_term_in_expr1762)
+                        term117 = self.term()
 
                         self._state.following.pop()
                         if self._state.backtracking == 0:
-                            self._adaptor.addChild(root_0, term114.tree)
+                            self._adaptor.addChild(root_0, term117.tree)
 
 
                     else:
-                        break #loop34
+                        break #loop35
 
 
 
@@ -4006,7 +4102,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "operator"
-    # lesscss.g:287:10: fragment operator : ( SOLIDUS | COMMA | -> N_Space );
+    # lesscss.g:293:10: fragment operator : ( SOLIDUS | COMMA | -> N_Space );
     def operator(self, ):
 
         retval = self.operator_return()
@@ -4014,59 +4110,59 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        SOLIDUS115 = None
-        COMMA116 = None
+        SOLIDUS118 = None
+        COMMA119 = None
 
-        SOLIDUS115_tree = None
-        COMMA116_tree = None
+        SOLIDUS118_tree = None
+        COMMA119_tree = None
 
         try:
             try:
-                # lesscss.g:288:5: ( SOLIDUS | COMMA | -> N_Space )
-                alt35 = 3
-                LA35 = self.input.LA(1)
-                if LA35 == SOLIDUS:
-                    alt35 = 1
-                elif LA35 == COMMA:
-                    alt35 = 2
-                elif LA35 == STRING or LA35 == URI or LA35 == IDENT or LA35 == PERCENTAGE or LA35 == PLUS or LA35 == HASH or LA35 == FUNCTION or LA35 == NUMBER or LA35 == LENGTH or LA35 == EMS or LA35 == EXS or LA35 == ANGLE or LA35 == TIME or LA35 == FREQ or LA35 == RESOLUTION or LA35 == MINUS:
-                    alt35 = 3
+                # lesscss.g:294:5: ( SOLIDUS | COMMA | -> N_Space )
+                alt36 = 3
+                LA36 = self.input.LA(1)
+                if LA36 == SOLIDUS:
+                    alt36 = 1
+                elif LA36 == COMMA:
+                    alt36 = 2
+                elif LA36 == STRING or LA36 == URI or LA36 == IDENT or LA36 == PERCENTAGE or LA36 == PLUS or LA36 == HASH or LA36 == FUNCTION or LA36 == NUMBER or LA36 == LENGTH or LA36 == EMS or LA36 == EXS or LA36 == REMS or LA36 == ANGLE or LA36 == TIME or LA36 == FREQ or LA36 == RESOLUTION or LA36 == MINUS:
+                    alt36 = 3
                 else:
                     if self._state.backtracking > 0:
                         raise BacktrackingFailed
 
-                    nvae = NoViableAltException("", 35, 0, self.input)
+                    nvae = NoViableAltException("", 36, 0, self.input)
 
                     raise nvae
 
-                if alt35 == 1:
-                    # lesscss.g:288:7: SOLIDUS
+                if alt36 == 1:
+                    # lesscss.g:294:7: SOLIDUS
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    SOLIDUS115=self.match(self.input, SOLIDUS, self.FOLLOW_SOLIDUS_in_operator1723)
+                    SOLIDUS118=self.match(self.input, SOLIDUS, self.FOLLOW_SOLIDUS_in_operator1783)
                     if self._state.backtracking == 0:
 
-                        SOLIDUS115_tree = self._adaptor.createWithPayload(SOLIDUS115)
-                        self._adaptor.addChild(root_0, SOLIDUS115_tree)
+                        SOLIDUS118_tree = self._adaptor.createWithPayload(SOLIDUS118)
+                        self._adaptor.addChild(root_0, SOLIDUS118_tree)
 
 
 
-                elif alt35 == 2:
-                    # lesscss.g:289:7: COMMA
+                elif alt36 == 2:
+                    # lesscss.g:295:7: COMMA
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    COMMA116=self.match(self.input, COMMA, self.FOLLOW_COMMA_in_operator1731)
+                    COMMA119=self.match(self.input, COMMA, self.FOLLOW_COMMA_in_operator1791)
                     if self._state.backtracking == 0:
 
-                        COMMA116_tree = self._adaptor.createWithPayload(COMMA116)
-                        self._adaptor.addChild(root_0, COMMA116_tree)
+                        COMMA119_tree = self._adaptor.createWithPayload(COMMA119)
+                        self._adaptor.addChild(root_0, COMMA119_tree)
 
 
 
-                elif alt35 == 3:
-                    # lesscss.g:290:7: 
+                elif alt36 == 3:
+                    # lesscss.g:296:7: 
                     pass 
                     # AST Rewrite
                     # elements: 
@@ -4086,7 +4182,7 @@ class lesscssParser(Parser):
 
 
                         root_0 = self._adaptor.nil()
-                        # 290:7: -> N_Space
+                        # 296:7: -> N_Space
                         self._adaptor.addChild(root_0, self._adaptor.createFromType(N_Space, "N_Space"))
 
 
@@ -4123,7 +4219,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "term"
-    # lesscss.g:293:1: term : ( ( unaryOperator )? ( NUMBER | PERCENTAGE | LENGTH | EMS | EXS | ANGLE | TIME | FREQ | RESOLUTION ) | STRING | IDENT | URI | function | hexColor );
+    # lesscss.g:299:1: term : ( ( unaryOperator )? ( NUMBER | PERCENTAGE | LENGTH | EMS | EXS | REMS | ANGLE | TIME | FREQ | RESOLUTION ) | STRING | IDENT | URI | function | hexColor );
     def term(self, ):
 
         retval = self.term_return()
@@ -4131,102 +4227,102 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        set118 = None
-        STRING119 = None
-        IDENT120 = None
-        URI121 = None
-        unaryOperator117 = None
+        set121 = None
+        STRING122 = None
+        IDENT123 = None
+        URI124 = None
+        unaryOperator120 = None
 
-        function122 = None
+        function125 = None
 
-        hexColor123 = None
+        hexColor126 = None
 
 
-        set118_tree = None
-        STRING119_tree = None
-        IDENT120_tree = None
-        URI121_tree = None
+        set121_tree = None
+        STRING122_tree = None
+        IDENT123_tree = None
+        URI124_tree = None
 
         try:
             try:
-                # lesscss.g:294:5: ( ( unaryOperator )? ( NUMBER | PERCENTAGE | LENGTH | EMS | EXS | ANGLE | TIME | FREQ | RESOLUTION ) | STRING | IDENT | URI | function | hexColor )
-                alt37 = 6
-                LA37 = self.input.LA(1)
-                if LA37 == PERCENTAGE or LA37 == PLUS or LA37 == NUMBER or LA37 == LENGTH or LA37 == EMS or LA37 == EXS or LA37 == ANGLE or LA37 == TIME or LA37 == FREQ or LA37 == RESOLUTION or LA37 == MINUS:
-                    alt37 = 1
-                elif LA37 == STRING:
-                    alt37 = 2
-                elif LA37 == IDENT:
-                    LA37 = self.input.LA(2)
-                    if LA37 == COLON:
-                        LA37_7 = self.input.LA(3)
+                # lesscss.g:300:5: ( ( unaryOperator )? ( NUMBER | PERCENTAGE | LENGTH | EMS | EXS | REMS | ANGLE | TIME | FREQ | RESOLUTION ) | STRING | IDENT | URI | function | hexColor )
+                alt38 = 6
+                LA38 = self.input.LA(1)
+                if LA38 == PERCENTAGE or LA38 == PLUS or LA38 == NUMBER or LA38 == LENGTH or LA38 == EMS or LA38 == EXS or LA38 == REMS or LA38 == ANGLE or LA38 == TIME or LA38 == FREQ or LA38 == RESOLUTION or LA38 == MINUS:
+                    alt38 = 1
+                elif LA38 == STRING:
+                    alt38 = 2
+                elif LA38 == IDENT:
+                    LA38 = self.input.LA(2)
+                    if LA38 == STRING or LA38 == SEMI or LA38 == URI or LA38 == RBRACE or LA38 == COMMA or LA38 == IDENT or LA38 == RPAREN or LA38 == PERCENTAGE or LA38 == PLUS or LA38 == HASH or LA38 == FUNCTION or LA38 == RBRACKET or LA38 == IMPORTANT_SYM or LA38 == SOLIDUS or LA38 == NUMBER or LA38 == LENGTH or LA38 == EMS or LA38 == EXS or LA38 == REMS or LA38 == ANGLE or LA38 == TIME or LA38 == FREQ or LA38 == RESOLUTION or LA38 == MINUS:
+                        alt38 = 3
+                    elif LA38 == COLON:
+                        LA38_8 = self.input.LA(3)
 
-                        if (LA37_7 == IDENT or LA37_7 == COLON or LA37_7 == DOT or LA37_7 == FUNCTION) :
-                            alt37 = 5
-                        elif (LA37_7 == RPAREN) :
-                            alt37 = 3
+                        if (LA38_8 == IDENT or LA38_8 == COLON or LA38_8 == DOT or LA38_8 == FUNCTION) :
+                            alt38 = 5
+                        elif (LA38_8 == RPAREN) :
+                            alt38 = 3
                         else:
                             if self._state.backtracking > 0:
                                 raise BacktrackingFailed
 
-                            nvae = NoViableAltException("", 37, 7, self.input)
+                            nvae = NoViableAltException("", 38, 8, self.input)
 
                             raise nvae
 
-                    elif LA37 == STRING or LA37 == SEMI or LA37 == URI or LA37 == RBRACE or LA37 == COMMA or LA37 == IDENT or LA37 == RPAREN or LA37 == PERCENTAGE or LA37 == PLUS or LA37 == HASH or LA37 == FUNCTION or LA37 == RBRACKET or LA37 == IMPORTANT_SYM or LA37 == SOLIDUS or LA37 == NUMBER or LA37 == LENGTH or LA37 == EMS or LA37 == EXS or LA37 == ANGLE or LA37 == TIME or LA37 == FREQ or LA37 == RESOLUTION or LA37 == MINUS:
-                        alt37 = 3
-                    elif LA37 == DOT:
-                        alt37 = 5
+                    elif LA38 == DOT:
+                        alt38 = 5
                     else:
                         if self._state.backtracking > 0:
                             raise BacktrackingFailed
 
-                        nvae = NoViableAltException("", 37, 3, self.input)
+                        nvae = NoViableAltException("", 38, 3, self.input)
 
                         raise nvae
 
-                elif LA37 == URI:
-                    alt37 = 4
-                elif LA37 == FUNCTION:
-                    alt37 = 5
-                elif LA37 == HASH:
-                    alt37 = 6
+                elif LA38 == URI:
+                    alt38 = 4
+                elif LA38 == FUNCTION:
+                    alt38 = 5
+                elif LA38 == HASH:
+                    alt38 = 6
                 else:
                     if self._state.backtracking > 0:
                         raise BacktrackingFailed
 
-                    nvae = NoViableAltException("", 37, 0, self.input)
+                    nvae = NoViableAltException("", 38, 0, self.input)
 
                     raise nvae
 
-                if alt37 == 1:
-                    # lesscss.g:294:7: ( unaryOperator )? ( NUMBER | PERCENTAGE | LENGTH | EMS | EXS | ANGLE | TIME | FREQ | RESOLUTION )
+                if alt38 == 1:
+                    # lesscss.g:300:7: ( unaryOperator )? ( NUMBER | PERCENTAGE | LENGTH | EMS | EXS | REMS | ANGLE | TIME | FREQ | RESOLUTION )
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    # lesscss.g:294:20: ( unaryOperator )?
-                    alt36 = 2
-                    LA36_0 = self.input.LA(1)
+                    # lesscss.g:300:20: ( unaryOperator )?
+                    alt37 = 2
+                    LA37_0 = self.input.LA(1)
 
-                    if (LA36_0 == PLUS or LA36_0 == MINUS) :
-                        alt36 = 1
-                    if alt36 == 1:
-                        # lesscss.g:294:20: unaryOperator
+                    if (LA37_0 == PLUS or LA37_0 == MINUS) :
+                        alt37 = 1
+                    if alt37 == 1:
+                        # lesscss.g:300:20: unaryOperator
                         pass 
-                        self._state.following.append(self.FOLLOW_unaryOperator_in_term1759)
-                        unaryOperator117 = self.unaryOperator()
+                        self._state.following.append(self.FOLLOW_unaryOperator_in_term1819)
+                        unaryOperator120 = self.unaryOperator()
 
                         self._state.following.pop()
                         if self._state.backtracking == 0:
-                            root_0 = self._adaptor.becomeRoot(unaryOperator117.tree, root_0)
+                            root_0 = self._adaptor.becomeRoot(unaryOperator120.tree, root_0)
 
 
 
-                    set118 = self.input.LT(1)
+                    set121 = self.input.LT(1)
                     if self.input.LA(1) == PERCENTAGE or (NUMBER <= self.input.LA(1) <= RESOLUTION):
                         self.input.consume()
                         if self._state.backtracking == 0:
-                            self._adaptor.addChild(root_0, self._adaptor.createWithPayload(set118))
+                            self._adaptor.addChild(root_0, self._adaptor.createWithPayload(set121))
                         self._state.errorRecovery = False
 
                     else:
@@ -4239,69 +4335,69 @@ class lesscssParser(Parser):
 
 
 
-                elif alt37 == 2:
-                    # lesscss.g:306:7: STRING
+                elif alt38 == 2:
+                    # lesscss.g:313:7: STRING
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    STRING119=self.match(self.input, STRING, self.FOLLOW_STRING_in_term1933)
+                    STRING122=self.match(self.input, STRING, self.FOLLOW_STRING_in_term2009)
                     if self._state.backtracking == 0:
 
-                        STRING119_tree = self._adaptor.createWithPayload(STRING119)
-                        self._adaptor.addChild(root_0, STRING119_tree)
+                        STRING122_tree = self._adaptor.createWithPayload(STRING122)
+                        self._adaptor.addChild(root_0, STRING122_tree)
 
 
 
-                elif alt37 == 3:
-                    # lesscss.g:307:7: IDENT
+                elif alt38 == 3:
+                    # lesscss.g:314:7: IDENT
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    IDENT120=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_term1941)
+                    IDENT123=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_term2017)
                     if self._state.backtracking == 0:
 
-                        IDENT120_tree = self._adaptor.createWithPayload(IDENT120)
-                        self._adaptor.addChild(root_0, IDENT120_tree)
+                        IDENT123_tree = self._adaptor.createWithPayload(IDENT123)
+                        self._adaptor.addChild(root_0, IDENT123_tree)
 
 
 
-                elif alt37 == 4:
-                    # lesscss.g:308:7: URI
+                elif alt38 == 4:
+                    # lesscss.g:315:7: URI
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    URI121=self.match(self.input, URI, self.FOLLOW_URI_in_term1949)
+                    URI124=self.match(self.input, URI, self.FOLLOW_URI_in_term2025)
                     if self._state.backtracking == 0:
 
-                        URI121_tree = self._adaptor.createWithPayload(URI121)
-                        self._adaptor.addChild(root_0, URI121_tree)
+                        URI124_tree = self._adaptor.createWithPayload(URI124)
+                        self._adaptor.addChild(root_0, URI124_tree)
 
 
 
-                elif alt37 == 5:
-                    # lesscss.g:309:7: function
+                elif alt38 == 5:
+                    # lesscss.g:316:7: function
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    self._state.following.append(self.FOLLOW_function_in_term1957)
-                    function122 = self.function()
+                    self._state.following.append(self.FOLLOW_function_in_term2033)
+                    function125 = self.function()
 
                     self._state.following.pop()
                     if self._state.backtracking == 0:
-                        self._adaptor.addChild(root_0, function122.tree)
+                        self._adaptor.addChild(root_0, function125.tree)
 
 
-                elif alt37 == 6:
-                    # lesscss.g:310:7: hexColor
+                elif alt38 == 6:
+                    # lesscss.g:317:7: hexColor
                     pass 
                     root_0 = self._adaptor.nil()
 
-                    self._state.following.append(self.FOLLOW_hexColor_in_term1965)
-                    hexColor123 = self.hexColor()
+                    self._state.following.append(self.FOLLOW_hexColor_in_term2041)
+                    hexColor126 = self.hexColor()
 
                     self._state.following.pop()
                     if self._state.backtracking == 0:
-                        self._adaptor.addChild(root_0, hexColor123.tree)
+                        self._adaptor.addChild(root_0, hexColor126.tree)
 
 
                 retval.stop = self.input.LT(-1)
@@ -4333,7 +4429,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "unaryOperator"
-    # lesscss.g:313:1: unaryOperator : ( MINUS | PLUS );
+    # lesscss.g:320:1: unaryOperator : ( MINUS | PLUS );
     def unaryOperator(self, ):
 
         retval = self.unaryOperator_return()
@@ -4341,22 +4437,22 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        set124 = None
+        set127 = None
 
-        set124_tree = None
+        set127_tree = None
 
         try:
             try:
-                # lesscss.g:314:5: ( MINUS | PLUS )
+                # lesscss.g:321:5: ( MINUS | PLUS )
                 # lesscss.g:
                 pass 
                 root_0 = self._adaptor.nil()
 
-                set124 = self.input.LT(1)
+                set127 = self.input.LT(1)
                 if self.input.LA(1) == PLUS or self.input.LA(1) == MINUS:
                     self.input.consume()
                     if self._state.backtracking == 0:
-                        self._adaptor.addChild(root_0, self._adaptor.createWithPayload(set124))
+                        self._adaptor.addChild(root_0, self._adaptor.createWithPayload(set127))
                     self._state.errorRecovery = False
 
                 else:
@@ -4399,7 +4495,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "function"
-    # lesscss.g:319:1: function : ( fnct_name fnct_args RPAREN -> ^( N_Function fnct_name fnct_args ) | fnct_name expr RPAREN -> ^( N_Function fnct_name expr ) );
+    # lesscss.g:326:1: function : ( fnct_name fnct_args RPAREN -> ^( N_Function fnct_name fnct_args ) | fnct_name expr RPAREN -> ^( N_Function fnct_name expr ) );
     def function(self, ):
 
         retval = self.function_return()
@@ -4407,49 +4503,49 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        RPAREN127 = None
         RPAREN130 = None
-        fnct_name125 = None
-
-        fnct_args126 = None
-
+        RPAREN133 = None
         fnct_name128 = None
 
-        expr129 = None
+        fnct_args129 = None
+
+        fnct_name131 = None
+
+        expr132 = None
 
 
-        RPAREN127_tree = None
         RPAREN130_tree = None
+        RPAREN133_tree = None
         stream_RPAREN = RewriteRuleTokenStream(self._adaptor, "token RPAREN")
         stream_fnct_name = RewriteRuleSubtreeStream(self._adaptor, "rule fnct_name")
         stream_fnct_args = RewriteRuleSubtreeStream(self._adaptor, "rule fnct_args")
         stream_expr = RewriteRuleSubtreeStream(self._adaptor, "rule expr")
         try:
             try:
-                # lesscss.g:320:5: ( fnct_name fnct_args RPAREN -> ^( N_Function fnct_name fnct_args ) | fnct_name expr RPAREN -> ^( N_Function fnct_name expr ) )
-                alt38 = 2
-                alt38 = self.dfa38.predict(self.input)
-                if alt38 == 1:
-                    # lesscss.g:320:7: fnct_name fnct_args RPAREN
+                # lesscss.g:327:5: ( fnct_name fnct_args RPAREN -> ^( N_Function fnct_name fnct_args ) | fnct_name expr RPAREN -> ^( N_Function fnct_name expr ) )
+                alt39 = 2
+                alt39 = self.dfa39.predict(self.input)
+                if alt39 == 1:
+                    # lesscss.g:327:7: fnct_name fnct_args RPAREN
                     pass 
-                    self._state.following.append(self.FOLLOW_fnct_name_in_function2010)
-                    fnct_name125 = self.fnct_name()
+                    self._state.following.append(self.FOLLOW_fnct_name_in_function2086)
+                    fnct_name128 = self.fnct_name()
 
                     self._state.following.pop()
                     if self._state.backtracking == 0:
-                        stream_fnct_name.add(fnct_name125.tree)
-                    self._state.following.append(self.FOLLOW_fnct_args_in_function2012)
-                    fnct_args126 = self.fnct_args()
+                        stream_fnct_name.add(fnct_name128.tree)
+                    self._state.following.append(self.FOLLOW_fnct_args_in_function2088)
+                    fnct_args129 = self.fnct_args()
 
                     self._state.following.pop()
                     if self._state.backtracking == 0:
-                        stream_fnct_args.add(fnct_args126.tree)
-                    RPAREN127=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_function2014) 
+                        stream_fnct_args.add(fnct_args129.tree)
+                    RPAREN130=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_function2090) 
                     if self._state.backtracking == 0:
-                        stream_RPAREN.add(RPAREN127)
+                        stream_RPAREN.add(RPAREN130)
 
                     # AST Rewrite
-                    # elements: fnct_args, fnct_name
+                    # elements: fnct_name, fnct_args
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -4466,8 +4562,8 @@ class lesscssParser(Parser):
 
 
                         root_0 = self._adaptor.nil()
-                        # 321:9: -> ^( N_Function fnct_name fnct_args )
-                        # lesscss.g:321:12: ^( N_Function fnct_name fnct_args )
+                        # 328:9: -> ^( N_Function fnct_name fnct_args )
+                        # lesscss.g:328:12: ^( N_Function fnct_name fnct_args )
                         root_1 = self._adaptor.nil()
                         root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(N_Function, "N_Function"), root_1)
 
@@ -4481,24 +4577,24 @@ class lesscssParser(Parser):
                         retval.tree = root_0
 
 
-                elif alt38 == 2:
-                    # lesscss.g:323:7: fnct_name expr RPAREN
+                elif alt39 == 2:
+                    # lesscss.g:330:7: fnct_name expr RPAREN
                     pass 
-                    self._state.following.append(self.FOLLOW_fnct_name_in_function2041)
-                    fnct_name128 = self.fnct_name()
+                    self._state.following.append(self.FOLLOW_fnct_name_in_function2117)
+                    fnct_name131 = self.fnct_name()
 
                     self._state.following.pop()
                     if self._state.backtracking == 0:
-                        stream_fnct_name.add(fnct_name128.tree)
-                    self._state.following.append(self.FOLLOW_expr_in_function2043)
-                    expr129 = self.expr()
+                        stream_fnct_name.add(fnct_name131.tree)
+                    self._state.following.append(self.FOLLOW_expr_in_function2119)
+                    expr132 = self.expr()
 
                     self._state.following.pop()
                     if self._state.backtracking == 0:
-                        stream_expr.add(expr129.tree)
-                    RPAREN130=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_function2045) 
+                        stream_expr.add(expr132.tree)
+                    RPAREN133=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_function2121) 
                     if self._state.backtracking == 0:
-                        stream_RPAREN.add(RPAREN130)
+                        stream_RPAREN.add(RPAREN133)
 
                     # AST Rewrite
                     # elements: fnct_name, expr
@@ -4518,8 +4614,8 @@ class lesscssParser(Parser):
 
 
                         root_0 = self._adaptor.nil()
-                        # 324:9: -> ^( N_Function fnct_name expr )
-                        # lesscss.g:324:12: ^( N_Function fnct_name expr )
+                        # 331:9: -> ^( N_Function fnct_name expr )
+                        # lesscss.g:331:12: ^( N_Function fnct_name expr )
                         root_1 = self._adaptor.nil()
                         root_1 = self._adaptor.becomeRoot(self._adaptor.createFromType(N_Function, "N_Function"), root_1)
 
@@ -4562,7 +4658,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "fnct_name"
-    # lesscss.g:328:1: fnct_name : ( IDENT ( COLON | DOT )+ )* FUNCTION ;
+    # lesscss.g:335:1: fnct_name : ( IDENT ( COLON | DOT )+ )* FUNCTION ;
     def fnct_name(self, ):
 
         retval = self.fnct_name_return()
@@ -4570,57 +4666,57 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        IDENT131 = None
-        set132 = None
-        FUNCTION133 = None
+        IDENT134 = None
+        set135 = None
+        FUNCTION136 = None
 
-        IDENT131_tree = None
-        set132_tree = None
-        FUNCTION133_tree = None
+        IDENT134_tree = None
+        set135_tree = None
+        FUNCTION136_tree = None
 
         try:
             try:
-                # lesscss.g:329:5: ( ( IDENT ( COLON | DOT )+ )* FUNCTION )
-                # lesscss.g:329:7: ( IDENT ( COLON | DOT )+ )* FUNCTION
+                # lesscss.g:336:5: ( ( IDENT ( COLON | DOT )+ )* FUNCTION )
+                # lesscss.g:336:7: ( IDENT ( COLON | DOT )+ )* FUNCTION
                 pass 
                 root_0 = self._adaptor.nil()
 
-                # lesscss.g:329:7: ( IDENT ( COLON | DOT )+ )*
-                while True: #loop40
-                    alt40 = 2
-                    LA40_0 = self.input.LA(1)
+                # lesscss.g:336:7: ( IDENT ( COLON | DOT )+ )*
+                while True: #loop41
+                    alt41 = 2
+                    LA41_0 = self.input.LA(1)
 
-                    if (LA40_0 == IDENT) :
-                        alt40 = 1
+                    if (LA41_0 == IDENT) :
+                        alt41 = 1
 
 
-                    if alt40 == 1:
-                        # lesscss.g:329:8: IDENT ( COLON | DOT )+
+                    if alt41 == 1:
+                        # lesscss.g:336:8: IDENT ( COLON | DOT )+
                         pass 
-                        IDENT131=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_fnct_name2082)
+                        IDENT134=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_fnct_name2158)
                         if self._state.backtracking == 0:
 
-                            IDENT131_tree = self._adaptor.createWithPayload(IDENT131)
-                            self._adaptor.addChild(root_0, IDENT131_tree)
+                            IDENT134_tree = self._adaptor.createWithPayload(IDENT134)
+                            self._adaptor.addChild(root_0, IDENT134_tree)
 
-                        # lesscss.g:329:14: ( COLON | DOT )+
-                        cnt39 = 0
-                        while True: #loop39
-                            alt39 = 2
-                            LA39_0 = self.input.LA(1)
+                        # lesscss.g:336:14: ( COLON | DOT )+
+                        cnt40 = 0
+                        while True: #loop40
+                            alt40 = 2
+                            LA40_0 = self.input.LA(1)
 
-                            if (LA39_0 == COLON or LA39_0 == DOT) :
-                                alt39 = 1
+                            if (LA40_0 == COLON or LA40_0 == DOT) :
+                                alt40 = 1
 
 
-                            if alt39 == 1:
+                            if alt40 == 1:
                                 # lesscss.g:
                                 pass 
-                                set132 = self.input.LT(1)
+                                set135 = self.input.LT(1)
                                 if self.input.LA(1) == COLON or self.input.LA(1) == DOT:
                                     self.input.consume()
                                     if self._state.backtracking == 0:
-                                        self._adaptor.addChild(root_0, self._adaptor.createWithPayload(set132))
+                                        self._adaptor.addChild(root_0, self._adaptor.createWithPayload(set135))
                                     self._state.errorRecovery = False
 
                                 else:
@@ -4634,25 +4730,25 @@ class lesscssParser(Parser):
 
 
                             else:
-                                if cnt39 >= 1:
-                                    break #loop39
+                                if cnt40 >= 1:
+                                    break #loop40
 
                                 if self._state.backtracking > 0:
                                     raise BacktrackingFailed
 
-                                eee = EarlyExitException(39, self.input)
+                                eee = EarlyExitException(40, self.input)
                                 raise eee
 
-                            cnt39 += 1
+                            cnt40 += 1
 
 
                     else:
-                        break #loop40
-                FUNCTION133=self.match(self.input, FUNCTION, self.FOLLOW_FUNCTION_in_fnct_name2094)
+                        break #loop41
+                FUNCTION136=self.match(self.input, FUNCTION, self.FOLLOW_FUNCTION_in_fnct_name2170)
                 if self._state.backtracking == 0:
 
-                    FUNCTION133_tree = self._adaptor.createWithPayload(FUNCTION133)
-                    root_0 = self._adaptor.becomeRoot(FUNCTION133_tree, root_0)
+                    FUNCTION136_tree = self._adaptor.createWithPayload(FUNCTION136)
+                    root_0 = self._adaptor.becomeRoot(FUNCTION136_tree, root_0)
 
 
 
@@ -4686,7 +4782,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "fnct_args"
-    # lesscss.g:332:10: fragment fnct_args : fnct_arg ( COMMA fnct_arg )* -> ( fnct_arg )+ ;
+    # lesscss.g:339:10: fragment fnct_args : fnct_arg ( COMMA fnct_arg )* -> ( fnct_arg )+ ;
     def fnct_args(self, ):
 
         retval = self.fnct_args_return()
@@ -4694,51 +4790,51 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        COMMA135 = None
-        fnct_arg134 = None
+        COMMA138 = None
+        fnct_arg137 = None
 
-        fnct_arg136 = None
+        fnct_arg139 = None
 
 
-        COMMA135_tree = None
+        COMMA138_tree = None
         stream_COMMA = RewriteRuleTokenStream(self._adaptor, "token COMMA")
         stream_fnct_arg = RewriteRuleSubtreeStream(self._adaptor, "rule fnct_arg")
         try:
             try:
-                # lesscss.g:333:5: ( fnct_arg ( COMMA fnct_arg )* -> ( fnct_arg )+ )
-                # lesscss.g:333:7: fnct_arg ( COMMA fnct_arg )*
+                # lesscss.g:340:5: ( fnct_arg ( COMMA fnct_arg )* -> ( fnct_arg )+ )
+                # lesscss.g:340:7: fnct_arg ( COMMA fnct_arg )*
                 pass 
-                self._state.following.append(self.FOLLOW_fnct_arg_in_fnct_args2114)
-                fnct_arg134 = self.fnct_arg()
+                self._state.following.append(self.FOLLOW_fnct_arg_in_fnct_args2190)
+                fnct_arg137 = self.fnct_arg()
 
                 self._state.following.pop()
                 if self._state.backtracking == 0:
-                    stream_fnct_arg.add(fnct_arg134.tree)
-                # lesscss.g:333:16: ( COMMA fnct_arg )*
-                while True: #loop41
-                    alt41 = 2
-                    LA41_0 = self.input.LA(1)
+                    stream_fnct_arg.add(fnct_arg137.tree)
+                # lesscss.g:340:16: ( COMMA fnct_arg )*
+                while True: #loop42
+                    alt42 = 2
+                    LA42_0 = self.input.LA(1)
 
-                    if (LA41_0 == COMMA) :
-                        alt41 = 1
+                    if (LA42_0 == COMMA) :
+                        alt42 = 1
 
 
-                    if alt41 == 1:
-                        # lesscss.g:333:17: COMMA fnct_arg
+                    if alt42 == 1:
+                        # lesscss.g:340:17: COMMA fnct_arg
                         pass 
-                        COMMA135=self.match(self.input, COMMA, self.FOLLOW_COMMA_in_fnct_args2117) 
+                        COMMA138=self.match(self.input, COMMA, self.FOLLOW_COMMA_in_fnct_args2193) 
                         if self._state.backtracking == 0:
-                            stream_COMMA.add(COMMA135)
-                        self._state.following.append(self.FOLLOW_fnct_arg_in_fnct_args2119)
-                        fnct_arg136 = self.fnct_arg()
+                            stream_COMMA.add(COMMA138)
+                        self._state.following.append(self.FOLLOW_fnct_arg_in_fnct_args2195)
+                        fnct_arg139 = self.fnct_arg()
 
                         self._state.following.pop()
                         if self._state.backtracking == 0:
-                            stream_fnct_arg.add(fnct_arg136.tree)
+                            stream_fnct_arg.add(fnct_arg139.tree)
 
 
                     else:
-                        break #loop41
+                        break #loop42
 
                 # AST Rewrite
                 # elements: fnct_arg
@@ -4758,8 +4854,8 @@ class lesscssParser(Parser):
 
 
                     root_0 = self._adaptor.nil()
-                    # 334:9: -> ( fnct_arg )+
-                    # lesscss.g:334:12: ( fnct_arg )+
+                    # 341:9: -> ( fnct_arg )+
+                    # lesscss.g:341:12: ( fnct_arg )+
                     if not (stream_fnct_arg.hasNext()):
                         raise RewriteEarlyExitException()
 
@@ -4804,7 +4900,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "fnct_arg"
-    # lesscss.g:337:1: fnct_arg : IDENT OPEQ expr ;
+    # lesscss.g:344:1: fnct_arg : IDENT OPEQ expr ;
     def fnct_arg(self, ):
 
         retval = self.fnct_arg_return()
@@ -4812,39 +4908,39 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        IDENT137 = None
-        OPEQ138 = None
-        expr139 = None
+        IDENT140 = None
+        OPEQ141 = None
+        expr142 = None
 
 
-        IDENT137_tree = None
-        OPEQ138_tree = None
+        IDENT140_tree = None
+        OPEQ141_tree = None
 
         try:
             try:
-                # lesscss.g:338:5: ( IDENT OPEQ expr )
-                # lesscss.g:338:7: IDENT OPEQ expr
+                # lesscss.g:345:5: ( IDENT OPEQ expr )
+                # lesscss.g:345:7: IDENT OPEQ expr
                 pass 
                 root_0 = self._adaptor.nil()
 
-                IDENT137=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_fnct_arg2151)
+                IDENT140=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_fnct_arg2227)
                 if self._state.backtracking == 0:
 
-                    IDENT137_tree = self._adaptor.createWithPayload(IDENT137)
-                    self._adaptor.addChild(root_0, IDENT137_tree)
+                    IDENT140_tree = self._adaptor.createWithPayload(IDENT140)
+                    self._adaptor.addChild(root_0, IDENT140_tree)
 
-                OPEQ138=self.match(self.input, OPEQ, self.FOLLOW_OPEQ_in_fnct_arg2153)
+                OPEQ141=self.match(self.input, OPEQ, self.FOLLOW_OPEQ_in_fnct_arg2229)
                 if self._state.backtracking == 0:
 
-                    OPEQ138_tree = self._adaptor.createWithPayload(OPEQ138)
-                    root_0 = self._adaptor.becomeRoot(OPEQ138_tree, root_0)
+                    OPEQ141_tree = self._adaptor.createWithPayload(OPEQ141)
+                    root_0 = self._adaptor.becomeRoot(OPEQ141_tree, root_0)
 
-                self._state.following.append(self.FOLLOW_expr_in_fnct_arg2156)
-                expr139 = self.expr()
+                self._state.following.append(self.FOLLOW_expr_in_fnct_arg2232)
+                expr142 = self.expr()
 
                 self._state.following.pop()
                 if self._state.backtracking == 0:
-                    self._adaptor.addChild(root_0, expr139.tree)
+                    self._adaptor.addChild(root_0, expr142.tree)
 
 
 
@@ -4877,7 +4973,7 @@ class lesscssParser(Parser):
 
 
     # $ANTLR start "hexColor"
-    # lesscss.g:341:1: hexColor : HASH ;
+    # lesscss.g:348:1: hexColor : HASH ;
     def hexColor(self, ):
 
         retval = self.hexColor_return()
@@ -4885,22 +4981,22 @@ class lesscssParser(Parser):
 
         root_0 = None
 
-        HASH140 = None
+        HASH143 = None
 
-        HASH140_tree = None
+        HASH143_tree = None
 
         try:
             try:
-                # lesscss.g:342:5: ( HASH )
-                # lesscss.g:342:7: HASH
+                # lesscss.g:349:5: ( HASH )
+                # lesscss.g:349:7: HASH
                 pass 
                 root_0 = self._adaptor.nil()
 
-                HASH140=self.match(self.input, HASH, self.FOLLOW_HASH_in_hexColor2173)
+                HASH143=self.match(self.input, HASH, self.FOLLOW_HASH_in_hexColor2249)
                 if self._state.backtracking == 0:
 
-                    HASH140_tree = self._adaptor.createWithPayload(HASH140)
-                    self._adaptor.addChild(root_0, HASH140_tree)
+                    HASH143_tree = self._adaptor.createWithPayload(HASH143)
+                    self._adaptor.addChild(root_0, HASH143_tree)
 
 
 
@@ -5117,48 +5213,48 @@ class lesscssParser(Parser):
             nvae = NoViableAltException(self_.getDescription(), 21, _s, input)
             self_.error(nvae)
             raise nvae
-    # lookup tables for DFA #38
+    # lookup tables for DFA #39
 
-    DFA38_eot = DFA.unpack(
+    DFA39_eot = DFA.unpack(
         u"\7\uffff"
         )
 
-    DFA38_eof = DFA.unpack(
+    DFA39_eof = DFA.unpack(
         u"\7\uffff"
         )
 
-    DFA38_min = DFA.unpack(
-        u"\1\32\1\34\1\22\1\32\1\uffff\1\22\1\uffff"
+    DFA39_min = DFA.unpack(
+        u"\1\32\1\34\1\22\1\32\1\22\2\uffff"
         )
 
-    DFA38_max = DFA.unpack(
-        u"\1\50\1\45\1\72\1\50\1\uffff\1\72\1\uffff"
+    DFA39_max = DFA.unpack(
+        u"\1\50\1\45\1\73\1\50\1\73\2\uffff"
         )
 
-    DFA38_accept = DFA.unpack(
-        u"\4\uffff\1\2\1\uffff\1\1"
+    DFA39_accept = DFA.unpack(
+        u"\5\uffff\1\2\1\1"
         )
 
-    DFA38_special = DFA.unpack(
+    DFA39_special = DFA.unpack(
         u"\7\uffff"
         )
 
             
-    DFA38_transition = [
+    DFA39_transition = [
         DFA.unpack(u"\1\1\15\uffff\1\2"),
         DFA.unpack(u"\1\3\10\uffff\1\3"),
-        DFA.unpack(u"\1\4\2\uffff\1\4\4\uffff\1\5\6\uffff\2\4\1\uffff\1"
-        u"\4\3\uffff\1\4\11\uffff\11\4"),
+        DFA.unpack(u"\1\5\2\uffff\1\5\4\uffff\1\4\6\uffff\2\5\1\uffff\1"
+        u"\5\3\uffff\1\5\11\uffff\12\5"),
         DFA.unpack(u"\1\1\1\uffff\1\3\10\uffff\1\3\2\uffff\1\2"),
+        DFA.unpack(u"\1\5\2\uffff\1\5\3\uffff\2\5\1\uffff\2\5\3\uffff\2"
+        u"\5\1\uffff\2\5\2\uffff\1\5\1\uffff\1\6\6\uffff\13\5"),
         DFA.unpack(u""),
-        DFA.unpack(u"\1\4\2\uffff\1\4\3\uffff\2\4\1\uffff\2\4\3\uffff\2"
-        u"\4\1\uffff\2\4\2\uffff\1\4\1\uffff\1\6\6\uffff\12\4"),
         DFA.unpack(u"")
     ]
 
-    # class definition for DFA #38
+    # class definition for DFA #39
 
-    class DFA38(DFA):
+    class DFA39(DFA):
         pass
 
 
@@ -5200,7 +5296,7 @@ class lesscssParser(Parser):
     FOLLOW_IDENT_in_media_type582 = frozenset([1])
     FOLLOW_LPAREN_in_media_expr599 = frozenset([26])
     FOLLOW_media_feature_in_media_expr601 = frozenset([28, 29])
-    FOLLOW_COLON_in_media_expr605 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58])
+    FOLLOW_COLON_in_media_expr605 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59])
     FOLLOW_expr_in_media_expr607 = frozenset([28, 29])
     FOLLOW_COLON_in_media_expr612 = frozenset([29])
     FOLLOW_RPAREN_in_media_expr615 = frozenset([1])
@@ -5253,66 +5349,71 @@ class lesscssParser(Parser):
     FOLLOW_COLON_in_pseudo1183 = frozenset([26, 28])
     FOLLOW_COLON_in_pseudo1187 = frozenset([26])
     FOLLOW_IDENT_in_pseudo1190 = frozenset([1])
-    FOLLOW_COLON_in_pseudo1223 = frozenset([28, 40])
-    FOLLOW_COLON_in_pseudo1227 = frozenset([40])
-    FOLLOW_FUNCTION_in_pseudo1230 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58])
-    FOLLOW_expr_in_pseudo1232 = frozenset([29])
-    FOLLOW_RPAREN_in_pseudo1234 = frozenset([1])
-    FOLLOW_COLON_in_pseudo1275 = frozenset([28, 40])
-    FOLLOW_COLON_in_pseudo1279 = frozenset([40])
-    FOLLOW_FUNCTION_in_pseudo1282 = frozenset([38])
-    FOLLOW_LBRACKET_in_pseudo1284 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58])
-    FOLLOW_expr_in_pseudo1286 = frozenset([41])
-    FOLLOW_RBRACKET_in_pseudo1288 = frozenset([29])
-    FOLLOW_RPAREN_in_pseudo1290 = frozenset([1])
-    FOLLOW_LBRACKET_in_attrib1342 = frozenset([26])
-    FOLLOW_attribBody_in_attrib1344 = frozenset([41])
-    FOLLOW_RBRACKET_in_attrib1346 = frozenset([1])
-    FOLLOW_IDENT_in_attribBody1381 = frozenset([1])
-    FOLLOW_IDENT_in_attribBody1389 = frozenset([42, 43, 44, 45, 46, 47])
-    FOLLOW_set_in_attribBody1400 = frozenset([18, 26])
-    FOLLOW_set_in_attribBody1486 = frozenset([1])
-    FOLLOW_declaration_in_declarationset1530 = frozenset([1, 19])
-    FOLLOW_SEMI_in_declarationset1533 = frozenset([26, 39])
-    FOLLOW_declaration_in_declarationset1535 = frozenset([1, 19])
-    FOLLOW_SEMI_in_declarationset1539 = frozenset([1])
-    FOLLOW_property_in_declaration1571 = frozenset([28])
-    FOLLOW_COLON_in_declaration1573 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58])
-    FOLLOW_expr_in_declaration1575 = frozenset([1, 48])
-    FOLLOW_prio_in_declaration1577 = frozenset([1])
-    FOLLOW_IDENT_in_property1616 = frozenset([1])
-    FOLLOW_STAR_in_property1635 = frozenset([26])
-    FOLLOW_IDENT_in_property1639 = frozenset([1])
-    FOLLOW_IMPORTANT_SYM_in_prio1679 = frozenset([1])
-    FOLLOW_term_in_expr1696 = frozenset([1, 18, 21, 25, 26, 33, 34, 36, 40, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58])
-    FOLLOW_operator_in_expr1699 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58])
-    FOLLOW_term_in_expr1702 = frozenset([1, 18, 21, 25, 26, 33, 34, 36, 40, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58])
-    FOLLOW_SOLIDUS_in_operator1723 = frozenset([1])
-    FOLLOW_COMMA_in_operator1731 = frozenset([1])
-    FOLLOW_unaryOperator_in_term1759 = frozenset([33, 50, 51, 52, 53, 54, 55, 56, 57])
-    FOLLOW_set_in_term1771 = frozenset([1])
-    FOLLOW_STRING_in_term1933 = frozenset([1])
-    FOLLOW_IDENT_in_term1941 = frozenset([1])
-    FOLLOW_URI_in_term1949 = frozenset([1])
-    FOLLOW_function_in_term1957 = frozenset([1])
-    FOLLOW_hexColor_in_term1965 = frozenset([1])
+    FOLLOW_COLON_in_pseudo1228 = frozenset([28, 40])
+    FOLLOW_COLON_in_pseudo1232 = frozenset([40])
+    FOLLOW_FUNCTION_in_pseudo1235 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59])
+    FOLLOW_expr_in_pseudo1237 = frozenset([29])
+    FOLLOW_RPAREN_in_pseudo1239 = frozenset([1])
+    FOLLOW_COLON_in_pseudo1281 = frozenset([28, 40])
+    FOLLOW_COLON_in_pseudo1285 = frozenset([40])
+    FOLLOW_FUNCTION_in_pseudo1288 = frozenset([38])
+    FOLLOW_LBRACKET_in_pseudo1290 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59])
+    FOLLOW_expr_in_pseudo1292 = frozenset([41])
+    FOLLOW_RBRACKET_in_pseudo1294 = frozenset([29])
+    FOLLOW_RPAREN_in_pseudo1296 = frozenset([1])
+    FOLLOW_COLON_in_pseudo1342 = frozenset([28, 40])
+    FOLLOW_COLON_in_pseudo1346 = frozenset([40])
+    FOLLOW_FUNCTION_in_pseudo1349 = frozenset([26, 28, 36, 37, 38, 39])
+    FOLLOW_pseudo_in_pseudo1351 = frozenset([29])
+    FOLLOW_RPAREN_in_pseudo1353 = frozenset([1])
+    FOLLOW_LBRACKET_in_attrib1402 = frozenset([26])
+    FOLLOW_attribBody_in_attrib1404 = frozenset([41])
+    FOLLOW_RBRACKET_in_attrib1406 = frozenset([1])
+    FOLLOW_IDENT_in_attribBody1441 = frozenset([1])
+    FOLLOW_IDENT_in_attribBody1449 = frozenset([42, 43, 44, 45, 46, 47])
+    FOLLOW_set_in_attribBody1460 = frozenset([18, 26])
+    FOLLOW_set_in_attribBody1546 = frozenset([1])
+    FOLLOW_declaration_in_declarationset1590 = frozenset([1, 19])
+    FOLLOW_SEMI_in_declarationset1593 = frozenset([26, 39])
+    FOLLOW_declaration_in_declarationset1595 = frozenset([1, 19])
+    FOLLOW_SEMI_in_declarationset1599 = frozenset([1])
+    FOLLOW_property_in_declaration1631 = frozenset([28])
+    FOLLOW_COLON_in_declaration1633 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59])
+    FOLLOW_expr_in_declaration1635 = frozenset([1, 48])
+    FOLLOW_prio_in_declaration1637 = frozenset([1])
+    FOLLOW_IDENT_in_property1676 = frozenset([1])
+    FOLLOW_STAR_in_property1695 = frozenset([26])
+    FOLLOW_IDENT_in_property1699 = frozenset([1])
+    FOLLOW_IMPORTANT_SYM_in_prio1739 = frozenset([1])
+    FOLLOW_term_in_expr1756 = frozenset([1, 18, 21, 25, 26, 33, 34, 36, 40, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59])
+    FOLLOW_operator_in_expr1759 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59])
+    FOLLOW_term_in_expr1762 = frozenset([1, 18, 21, 25, 26, 33, 34, 36, 40, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59])
+    FOLLOW_SOLIDUS_in_operator1783 = frozenset([1])
+    FOLLOW_COMMA_in_operator1791 = frozenset([1])
+    FOLLOW_unaryOperator_in_term1819 = frozenset([33, 50, 51, 52, 53, 54, 55, 56, 57, 58])
+    FOLLOW_set_in_term1831 = frozenset([1])
+    FOLLOW_STRING_in_term2009 = frozenset([1])
+    FOLLOW_IDENT_in_term2017 = frozenset([1])
+    FOLLOW_URI_in_term2025 = frozenset([1])
+    FOLLOW_function_in_term2033 = frozenset([1])
+    FOLLOW_hexColor_in_term2041 = frozenset([1])
     FOLLOW_set_in_unaryOperator0 = frozenset([1])
-    FOLLOW_fnct_name_in_function2010 = frozenset([26])
-    FOLLOW_fnct_args_in_function2012 = frozenset([29])
-    FOLLOW_RPAREN_in_function2014 = frozenset([1])
-    FOLLOW_fnct_name_in_function2041 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58])
-    FOLLOW_expr_in_function2043 = frozenset([29])
-    FOLLOW_RPAREN_in_function2045 = frozenset([1])
-    FOLLOW_IDENT_in_fnct_name2082 = frozenset([28, 37])
-    FOLLOW_set_in_fnct_name2084 = frozenset([26, 28, 37, 40])
-    FOLLOW_FUNCTION_in_fnct_name2094 = frozenset([1])
-    FOLLOW_fnct_arg_in_fnct_args2114 = frozenset([1, 25])
-    FOLLOW_COMMA_in_fnct_args2117 = frozenset([26])
-    FOLLOW_fnct_arg_in_fnct_args2119 = frozenset([1, 25])
-    FOLLOW_IDENT_in_fnct_arg2151 = frozenset([42])
-    FOLLOW_OPEQ_in_fnct_arg2153 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58])
-    FOLLOW_expr_in_fnct_arg2156 = frozenset([1])
-    FOLLOW_HASH_in_hexColor2173 = frozenset([1])
+    FOLLOW_fnct_name_in_function2086 = frozenset([26])
+    FOLLOW_fnct_args_in_function2088 = frozenset([29])
+    FOLLOW_RPAREN_in_function2090 = frozenset([1])
+    FOLLOW_fnct_name_in_function2117 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59])
+    FOLLOW_expr_in_function2119 = frozenset([29])
+    FOLLOW_RPAREN_in_function2121 = frozenset([1])
+    FOLLOW_IDENT_in_fnct_name2158 = frozenset([28, 37])
+    FOLLOW_set_in_fnct_name2160 = frozenset([26, 28, 37, 40])
+    FOLLOW_FUNCTION_in_fnct_name2170 = frozenset([1])
+    FOLLOW_fnct_arg_in_fnct_args2190 = frozenset([1, 25])
+    FOLLOW_COMMA_in_fnct_args2193 = frozenset([26])
+    FOLLOW_fnct_arg_in_fnct_args2195 = frozenset([1, 25])
+    FOLLOW_IDENT_in_fnct_arg2227 = frozenset([42])
+    FOLLOW_OPEQ_in_fnct_arg2229 = frozenset([18, 21, 26, 33, 34, 36, 40, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59])
+    FOLLOW_expr_in_fnct_arg2232 = frozenset([1])
+    FOLLOW_HASH_in_hexColor2249 = frozenset([1])
     FOLLOW_esPred_in_synpred1_lesscss1005 = frozenset([1])
     FOLLOW_esPred_in_synpred2_lesscss1020 = frozenset([1])
 
