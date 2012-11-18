@@ -14,6 +14,8 @@
 // - http://www.w3.org/TR/css3-selectors
 // - http://www.w3.org/TR/css3-mediaqueries
 // - http://www.w3.org/TR/css3-animations
+// - http://www.w3.org/TR/css3-values
+// - http://www.w3.org/TR/css3-fonts
 //
 // This grammar is free to use providing you retain everyhting in this header comment
 // section.
@@ -49,7 +51,7 @@ tokens {
     N_Declaration;
     N_Function;
     N_Attrib;
-    N_Space;
+    N_Empty;
     N_Pseudo;
     N_PseudoFunction;
 }
@@ -113,9 +115,17 @@ bodyset
 media
     : MEDIA_SYM^ media_query_list?
         LBRACE!
-            ruleSet*
+            media_bodyset*
         RBRACE!
     ;
+
+media_bodyset
+    : ruleSet
+    | page
+    | fontface
+    | keyframes
+    ;   
+
 
 // ---------    
 // Media queries
@@ -125,23 +135,21 @@ media_query_list
         -> ^(N_MediaQuery media_query+)
     ;
 
+// We are not studying content of media query (as AND, NOT and ONLY tokens are not recognized)
+// - it is considered as bunch of identificators and expressions
 media_query
-    : ( IDENT )? media_type ( IDENT^ media_expr )*
-    | media_expr ( IDENT^ media_expr )*
+    : ( media_stmt | media_expr )+
     ;
 
-media_type
+media_stmt
     : IDENT
     ;
 
 media_expr
-    : LPAREN media_feature ( COLON expr )? COLON? RPAREN
-        -> ^(N_MediaExpr media_feature expr? )
+    : LPAREN media_stmt ( COLON expr )? RPAREN
+        -> ^(N_MediaExpr media_stmt expr? )
     ;
 
-media_feature
-    : IDENT
-    ;
 
 // ---------
 // Font face
@@ -228,19 +236,26 @@ cssClass
     ;
 
 pseudo
-    : a=COLON b=COLON? IDENT
+    : a=COLON b=COLON?
+    ( IDENT
         -> ^(N_Pseudo $a $b? IDENT)
-    
-    | c=COLON d=COLON? FUNCTION expr RPAREN
-        -> ^(N_Pseudo $c $d? ^(N_PseudoFunction FUNCTION expr ) )
+    | pseudoFunction
+        -> ^(N_Pseudo $a $b? pseudoFunction)
+    )
+    ;
 
-    | e=COLON f=COLON? FUNCTION LBRACKET expr RBRACKET RPAREN
-        -> ^(N_Pseudo $e $f? ^(N_PseudoFunction FUNCTION LBRACKET expr RBRACKET ) )
+pseudoFunction
+    : FUNCTION expr RPAREN
+        -> ^(N_PseudoFunction FUNCTION expr )
 
-    | g=COLON h=COLON? FUNCTION pseudo RPAREN
-        -> ^(N_Pseudo $g $h? ^(N_PseudoFunction FUNCTION pseudo ) )
+    | FUNCTION LBRACKET attribBody RBRACKET RPAREN
+        -> ^(N_PseudoFunction FUNCTION LBRACKET attribBody RBRACKET )
+
+    | FUNCTION pseudo RPAREN
+        -> ^(N_PseudoFunction FUNCTION pseudo )
 
     ;
+
 
 attrib
     : LBRACKET attribBody RBRACKET
@@ -257,19 +272,20 @@ attribBody
         | SUFFIXMATCH
         | SUBSTRINGMATCH
         )^ 
-        ( IDENT 
-        | STRING 
-        ) 
+        term
     ;
 
 declarationset
     : declaration (SEMI declaration)* SEMI?
          -> declaration+
+    | -> N_Empty
     ;
 
 declaration
     : property COLON expr prio?
         -> ^(N_Declaration property expr prio?)
+    |  property COLON   // To parse "margin:;"
+        -> ^(N_Declaration property)
     ;
 
 property
@@ -293,7 +309,7 @@ expr
 fragment operator
     : SOLIDUS
     | COMMA
-    | -> N_Space // If operator is whitespace, emit this token
+    | -> N_Empty // If operator is whitespace, emit this token
     ;
 
 term
@@ -305,16 +321,20 @@ term
             | EMS
             | EXS
             | REMS
+            | CHS
             | ANGLE
             | TIME
             | FREQ
             | RESOLUTION
+            | VPORTLEN
+            | NTH
         )
     | STRING
     | IDENT
     | URI
     | function
     | hexColor
+    | UNICODE_RANGE
     ;
 
 unaryOperator
@@ -714,6 +734,18 @@ fragment STRINGESC
         ;
 
 // -------------
+// Unicode range.  From CSS Fonts Module Level 3 (http://www.w3.org/TR/css3-fonts/#unicode-range-desc)
+//
+UNICODE_RANGE
+        : U '+'
+            ( ( HEXCHAR+ )
+            | ( HEXCHAR* '?'+ )
+            | ( HEXCHAR+ MINUS HEXCHAR+ )
+            )
+        ;
+
+
+// -------------
 // Identifier.  Identifier tokens pick up properties names and values
 //
 IDENT   : '-'? NMSTART NMCHAR* ;
@@ -756,13 +788,16 @@ IMPORTANT_SYM   : '!' (WS|COMMENT)* I M P O R T A N T   ;
 fragment    EMS         :;  // 'em'
 fragment    REMS        :;  // 'rem'
 fragment    EXS         :;  // 'ex'
+fragment    CHS         :;  // 'ch'
 fragment    LENGTH      :;  // 'px'. 'cm', 'mm', 'in'. 'pt', 'pc'
 fragment    ANGLE       :;  // 'deg', 'rad', 'grad'
 fragment    TIME        :;  // 'ms', 's'
 fragment    FREQ        :;  // 'khz', 'hz'
 fragment    DIMENSION   :;  // nnn'Somethingnotyetinvented'
 fragment    PERCENTAGE  :;  // '%'
-fragment    RESOLUTION  :;  // 'dpi', 'dpcm'
+fragment    RESOLUTION  :;  // 'dpi', 'dpcm', 'dppx'
+fragment    VPORTLEN    :;  // 'vw', 'vh', 'vmin', 'vmax'
+fragment    NTH         :;  // '2n+3'
 
 NUMBER
     :   
@@ -778,8 +813,11 @@ NUMBER
                     | X     { $type = EXS;          }
                 )
             | (R E M) =>
-                R E M       { $type = REM;          }
-            | (P(X|T|C))=>
+                R E M       { $type = REMS;         }
+            | (C H) =>
+                C H         { $type = CHS;          }
+
+            | ( P ( X | T | C ) ) =>
                 P
                 (
                       X     
@@ -803,20 +841,41 @@ NUMBER
                 D E G       { $type = ANGLE;        }
             | (R A D)=>
                 R A D       { $type = ANGLE;        }
+            | (G R A D)=>
+                G R A D     { $type = ANGLE;        }
+            | (T U R N)=>
+                T U R N     { $type = ANGLE;        }
             
             | (S)=>S        { $type = TIME;         }
                 
             | (K? H Z)=>
                 K? H    Z   { $type = FREQ;         }
             
-            | (D P I)=>
-                D P I       { $type = RESOLUTION;   }
-            | (D P C M)=>
-                D P C M      { $type = RESOLUTION;  }
+            | (D P ( I | C | P ) ) =>
+                D
+                ( P I        { $type = RESOLUTION;  }
+                | P C M      { $type = RESOLUTION;  }
+                | P P X      { $type = RESOLUTION;  }
+                )
 
-            | IDENT         { $type = DIMENSION;    }
+            | ( V ( W | H | M ) ) =>
+                V
+                ( W          { $type = VPORTLEN;    }
+                | H          { $type = VPORTLEN;    }
+                | M          { $type = VPORTLEN;    }
+                | M I N      { $type = VPORTLEN;    }
+                | M A X      { $type = VPORTLEN;    }
+                )
+
+            | (N) =>
+                ( N ( PLUS | MINUS ) '0'..'9'+  
+                             { $type = NTH;         }
+                | N          { $type = NTH;         }
+                )            
+
+            | IDENT          { $type = DIMENSION;   }
             
-            | '%'           { $type = PERCENTAGE;   }
+            | '%'            { $type = PERCENTAGE;  }
             
             | // Just a number
         )

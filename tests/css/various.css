@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+@import url(something.css);
+
+div {
+  margin: +0 -0 0 0;
+}
+
+div.class {
+  color: blue;
+}
+
+div#id {
+  color: green;
+}
+
+@media {
+  body {
+    max-width: 800px;
+  }
+}
+
+p a span,
+.foo .bar .qux {
+  color: red;
+}
+
+* { color: red; }
+a { color: red; }
+#id { color: red; }
+.cls { color: red; }

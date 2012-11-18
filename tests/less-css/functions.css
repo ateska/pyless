@@ -4,6 +4,7 @@
   height: undefined("self");
   border-width: 5;
   variable: 11;
+  background: linear-gradient(#000000, #ffffff);
 }
 #built-in {
   escaped: -Some::weird(#thing, y);
@@ -48,9 +49,19 @@
   green: 255;
   blue: 255;
   rounded: 11;
+  rounded-two: 10.67;
   roundedpx: 3px;
+  roundedpx-three: 3.333px;
   percentage: 20%;
   color: #ff0011;
+  tint: #898989;
+  tint-full: #ffffff;
+  tint-percent: #898989;
+  shade: #686868;
+  shade-full: #000000;
+  shade-percent: #686868;
+  hsv: #4d2926;
+  hsva: rgba(77, 40, 38, 0.2);
   mix: #ff3300;
   mix-0: #ffff00;
   mix-100: #ff0000;

@@ -1,0 +1,137 @@
+/*
+Test is based on http://www.w3.org/TR/css3-values/
+*/
+
+table { border-collapse: separate }
+
+
+a {
+content: "this is a 'string'.";
+content: "this is a \"string\".";
+content: 'this is a "string".';
+content: 'this is a \'string\'.';
+}
+
+/*TODO: Support parse of this ...
+a[title="a not s\
+o very long title"] {}
+*/
+a[title="a not so very long title"] {/*...*/}
+
+
+body { background: url("http://www.example.com/pinkish.gif") }
+body { background: url(http://www.example.com/pinkish.gif) }
+
+body { background: url("tile.png") }
+
+h1 { line-height: 1.2em }
+h1 { font-size: 1.2em }
+
+h1 { font-size: 1.2ex }
+h1 { font-size: 1.2ch }
+h1 { font-size: 1.2rem }
+
+h1 { font-size: 8vw }
+h1 { font-size: 8vh }
+h1 { font-size: 8vmin }
+h1 { font-size: 8vmax }
+
+h1 { margin: 0.5in }      /* inches  */
+h2 { line-height: 3cm }   /* centimeters */
+h3 { word-spacing: 4mm }  /* millimeters */
+h4 { font-size: 12pt }    /* points */
+h4 { font-size: 1pc }     /* picas */
+p  { font-size: 12px }    /* px */
+
+h1 { font-size: 1.2deg }
+h1 { font-size: 1.2rad }
+h1 { font-size: 1.2grad }
+h1 { font-size: 1.2turn }
+
+h1 { font-size: 1.2s }
+h1 { font-size: 1.2ms }
+
+h1 { font-size: 1.2Hz }
+h1 { font-size: 1.2kHz }
+
+@media (min-resolution: 2dppx) { }
+@media (min-resolution: 90dpi) { }
+@media (min-resolution: 2dpcm) { }
+
+a {
+background: url(http://www.example.org/image);
+color: rgb(100, 200, 50 );
+content: counter(list-item) ". ";
+width: calc(50% - 2em);
+}
+
+section {
+  float: left;
+  margin: 1em; border: solid 1px;
+  /*TODO: Support parse of this ...
+  width: calc(100%/3 - 2*1em - 2*1px); */
+}
+
+p {
+  margin: calc(1rem - 2px) calc(1rem - 1px);
+}
+
+:root {
+	font-size: calc(100vw / 40);
+}
+
+.foo {
+	background: url(top.png), url(bottom.png);
+	background-repeat: no-repeat;
+	background-position: calc(50% + 20px) calc(50% + 20px), 50% 50%;
+}
+
+.foo {
+	background-image: linear-gradient(to right, silver, 
+	                                            white 50px, 
+	                                            white calc(100% - 50px), 
+	                                            silver);
+}
+
+a {
+	width: calc(5px - 10px);
+	width: 0px;
+}
+
+em { font-style: toggle(italic, normal); }
+
+ul { list-style-type: disc; }
+ul ul { list-style-type: toggle(disc, circle, square, box); }
+
+stock::before {
+	display: block;
+	content: "To scale, the lengths of materials in stock are:";
+}
+stock > * {
+	display: block;
+	width: attr(length em); /* default 0 */
+	height: 1em;
+	border: solid thin;
+	margin: 0.5em;
+}
+wood {
+	background: orange url(wood.png);
+}
+metal {
+	background: silver url(metal.png);
+}
+
+a
+{
+content: attr(title color); /* 'content' doesn't accept colors */
+
+content: attr(end-of-quote string, inherit) close-quote; 
+/* the 'inherit' value is not allowed there, since the result would be
+'inherit close-quote', which is invalid. */
+
+margin: attr(vertical length) attr(horizontal deg); 
+/* deg units are not valid at that point */
+
+color: attr(color); /* 'color' doesn't accept strings */	
+}
+

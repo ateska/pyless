@@ -1,6 +1,5 @@
-@charset "ascii";
-#yelow .short * {
-  color: #fea !important;
+#yelow #short {
+  color: #fea;
 }
 #yelow #long {
   color: #ffeeaa;
