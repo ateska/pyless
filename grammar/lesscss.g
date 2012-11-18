@@ -115,17 +115,9 @@ bodyset
 media
     : MEDIA_SYM^ media_query_list?
         LBRACE!
-            media_bodyset*
+            bodyset*    // This is from CSS3
         RBRACE!
     ;
-
-media_bodyset
-    : ruleSet
-    | page
-    | fontface
-    | keyframes
-    ;   
-
 
 // ---------    
 // Media queries
