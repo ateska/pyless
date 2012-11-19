@@ -36,14 +36,14 @@ class FileBasedParserTest(unittest.TestCase):
 			if tname == str(t):
 				fout.write('"{0}" [shape=ellipse,label="{1}",fillcolor=paleturquoise];\n'.format(
 					id(t),
-					cgi.escape("{0}".format(t), True),
+					cgi.escape("{0}".format(t), True).replace("\n", "\\n").replace("{", "\{").replace("}", "\}"),
 					)
 				)
 			else:
 				fout.write('"{0}" [shape=record,label="{{{2}|{1}}}",fillcolor=palegreen];\n'.format(
 					id(t),
-					cgi.escape("{0}".format(t).replace('"','\\"'), True),
-					cgi.escape(tname, True)
+					cgi.escape("{0}".format(t), True).replace("\n", "\\n").replace("\n", "\\n").replace("{", "\{").replace("}", "\}"),
+					cgi.escape(tname, True).replace("\n", "\\n").replace("\n", "\\n").replace("{", "\{").replace("}", "\}")
 					)
 				)
 
