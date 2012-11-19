@@ -36,14 +36,14 @@ class FileBasedParserTest(unittest.TestCase):
 			if tname == str(t):
 				fout.write('"{0}" [shape=ellipse,label="{1}",fillcolor=paleturquoise];\n'.format(
 					id(t),
-					cgi.escape("{0}".format(t), True).replace("\n", "\\n").replace("{", "\{").replace("}", "\}"),
+					self._escape_dot_label(t)
 					)
 				)
 			else:
 				fout.write('"{0}" [shape=record,label="{{{2}|{1}}}",fillcolor=palegreen];\n'.format(
 					id(t),
-					cgi.escape("{0}".format(t), True).replace("\n", "\\n").replace("\n", "\\n").replace("{", "\{").replace("}", "\}"),
-					cgi.escape(tname, True).replace("\n", "\\n").replace("\n", "\\n").replace("{", "\{").replace("}", "\}")
+					self._escape_dot_label(t),
+					self._escape_dot_label(tname)
 					)
 				)
 
@@ -56,6 +56,13 @@ class FileBasedParserTest(unittest.TestCase):
 		twalker(result.tree)
 
 		fout.write("}\n")
+	
+	
+	_label_repls = {'\n' : '\\n', '{' : '\{', '}': '\}'}
+	@classmethod
+	def _escape_dot_label(cls, label):
+		label = cgi.escape("{0}".format(label), True)
+		return reduce(lambda a, kv: a.replace(*kv), cls._label_repls.iteritems(), label)
 
 
 	@classmethod
