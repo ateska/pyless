@@ -1,4 +1,4 @@
-import unittest, glob, os
+import unittest, glob, os, cgi
 import pyless
 from pyless.antlr3 import tree
 from pyless.lesscssParser import tokenNames
@@ -36,14 +36,14 @@ class FileBasedParserTest(unittest.TestCase):
 			if tname == str(t):
 				fout.write('"{0}" [shape=ellipse,label="{1}",fillcolor=paleturquoise];\n'.format(
 					id(t),
-					"{0}".format(t).replace('"','\\"'),
+					cgi.escape("{0}".format(t), True),
 					)
 				)
 			else:
 				fout.write('"{0}" [shape=record,label="{{{2}|{1}}}",fillcolor=palegreen];\n'.format(
 					id(t),
-					"{0}".format(t).replace('"','\\"'),
-					tname
+					cgi.escape("{0}".format(t).replace('"','\\"'), True),
+					cgi.escape(tname, True)
 					)
 				)
 
