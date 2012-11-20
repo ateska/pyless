@@ -5,8 +5,8 @@ def save_result(parser_result, fname):
 	'''Save parser result (tree) to .dot file - this can be then open by Graphviz and investigated.'''
 
 	fout = open(fname, "w")
-	fout.write('digraph {0} {{\nratio = fill;packMode=graph;\n'.format(os.path.basename(fname)[:-4].replace('-','_')))
-	fout.write('node [style="filled",fontname=Arial];\n')
+	fout.write('digraph "{0}" {{\nratio="fill";packMode="graph";\n'.format(os.path.basename(fname)[:-4].replace('-','_')))
+	fout.write('node [style="filled",fontname="Arial"];\n')
 
 	def twalker(t):
 		tname = tokenNames[t.getType()]
