@@ -1,6 +1,7 @@
 import unittest, glob, os
 import pyless
 from pyless.antlr3 import tree
+from pyless import dotout
 ##
 
 def _fbtgen(fname):
@@ -20,6 +21,8 @@ class FileBasedParserTest(unittest.TestCase):
 			self.fail("Lexer errors:\n" + '\n'.join(lexer.errormsgcache))
 		if parser.getNumberOfSyntaxErrors() > 0:
 			self.fail("Parser errors:\n" + '\n'.join(parser.errormsgcache))
+
+		dotout.save_result(result, fname+".dot")
 
 		r = result.tree.toStringTree()
 		self.assertIsNotNone(r, "Parsing silently failed!")
