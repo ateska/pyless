@@ -34,8 +34,11 @@ nosetests.xml
 .project
 .pydevproject
 pyless.sublime-*
+
 lesscss.tokens
+treelesscss.tokens
 
 tests/css/*.dot
 tests/less-css/*.dot
 tests/bootstrap/*.dot
+

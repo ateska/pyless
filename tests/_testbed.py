@@ -17,7 +17,7 @@ class FileBasedParserTest(unittest.TestCase):
 	name = None  # Override this !
 
 	def _do_file_test(self, fname):
-		lexer, parser, result = pyless.parse(fname)
+		lexer, parser, tokens, result = pyless.parse(fname)
 		if lexer.getNumberOfSyntaxErrors() > 0:
 			self.fail("Lexer errors:\n" + '\n'.join(lexer.errormsgcache))
 		if parser.getNumberOfSyntaxErrors() > 0:
