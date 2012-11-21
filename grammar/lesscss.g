@@ -64,9 +64,9 @@ tokens {
 styleSheet
 	: charSet?
 	  imports*
-	  bodylist
+	  body*
 	  EOF
-		-> ^(N_StyleSheet charSet? imports* bodylist?)
+		-> ^(N_StyleSheet charSet? imports* body*)
 	;
 	
 // -----------------
@@ -92,11 +92,7 @@ importUrl
 // ---------
 // Body
 //
-bodylist
-	: bodyset*
-	;
-
-bodyset
+body
 	: ruleSet
 	| media
 	| page
@@ -112,7 +108,7 @@ bodyset
 media
 	: MEDIA_SYM^ media_query_list?
 		LBRACE!
-			bodyset*    // This is from CSS3
+			body*    // This is from CSS3
 		RBRACE!
 	;
 
@@ -121,7 +117,7 @@ media
 //
 media_query_list
 	: media_query (COMMA media_query)*
-		-> ^(N_MediaQuery media_query+)
+		-> ^(N_MediaQuery media_query) +
 	;
 
 // We are not studying content of media query (as AND, NOT and ONLY tokens are not recognized)
