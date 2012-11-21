@@ -11,26 +11,40 @@ options {
 //
 //
 styleSheet
-	: ^( N_StyleSheet charSet? imports* )
-	//^(N_StyleSheet charSet? imports* bodylist?)
+	: ^( N_StyleSheet
+		(charSet { self.output($charSet.gencode); } )?
+		(imports { self.output($imports.gencode); } )*
+		body*	// Body is 'direct' output function
+	)
 	;
 
 // -----------------
 // Character set.   Picks up the user specified character set, should it be present.
 //
-charSet
+charSet returns [gencode]
   	: ^(CHARSET_SYM STRING)
-  		{ self.TP_charSet($STRING); }
+  		{ $gencode = '@charset {0}{1}'.format($STRING.text, self.EOLSEMI); }
     	;
 
 
 // ---------
 // Import.  Location of an external style sheet to include in the ruleset.
 //
-imports
-	: ^(IMPORT_SYM importUrl )
-	//: ^(IMPORT_SYM importUrl  media_query_list? )
-    		{ self.TP_imports($importUrl.text); }
+imports returns [gencode]
+	@init
+	{
+		$gencode = '@import ';
+		mqs = []
+	}
+	: ^(IMPORT_SYM
+		importUrl { $gencode += $importUrl.text ; }
+		( media_query { mqs.append($media_query.gencode) ; } ) *
+	)
+		{
+			if len(mqs) > 0: $gencode += ' ' + self.LISTCOMA.join(mqs);
+			$gencode += self.EOLSEMI ; 
+		}
+    		
 	;
 
 importUrl
@@ -39,16 +53,60 @@ importUrl
 	;
 
 
-/*
+// ---------
+// Body
+//
+body
+	: media
+//	: ruleSet
+//	| media
+//	| page
+//	| fontface
+//	| keyframes
+	;
+
+
+// ---------
+// Media.   Introduce a set of rules that are to be used if the consumer indicates
+//          it belongs to the signified medium.
+//
+media
+	@init
+	{
+		mqs = []
+	}
+	: ^(MEDIA_SYM
+		( media_query { mqs.append($media_query.gencode) ; } ) *
+		{
+			mediahead = '@media';
+			if len(mqs) > 0: mediahead += ' ' + self.LISTCOMA.join(mqs);
+			mediahead += self.EOLLBRACKET;
+			self.output(mediahead);
+			self.indent_level += 1
+		}
+		body*
+	)
+	{
+		self.indent_level -= 1
+		self.output(self.EOLRBRACKET);
+	}
+	;
+
+
 // ---------    
 // Media queries
 //
-media_query_list
-	: ^(N_MediaQuery media_query+)
-	;
-
-media_query
-	: ( media_stmt | media_expr )+
+media_query returns [gencode]
+	@init
+	{
+		mq = list()
+	}
+	: ^(N_MediaQuery
+		( media_stmt { mq.append($media_stmt.text); }
+		| media_expr { mq.append($media_expr.text); }
+		)+ 
+	)
+		{ $gencode = ' '.join(mq); }
 	;
 
 media_stmt
@@ -59,4 +117,3 @@ media_expr
 	: ^(N_MediaExpr media_stmt )
 	//TODO: : ^(N_MediaExpr media_stmt expr? )
 	;
-*/

@@ -6,14 +6,18 @@ from .treelesscss import treelesscss as _treelesscss
 class lesscsstwalker(_treelesscss):
 	'''Tree parser'''
 
+	EOLSEMI = ';'
+	LISTCOMA = ','
+	EOLLBRACKET = ' {'
+	EOLRBRACKET = '}'
 
-	def TP_charSet(self, t):
-		print '@charset {0};'.format(t)
 
+	def __init__(self, input, state=None, *args, **kwargs):
+		super(lesscsstwalker, self).__init__(input, state, *args, **kwargs)
+		self.indent_level = 0
 
-	def TP_imports(self, t):
-		print '@import {0};'.format(t)
-
+	def output(self, codetext):
+		print self.indent_level*'\t' + codetext
 
 #
 
