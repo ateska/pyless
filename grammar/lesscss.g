@@ -54,6 +54,7 @@ tokens {
 	N_Empty;
 	N_Pseudo;
 	N_PseudoFunction;
+	N_Term;
 }
 
 
@@ -305,26 +306,25 @@ fragment operator
 	;
 
 term
-	: unaryOperator^?
-		(
-			  NUMBER
-			| PERCENTAGE
-			| LENGTH
-			| EMS
-			| EXS
-			| REMS
-			| CHS
-			| ANGLE
-			| TIME
-			| FREQ
-			| RESOLUTION
-			| VPORTLEN
-			| NTH
-		)
+	: unaryOperator? (
+		  NUMBER	-> ^(N_Term unaryOperator? NUMBER)
+		| PERCENTAGE	-> ^(N_Term unaryOperator? PERCENTAGE)
+		| LENGTH	-> ^(N_Term unaryOperator? LENGTH)
+		| EMS	 	-> ^(N_Term unaryOperator? EMS)
+		| EXS	 	-> ^(N_Term unaryOperator? EXS)
+		| REMS	 	-> ^(N_Term unaryOperator? REMS)
+		| CHS	 	-> ^(N_Term unaryOperator? CHS)
+		| ANGLE	 	-> ^(N_Term unaryOperator? ANGLE)
+		| TIME	 	-> ^(N_Term unaryOperator? TIME)
+		| FREQ	 	-> ^(N_Term unaryOperator? FREQ)
+		| RESOLUTION	-> ^(N_Term unaryOperator? RESOLUTION)
+		| VPORTLEN	-> ^(N_Term unaryOperator? VPORTLEN)
+		| NTH	 	-> ^(N_Term unaryOperator? NTH)
+		| function	-> ^(N_Term unaryOperator? function)
+	)
 	| STRING
 	| IDENT
 	| URI
-	| function
 	| hexColor
 	| UNICODE_RANGE
 	;
@@ -332,7 +332,7 @@ term
 unaryOperator
 	: MINUS
 	| PLUS
-	;  
+	;
 
 
 function
