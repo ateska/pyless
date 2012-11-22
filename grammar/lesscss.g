@@ -262,13 +262,13 @@ attribBody
 		term
 	;
 
+
+// ---------
+// Declarations
+//
 declarationset
-	: declaration (SEMI declaration)* SEMI?
-		 -> declaration+
-
-	|
-		-> N_Empty
-
+	: declaration (SEMI! declaration)* SEMI!?
+	| -> N_Empty
 	;
 
 declaration
