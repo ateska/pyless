@@ -52,6 +52,7 @@ tokens {
 	N_Function;
 	N_Attrib;
 	N_Empty;
+	N_Space;
 	N_Pseudo;
 	N_PseudoFunction;
 	N_Term;
@@ -302,7 +303,7 @@ expr
 fragment operator
 	: SOLIDUS
 	| COMMA
-	| -> N_Empty // If operator is whitespace, emit this token
+	| -> N_Space // If operator is whitespace, emit this token
 	;
 
 term
@@ -349,8 +350,7 @@ fnct_name
 	;
 
 fragment fnct_args
-	: fnct_arg (COMMA fnct_arg)*
-		-> fnct_arg+
+	: fnct_arg (COMMA^ fnct_arg)*
 	;
 
 fnct_arg

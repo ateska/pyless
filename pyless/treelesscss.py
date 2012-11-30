@@ -1,4 +1,4 @@
-# $ANTLR 3.1.3 Mar 18, 2009 10:09:25 treelesscss.g 2012-11-23 00:19:09
+# $ANTLR 3.1.3 Mar 18, 2009 10:09:25 treelesscss.g 2012-12-01 00:56:45
 
 import sys
 from antlr3 import *
@@ -10,116 +10,117 @@ from antlr3.compat import set, frozenset
 HIDDEN = BaseRecognizer.HIDDEN
 
 # token types
-FUNCTION=41
-UNICODE_RANGE=63
-STAR=40
+FUNCTION=42
+UNICODE_RANGE=64
+STAR=41
 EOF=-1
-MEDIA_SYM=23
-LBRACKET=39
-INCLUDES=44
-RPAREN=30
-NAME=71
-GREATER=36
-ESCAPE=68
-DIMENSION=104
-STRINGESC=102
-NL=105
-COMMENT=99
-D=76
-E=77
-F=78
-G=79
-A=73
-B=74
-RBRACE=25
-C=75
-L=84
-M=85
-NMCHAR=70
-IMPORT_SYM=21
-N=86
-SUBSTRINGMATCH=48
-O=87
-H=80
-I=81
-J=82
-K=83
-NUMBER=51
-U=93
-T=92
-W=95
-V=94
-Q=89
-P=88
-S=91
-CDO=100
-R=90
-CDC=101
-Y=97
-PERCENTAGE=34
-URL=72
-X=96
-Z=98
-URI=22
-PAGE_SYM=32
-WS=103
-DASHMATCH=45
-EMS=53
-N_PseudoFunction=16
+MEDIA_SYM=24
+LBRACKET=40
+INCLUDES=45
+RPAREN=31
+NAME=72
+GREATER=37
+ESCAPE=69
+DIMENSION=105
+STRINGESC=103
+NL=106
+COMMENT=100
+D=77
+E=78
+F=79
+G=80
+A=74
+B=75
+RBRACE=26
+C=76
+L=85
+M=86
+NMCHAR=71
+IMPORT_SYM=22
+N=87
+SUBSTRINGMATCH=49
+O=88
+H=81
+I=82
+J=83
+K=84
+NUMBER=52
+U=94
+T=93
+W=96
+V=95
+Q=90
+P=89
+S=92
+CDO=101
+R=91
+CDC=102
+Y=98
+PERCENTAGE=35
+URL=73
+X=97
+Z=99
+URI=23
+PAGE_SYM=33
+WS=104
+DASHMATCH=46
+EMS=54
+N_PseudoFunction=17
 N_RuleSet=7
-NONASCII=66
+NONASCII=67
 N_MediaQuery=5
 N_Selector=10
-LBRACE=24
-LPAREN=28
-LENGTH=52
-IMPORTANT_SYM=49
+LBRACE=25
+LPAREN=29
+LENGTH=53
+IMPORTANT_SYM=50
 N_Function=12
-TIME=58
-KEYFRAMES_SYM=33
-COMMA=26
+TIME=59
+KEYFRAMES_SYM=34
+COMMA=27
 N_StyleSheet=4
-IDENT=27
-PLUS=35
-FREQ=59
-RBRACKET=42
-DOT=38
-VPORTLEN=61
-CHARSET_SYM=18
-ANGLE=57
-REMS=55
-HASH=37
-HEXCHAR=65
-RESOLUTION=60
-PREFIXMATCH=46
-MINUS=64
-N_Pseudo=15
-SOLIDUS=50
-SEMI=20
+IDENT=28
+PLUS=36
+FREQ=60
+RBRACKET=43
+DOT=39
+VPORTLEN=62
+CHARSET_SYM=19
+ANGLE=58
+REMS=56
+HASH=38
+HEXCHAR=66
+RESOLUTION=61
+PREFIXMATCH=47
+MINUS=65
+N_Pseudo=16
+SOLIDUS=51
+SEMI=21
 N_Empty=14
-UNICODE=67
-CHS=56
-COLON=29
-NMSTART=69
+UNICODE=68
+CHS=57
+COLON=30
+NMSTART=70
 N_Declaration=11
-FONTFACE_SYM=31
-OPEQ=43
-N_Term=17
-EXS=54
+OPEQ=44
+FONTFACE_SYM=32
+N_Term=18
+EXS=55
+N_Space=15
 M_KeyframeSelector=9
 N_MediaExpr=6
 N_Attrib=13
 N_KeyframeBlock=8
-SUFFIXMATCH=47
-NTH=62
-STRING=19
+SUFFIXMATCH=48
+NTH=63
+STRING=20
 
 # token names
 tokenNames = [
     "<invalid>", "<EOR>", "<DOWN>", "<UP>", 
     "N_StyleSheet", "N_MediaQuery", "N_MediaExpr", "N_RuleSet", "N_KeyframeBlock", 
     "M_KeyframeSelector", "N_Selector", "N_Declaration", "N_Function", "N_Attrib", 
-    "N_Empty", "N_Pseudo", "N_PseudoFunction", "N_Term", "CHARSET_SYM", 
+    "N_Empty", "N_Space", "N_Pseudo", "N_PseudoFunction", "N_Term", "CHARSET_SYM", 
     "STRING", "SEMI", "IMPORT_SYM", "URI", "MEDIA_SYM", "LBRACE", "RBRACE", 
     "COMMA", "IDENT", "LPAREN", "COLON", "RPAREN", "FONTFACE_SYM", "PAGE_SYM", 
     "KEYFRAMES_SYM", "PERCENTAGE", "PLUS", "GREATER", "HASH", "DOT", "LBRACKET", 
@@ -147,6 +148,17 @@ class treelesscss(TreeParser):
             state = RecognizerSharedState()
 
         super(treelesscss, self).__init__(input, state, *args, **kwargs)
+
+        self.dfa22 = self.DFA22(
+            self, 22,
+            eot = self.DFA22_eot,
+            eof = self.DFA22_eof,
+            min = self.DFA22_min,
+            max = self.DFA22_max,
+            accept = self.DFA22_accept,
+            special = self.DFA22_special,
+            transition = self.DFA22_transition
+            )
 
 
 
@@ -883,7 +895,7 @@ class treelesscss(TreeParser):
                     alt10 = 2
                     LA10_0 = self.input.LA(1)
 
-                    if (LA10_0 == N_Pseudo or LA10_0 == IDENT or (PLUS <= LA10_0 <= HASH) or LA10_0 == STAR) :
+                    if (LA10_0 == N_Attrib or LA10_0 == N_Pseudo or LA10_0 == IDENT or (PLUS <= LA10_0 <= HASH) or LA10_0 == STAR) :
                         alt10 = 1
 
 
@@ -948,7 +960,7 @@ class treelesscss(TreeParser):
                     alt11 = 1
                 elif LA11 == GREATER:
                     alt11 = 2
-                elif LA11 == N_Pseudo or LA11 == IDENT or LA11 == HASH or LA11 == STAR:
+                elif LA11 == N_Attrib or LA11 == N_Pseudo or LA11 == IDENT or LA11 == HASH or LA11 == STAR:
                     alt11 = 3
                 else:
                     nvae = NoViableAltException("", 11, 0, self.input)
@@ -994,7 +1006,7 @@ class treelesscss(TreeParser):
 
 
     # $ANTLR start "simpleSelector"
-    # treelesscss.g:170:1: simpleSelector returns [gencode] : ( IDENT | STAR | HASH | pseudo );
+    # treelesscss.g:170:1: simpleSelector returns [gencode] : ( IDENT | STAR | HASH | pseudo | attrib );
     def simpleSelector(self, ):
 
         gencode = None
@@ -1004,11 +1016,13 @@ class treelesscss(TreeParser):
         HASH16 = None
         pseudo17 = None
 
+        attrib18 = None
+
 
         try:
             try:
-                # treelesscss.g:171:2: ( IDENT | STAR | HASH | pseudo )
-                alt12 = 4
+                # treelesscss.g:171:2: ( IDENT | STAR | HASH | pseudo | attrib )
+                alt12 = 5
                 LA12 = self.input.LA(1)
                 if LA12 == IDENT:
                     alt12 = 1
@@ -1018,6 +1032,8 @@ class treelesscss(TreeParser):
                     alt12 = 3
                 elif LA12 == N_Pseudo:
                     alt12 = 4
+                elif LA12 == N_Attrib:
+                    alt12 = 5
                 else:
                     nvae = NoViableAltException("", 12, 0, self.input)
 
@@ -1062,6 +1078,18 @@ class treelesscss(TreeParser):
                     #action end
 
 
+                elif alt12 == 5:
+                    # treelesscss.g:175:4: attrib
+                    pass 
+                    self._state.following.append(self.FOLLOW_attrib_in_simpleSelector545)
+                    attrib18 = self.attrib()
+
+                    self._state.following.pop()
+                    #action start
+                    gencode =  attrib18 
+                    #action end
+
+
 
             except RecognitionException, re:
                 self.reportError(re)
@@ -1082,17 +1110,17 @@ class treelesscss(TreeParser):
 
         a = None
         b = None
-        IDENT18 = None
+        IDENT19 = None
 
         try:
             try:
                 # treelesscss.g:179:2: ( ^( N_Pseudo a= COLON (b= COLON )? IDENT ) )
                 # treelesscss.g:179:4: ^( N_Pseudo a= COLON (b= COLON )? IDENT )
                 pass 
-                self.match(self.input, N_Pseudo, self.FOLLOW_N_Pseudo_in_pseudo557)
+                self.match(self.input, N_Pseudo, self.FOLLOW_N_Pseudo_in_pseudo563)
 
                 self.match(self.input, DOWN, None)
-                a=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo561)
+                a=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo567)
                 # treelesscss.g:179:24: (b= COLON )?
                 alt13 = 2
                 LA13_0 = self.input.LA(1)
@@ -1102,15 +1130,15 @@ class treelesscss(TreeParser):
                 if alt13 == 1:
                     # treelesscss.g:179:24: b= COLON
                     pass 
-                    b=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo565)
+                    b=self.match(self.input, COLON, self.FOLLOW_COLON_in_pseudo571)
 
 
 
-                IDENT18=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_pseudo568)
+                IDENT19=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_pseudo574)
 
                 self.match(self.input, UP, None)
                 #action start
-                gencode =  a.text + (b.text if b is not None else '') + IDENT18.text 
+                gencode =  a.text + (b.text if b is not None else '') + IDENT19.text 
                 #action end
 
 
@@ -1127,61 +1155,273 @@ class treelesscss(TreeParser):
     # $ANTLR end "pseudo"
 
 
-    # $ANTLR start "declarationset"
-    # treelesscss.g:188:1: declarationset : ( N_Empty | ( declaration )+ );
-    def declarationset(self, ):
+    # $ANTLR start "attrib"
+    # treelesscss.g:185:1: attrib returns [gencode] : ^( N_Attrib attribBody ) ;
+    def attrib(self, ):
+
+        gencode = None
+
+        attribBody20 = None
+
 
         try:
             try:
-                # treelesscss.g:189:2: ( N_Empty | ( declaration )+ )
-                alt15 = 2
-                LA15_0 = self.input.LA(1)
+                # treelesscss.g:186:2: ( ^( N_Attrib attribBody ) )
+                # treelesscss.g:186:4: ^( N_Attrib attribBody )
+                pass 
+                self.match(self.input, N_Attrib, self.FOLLOW_N_Attrib_in_attrib597)
 
-                if (LA15_0 == N_Empty) :
+                self.match(self.input, DOWN, None)
+                self._state.following.append(self.FOLLOW_attribBody_in_attrib599)
+                attribBody20 = self.attribBody()
+
+                self._state.following.pop()
+
+                self.match(self.input, UP, None)
+                #action start
+                gencode =  '[' + attribBody20 + ']'  
+                #action end
+
+
+
+
+            except RecognitionException, re:
+                self.reportError(re)
+                self.recover(self.input, re)
+        finally:
+
+            pass
+        return gencode
+
+    # $ANTLR end "attrib"
+
+
+    # $ANTLR start "attribBody"
+    # treelesscss.g:190:1: attribBody returns [gencode] : ( IDENT | ^( attribOper IDENT term ) );
+    def attribBody(self, ):
+
+        gencode = None
+
+        IDENT21 = None
+        IDENT22 = None
+        attribOper23 = None
+
+        term24 = None
+
+
+        try:
+            try:
+                # treelesscss.g:191:2: ( IDENT | ^( attribOper IDENT term ) )
+                alt14 = 2
+                LA14_0 = self.input.LA(1)
+
+                if (LA14_0 == IDENT) :
+                    alt14 = 1
+                elif ((OPEQ <= LA14_0 <= SUBSTRINGMATCH)) :
+                    alt14 = 2
+                else:
+                    nvae = NoViableAltException("", 14, 0, self.input)
+
+                    raise nvae
+
+                if alt14 == 1:
+                    # treelesscss.g:191:4: IDENT
+                    pass 
+                    IDENT21=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_attribBody621)
+                    #action start
+                    gencode =  IDENT21.text 
+                    #action end
+
+
+                elif alt14 == 2:
+                    # treelesscss.g:192:4: ^( attribOper IDENT term )
+                    pass 
+                    self._state.following.append(self.FOLLOW_attribOper_in_attribBody630)
+                    attribOper23 = self.attribOper()
+
+                    self._state.following.pop()
+
+                    self.match(self.input, DOWN, None)
+                    IDENT22=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_attribBody632)
+                    self._state.following.append(self.FOLLOW_term_in_attribBody634)
+                    term24 = self.term()
+
+                    self._state.following.pop()
+
+                    self.match(self.input, UP, None)
+                    #action start
+                    gencode =  IDENT22.text + attribOper23 + term24 
+                    #action end
+
+
+
+            except RecognitionException, re:
+                self.reportError(re)
+                self.recover(self.input, re)
+        finally:
+
+            pass
+        return gencode
+
+    # $ANTLR end "attribBody"
+
+
+    # $ANTLR start "attribOper"
+    # treelesscss.g:196:10: fragment attribOper returns [gencode] : ( OPEQ | INCLUDES | DASHMATCH | PREFIXMATCH | SUFFIXMATCH | SUBSTRINGMATCH );
+    def attribOper(self, ):
+
+        gencode = None
+
+        OPEQ25 = None
+        INCLUDES26 = None
+        DASHMATCH27 = None
+        PREFIXMATCH28 = None
+        SUFFIXMATCH29 = None
+        SUBSTRINGMATCH30 = None
+
+        try:
+            try:
+                # treelesscss.g:197:2: ( OPEQ | INCLUDES | DASHMATCH | PREFIXMATCH | SUFFIXMATCH | SUBSTRINGMATCH )
+                alt15 = 6
+                LA15 = self.input.LA(1)
+                if LA15 == OPEQ:
                     alt15 = 1
-                elif (LA15_0 == N_Declaration) :
+                elif LA15 == INCLUDES:
                     alt15 = 2
+                elif LA15 == DASHMATCH:
+                    alt15 = 3
+                elif LA15 == PREFIXMATCH:
+                    alt15 = 4
+                elif LA15 == SUFFIXMATCH:
+                    alt15 = 5
+                elif LA15 == SUBSTRINGMATCH:
+                    alt15 = 6
                 else:
                     nvae = NoViableAltException("", 15, 0, self.input)
 
                     raise nvae
 
                 if alt15 == 1:
-                    # treelesscss.g:189:4: N_Empty
+                    # treelesscss.g:197:4: OPEQ
                     pass 
-                    self.match(self.input, N_Empty, self.FOLLOW_N_Empty_in_declarationset589)
+                    OPEQ25=self.match(self.input, OPEQ, self.FOLLOW_OPEQ_in_attribOper658)
+                    #action start
+                    gencode =  OPEQ25.text 
+                    #action end
 
 
                 elif alt15 == 2:
-                    # treelesscss.g:190:4: ( declaration )+
+                    # treelesscss.g:198:4: INCLUDES
                     pass 
-                    # treelesscss.g:190:4: ( declaration )+
-                    cnt14 = 0
-                    while True: #loop14
-                        alt14 = 2
-                        LA14_0 = self.input.LA(1)
-
-                        if (LA14_0 == N_Declaration) :
-                            alt14 = 1
+                    INCLUDES26=self.match(self.input, INCLUDES, self.FOLLOW_INCLUDES_in_attribOper668)
+                    #action start
+                    gencode =  INCLUDES26.text 
+                    #action end
 
 
-                        if alt14 == 1:
-                            # treelesscss.g:190:4: declaration
+                elif alt15 == 3:
+                    # treelesscss.g:199:4: DASHMATCH
+                    pass 
+                    DASHMATCH27=self.match(self.input, DASHMATCH, self.FOLLOW_DASHMATCH_in_attribOper676)
+                    #action start
+                    gencode =  DASHMATCH27.text 
+                    #action end
+
+
+                elif alt15 == 4:
+                    # treelesscss.g:200:4: PREFIXMATCH
+                    pass 
+                    PREFIXMATCH28=self.match(self.input, PREFIXMATCH, self.FOLLOW_PREFIXMATCH_in_attribOper684)
+                    #action start
+                    gencode =  PREFIXMATCH28.text 
+                    #action end
+
+
+                elif alt15 == 5:
+                    # treelesscss.g:201:4: SUFFIXMATCH
+                    pass 
+                    SUFFIXMATCH29=self.match(self.input, SUFFIXMATCH, self.FOLLOW_SUFFIXMATCH_in_attribOper692)
+                    #action start
+                    gencode =  SUFFIXMATCH29.text 
+                    #action end
+
+
+                elif alt15 == 6:
+                    # treelesscss.g:202:4: SUBSTRINGMATCH
+                    pass 
+                    SUBSTRINGMATCH30=self.match(self.input, SUBSTRINGMATCH, self.FOLLOW_SUBSTRINGMATCH_in_attribOper700)
+                    #action start
+                    gencode =  SUBSTRINGMATCH30.text 
+                    #action end
+
+
+
+            except RecognitionException, re:
+                self.reportError(re)
+                self.recover(self.input, re)
+        finally:
+
+            pass
+        return gencode
+
+    # $ANTLR end "attribOper"
+
+
+    # $ANTLR start "declarationset"
+    # treelesscss.g:208:1: declarationset : ( N_Empty | ( declaration )+ );
+    def declarationset(self, ):
+
+        try:
+            try:
+                # treelesscss.g:209:2: ( N_Empty | ( declaration )+ )
+                alt17 = 2
+                LA17_0 = self.input.LA(1)
+
+                if (LA17_0 == N_Empty) :
+                    alt17 = 1
+                elif (LA17_0 == N_Declaration) :
+                    alt17 = 2
+                else:
+                    nvae = NoViableAltException("", 17, 0, self.input)
+
+                    raise nvae
+
+                if alt17 == 1:
+                    # treelesscss.g:209:4: N_Empty
+                    pass 
+                    self.match(self.input, N_Empty, self.FOLLOW_N_Empty_in_declarationset716)
+
+
+                elif alt17 == 2:
+                    # treelesscss.g:210:4: ( declaration )+
+                    pass 
+                    # treelesscss.g:210:4: ( declaration )+
+                    cnt16 = 0
+                    while True: #loop16
+                        alt16 = 2
+                        LA16_0 = self.input.LA(1)
+
+                        if (LA16_0 == N_Declaration) :
+                            alt16 = 1
+
+
+                        if alt16 == 1:
+                            # treelesscss.g:210:4: declaration
                             pass 
-                            self._state.following.append(self.FOLLOW_declaration_in_declarationset594)
+                            self._state.following.append(self.FOLLOW_declaration_in_declarationset721)
                             self.declaration()
 
                             self._state.following.pop()
 
 
                         else:
-                            if cnt14 >= 1:
-                                break #loop14
+                            if cnt16 >= 1:
+                                break #loop16
 
-                            eee = EarlyExitException(14, self.input)
+                            eee = EarlyExitException(16, self.input)
                             raise eee
 
-                        cnt14 += 1
+                        cnt16 += 1
 
 
 
@@ -1197,58 +1437,58 @@ class treelesscss(TreeParser):
 
 
     # $ANTLR start "declaration"
-    # treelesscss.g:194:1: declaration : ^( N_Declaration property ( expr )? ( prio )? ) ;
+    # treelesscss.g:214:1: declaration : ^( N_Declaration property ( expr )? ( prio )? ) ;
     def declaration(self, ):
 
-        property19 = None
+        property31 = None
 
-        expr20 = None
+        expr32 = None
 
 
         try:
             try:
-                # treelesscss.g:195:2: ( ^( N_Declaration property ( expr )? ( prio )? ) )
-                # treelesscss.g:195:4: ^( N_Declaration property ( expr )? ( prio )? )
+                # treelesscss.g:215:2: ( ^( N_Declaration property ( expr )? ( prio )? ) )
+                # treelesscss.g:215:4: ^( N_Declaration property ( expr )? ( prio )? )
                 pass 
-                self.match(self.input, N_Declaration, self.FOLLOW_N_Declaration_in_declaration608)
+                self.match(self.input, N_Declaration, self.FOLLOW_N_Declaration_in_declaration735)
 
                 self.match(self.input, DOWN, None)
-                self._state.following.append(self.FOLLOW_property_in_declaration612)
-                property19 = self.property()
+                self._state.following.append(self.FOLLOW_property_in_declaration739)
+                property31 = self.property()
 
                 self._state.following.pop()
                 #action start
-                propout = property19 +  ":"; 
+                propout = property31 +  ":"; 
                 #action end
-                # treelesscss.g:197:3: ( expr )?
-                alt16 = 2
-                LA16_0 = self.input.LA(1)
+                # treelesscss.g:217:3: ( expr )?
+                alt18 = 2
+                LA18_0 = self.input.LA(1)
 
-                if (LA16_0 == N_Term or LA16_0 == STRING or LA16_0 == URI or LA16_0 == IDENT or LA16_0 == UNICODE_RANGE) :
-                    alt16 = 1
-                if alt16 == 1:
-                    # treelesscss.g:197:4: expr
+                if (LA18_0 == N_Space or LA18_0 == N_Term or LA18_0 == STRING or LA18_0 == URI or (COMMA <= LA18_0 <= IDENT) or LA18_0 == HASH or LA18_0 == SOLIDUS or LA18_0 == UNICODE_RANGE) :
+                    alt18 = 1
+                if alt18 == 1:
+                    # treelesscss.g:217:4: expr
                     pass 
-                    self._state.following.append(self.FOLLOW_expr_in_declaration619)
-                    expr20 = self.expr()
+                    self._state.following.append(self.FOLLOW_expr_in_declaration746)
+                    expr32 = self.expr()
 
                     self._state.following.pop()
                     #action start
-                    propout += expr20
+                    propout += expr32
                     #action end
 
 
 
-                # treelesscss.g:198:3: ( prio )?
-                alt17 = 2
-                LA17_0 = self.input.LA(1)
+                # treelesscss.g:218:3: ( prio )?
+                alt19 = 2
+                LA19_0 = self.input.LA(1)
 
-                if (LA17_0 == IMPORTANT_SYM) :
-                    alt17 = 1
-                if alt17 == 1:
-                    # treelesscss.g:198:4: prio
+                if (LA19_0 == IMPORTANT_SYM) :
+                    alt19 = 1
+                if alt19 == 1:
+                    # treelesscss.g:218:4: prio
                     pass 
-                    self._state.following.append(self.FOLLOW_prio_in_declaration629)
+                    self._state.following.append(self.FOLLOW_prio_in_declaration756)
                     self.prio()
 
                     self._state.following.pop()
@@ -1282,21 +1522,21 @@ class treelesscss(TreeParser):
 
 
     # $ANTLR start "property"
-    # treelesscss.g:206:1: property returns [gencode] : IDENT ;
+    # treelesscss.g:226:1: property returns [gencode] : IDENT ;
     def property(self, ):
 
         gencode = None
 
-        IDENT21 = None
+        IDENT33 = None
 
         try:
             try:
-                # treelesscss.g:207:2: ( IDENT )
-                # treelesscss.g:207:4: IDENT
+                # treelesscss.g:227:2: ( IDENT )
+                # treelesscss.g:227:4: IDENT
                 pass 
-                IDENT21=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_property656)
+                IDENT33=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_property783)
                 #action start
-                gencode =  IDENT21.text 
+                gencode =  IDENT33.text 
                 #action end
 
 
@@ -1314,21 +1554,21 @@ class treelesscss(TreeParser):
 
 
     # $ANTLR start "prio"
-    # treelesscss.g:210:1: prio returns [gencode] : IMPORTANT_SYM ;
+    # treelesscss.g:230:1: prio returns [gencode] : IMPORTANT_SYM ;
     def prio(self, ):
 
         gencode = None
 
-        IMPORTANT_SYM22 = None
+        IMPORTANT_SYM34 = None
 
         try:
             try:
-                # treelesscss.g:211:2: ( IMPORTANT_SYM )
-                # treelesscss.g:211:4: IMPORTANT_SYM
+                # treelesscss.g:231:2: ( IMPORTANT_SYM )
+                # treelesscss.g:231:4: IMPORTANT_SYM
                 pass 
-                IMPORTANT_SYM22=self.match(self.input, IMPORTANT_SYM, self.FOLLOW_IMPORTANT_SYM_in_prio675)
+                IMPORTANT_SYM34=self.match(self.input, IMPORTANT_SYM, self.FOLLOW_IMPORTANT_SYM_in_prio802)
                 #action start
-                gencode =  IMPORTANT_SYM22.text 
+                gencode =  IMPORTANT_SYM34.text 
                 #action end
 
 
@@ -1346,27 +1586,69 @@ class treelesscss(TreeParser):
 
 
     # $ANTLR start "expr"
-    # treelesscss.g:215:1: expr returns [gencode] : term ;
+    # treelesscss.g:235:1: expr returns [gencode] : ( ^( operator a= expr b= expr ) | term );
     def expr(self, ):
 
         gencode = None
 
-        term23 = None
+        a = None
+
+        b = None
+
+        operator35 = None
+
+        term36 = None
 
 
         try:
             try:
-                # treelesscss.g:217:2: ( term )
-                # treelesscss.g:217:4: term
-                pass 
-                self._state.following.append(self.FOLLOW_term_in_expr696)
-                term23 = self.term()
+                # treelesscss.g:236:2: ( ^( operator a= expr b= expr ) | term )
+                alt20 = 2
+                LA20_0 = self.input.LA(1)
 
-                self._state.following.pop()
-                #action start
-                gencode =  term23 
-                #action end
+                if (LA20_0 == N_Space or LA20_0 == COMMA or LA20_0 == SOLIDUS) :
+                    alt20 = 1
+                elif (LA20_0 == N_Term or LA20_0 == STRING or LA20_0 == URI or LA20_0 == IDENT or LA20_0 == HASH or LA20_0 == UNICODE_RANGE) :
+                    alt20 = 2
+                else:
+                    nvae = NoViableAltException("", 20, 0, self.input)
 
+                    raise nvae
+
+                if alt20 == 1:
+                    # treelesscss.g:236:4: ^( operator a= expr b= expr )
+                    pass 
+                    self._state.following.append(self.FOLLOW_operator_in_expr823)
+                    operator35 = self.operator()
+
+                    self._state.following.pop()
+
+                    self.match(self.input, DOWN, None)
+                    self._state.following.append(self.FOLLOW_expr_in_expr829)
+                    a = self.expr()
+
+                    self._state.following.pop()
+                    self._state.following.append(self.FOLLOW_expr_in_expr833)
+                    b = self.expr()
+
+                    self._state.following.pop()
+
+                    self.match(self.input, UP, None)
+                    #action start
+                    gencode =  a + operator35 + b 
+                    #action end
+
+
+                elif alt20 == 2:
+                    # treelesscss.g:239:4: term
+                    pass 
+                    self._state.following.append(self.FOLLOW_term_in_expr846)
+                    term36 = self.term()
+
+                    self._state.following.pop()
+                    #action start
+                    gencode =  term36 
+                    #action end
 
 
 
@@ -1382,54 +1664,54 @@ class treelesscss(TreeParser):
 
 
     # $ANTLR start "operator"
-    # treelesscss.g:220:10: fragment operator returns [gencode] : ( SOLIDUS | COMMA | N_Empty );
+    # treelesscss.g:242:10: fragment operator returns [gencode] : ( SOLIDUS | COMMA | N_Space );
     def operator(self, ):
 
         gencode = None
 
-        SOLIDUS24 = None
-        COMMA25 = None
+        SOLIDUS37 = None
+        COMMA38 = None
 
         try:
             try:
-                # treelesscss.g:221:2: ( SOLIDUS | COMMA | N_Empty )
-                alt18 = 3
-                LA18 = self.input.LA(1)
-                if LA18 == SOLIDUS:
-                    alt18 = 1
-                elif LA18 == COMMA:
-                    alt18 = 2
-                elif LA18 == N_Empty:
-                    alt18 = 3
+                # treelesscss.g:243:2: ( SOLIDUS | COMMA | N_Space )
+                alt21 = 3
+                LA21 = self.input.LA(1)
+                if LA21 == SOLIDUS:
+                    alt21 = 1
+                elif LA21 == COMMA:
+                    alt21 = 2
+                elif LA21 == N_Space:
+                    alt21 = 3
                 else:
-                    nvae = NoViableAltException("", 18, 0, self.input)
+                    nvae = NoViableAltException("", 21, 0, self.input)
 
                     raise nvae
 
-                if alt18 == 1:
-                    # treelesscss.g:221:4: SOLIDUS
+                if alt21 == 1:
+                    # treelesscss.g:243:4: SOLIDUS
                     pass 
-                    SOLIDUS24=self.match(self.input, SOLIDUS, self.FOLLOW_SOLIDUS_in_operator717)
+                    SOLIDUS37=self.match(self.input, SOLIDUS, self.FOLLOW_SOLIDUS_in_operator867)
                     #action start
-                    gencode =  SOLIDUS24.text 
+                    gencode =  SOLIDUS37.text 
                     #action end
 
 
-                elif alt18 == 2:
-                    # treelesscss.g:222:4: COMMA
+                elif alt21 == 2:
+                    # treelesscss.g:244:4: COMMA
                     pass 
-                    COMMA25=self.match(self.input, COMMA, self.FOLLOW_COMMA_in_operator726)
+                    COMMA38=self.match(self.input, COMMA, self.FOLLOW_COMMA_in_operator876)
                     #action start
-                    gencode =  COMMA25.text 
+                    gencode =  COMMA38.text 
                     #action end
 
 
-                elif alt18 == 3:
-                    # treelesscss.g:223:4: N_Empty
+                elif alt21 == 3:
+                    # treelesscss.g:245:4: N_Space
                     pass 
-                    self.match(self.input, N_Empty, self.FOLLOW_N_Empty_in_operator735)
+                    self.match(self.input, N_Space, self.FOLLOW_N_Space_in_operator885)
                     #action start
-                    gencode =  '' 
+                    gencode =  ' ' 
                     #action end
 
 
@@ -1446,131 +1728,115 @@ class treelesscss(TreeParser):
 
 
     # $ANTLR start "term"
-    # treelesscss.g:226:1: term returns [gencode] : ( ^( N_Term unaryOperator termnum ) | ^( N_Term termnum ) | STRING | IDENT | URI | UNICODE_RANGE );
+    # treelesscss.g:248:1: term returns [gencode] : ( ^( N_Term unaryOperator termnum ) | ^( N_Term termnum ) | STRING | IDENT | URI | hexColor | UNICODE_RANGE );
     def term(self, ):
 
         gencode = None
 
-        STRING29 = None
-        IDENT30 = None
-        URI31 = None
-        UNICODE_RANGE32 = None
-        unaryOperator26 = None
+        STRING42 = None
+        IDENT43 = None
+        URI44 = None
+        UNICODE_RANGE46 = None
+        unaryOperator39 = None
 
-        termnum27 = None
+        termnum40 = None
 
-        termnum28 = None
+        termnum41 = None
+
+        hexColor45 = None
 
 
         try:
             try:
-                # treelesscss.g:227:2: ( ^( N_Term unaryOperator termnum ) | ^( N_Term termnum ) | STRING | IDENT | URI | UNICODE_RANGE )
-                alt19 = 6
-                LA19 = self.input.LA(1)
-                if LA19 == N_Term:
-                    LA19_1 = self.input.LA(2)
-
-                    if (LA19_1 == 2) :
-                        LA19_6 = self.input.LA(3)
-
-                        if (LA19_6 == PLUS or LA19_6 == MINUS) :
-                            alt19 = 1
-                        elif (LA19_6 == PERCENTAGE or (NUMBER <= LA19_6 <= NTH)) :
-                            alt19 = 2
-                        else:
-                            nvae = NoViableAltException("", 19, 6, self.input)
-
-                            raise nvae
-
-                    else:
-                        nvae = NoViableAltException("", 19, 1, self.input)
-
-                        raise nvae
-
-                elif LA19 == STRING:
-                    alt19 = 3
-                elif LA19 == IDENT:
-                    alt19 = 4
-                elif LA19 == URI:
-                    alt19 = 5
-                elif LA19 == UNICODE_RANGE:
-                    alt19 = 6
-                else:
-                    nvae = NoViableAltException("", 19, 0, self.input)
-
-                    raise nvae
-
-                if alt19 == 1:
-                    # treelesscss.g:227:4: ^( N_Term unaryOperator termnum )
+                # treelesscss.g:249:2: ( ^( N_Term unaryOperator termnum ) | ^( N_Term termnum ) | STRING | IDENT | URI | hexColor | UNICODE_RANGE )
+                alt22 = 7
+                alt22 = self.dfa22.predict(self.input)
+                if alt22 == 1:
+                    # treelesscss.g:249:4: ^( N_Term unaryOperator termnum )
                     pass 
-                    self.match(self.input, N_Term, self.FOLLOW_N_Term_in_term754)
+                    self.match(self.input, N_Term, self.FOLLOW_N_Term_in_term904)
 
                     self.match(self.input, DOWN, None)
-                    self._state.following.append(self.FOLLOW_unaryOperator_in_term756)
-                    unaryOperator26 = self.unaryOperator()
+                    self._state.following.append(self.FOLLOW_unaryOperator_in_term906)
+                    unaryOperator39 = self.unaryOperator()
 
                     self._state.following.pop()
-                    self._state.following.append(self.FOLLOW_termnum_in_term758)
-                    termnum27 = self.termnum()
+                    self._state.following.append(self.FOLLOW_termnum_in_term908)
+                    termnum40 = self.termnum()
 
                     self._state.following.pop()
 
                     self.match(self.input, UP, None)
                     #action start
-                    gencode =  unaryOperator26 + termnum27 
+                    gencode =  unaryOperator39 + termnum40 
                     #action end
 
 
-                elif alt19 == 2:
-                    # treelesscss.g:228:4: ^( N_Term termnum )
+                elif alt22 == 2:
+                    # treelesscss.g:250:4: ^( N_Term termnum )
                     pass 
-                    self.match(self.input, N_Term, self.FOLLOW_N_Term_in_term768)
+                    self.match(self.input, N_Term, self.FOLLOW_N_Term_in_term918)
 
                     self.match(self.input, DOWN, None)
-                    self._state.following.append(self.FOLLOW_termnum_in_term770)
-                    termnum28 = self.termnum()
+                    self._state.following.append(self.FOLLOW_termnum_in_term920)
+                    termnum41 = self.termnum()
 
                     self._state.following.pop()
 
                     self.match(self.input, UP, None)
                     #action start
-                    gencode =  termnum28 
+                    gencode =  termnum41 
                     #action end
 
 
-                elif alt19 == 3:
-                    # treelesscss.g:229:4: STRING
+                elif alt22 == 3:
+                    # treelesscss.g:251:4: STRING
                     pass 
-                    STRING29=self.match(self.input, STRING, self.FOLLOW_STRING_in_term780)
+                    STRING42=self.match(self.input, STRING, self.FOLLOW_STRING_in_term930)
                     #action start
-                    gencode =  STRING29.text 
+                    gencode =  STRING42.text 
                     #action end
 
 
-                elif alt19 == 4:
-                    # treelesscss.g:230:4: IDENT
+                elif alt22 == 4:
+                    # treelesscss.g:252:4: IDENT
                     pass 
-                    IDENT30=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_term788)
+                    IDENT43=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_term938)
                     #action start
-                    gencode =  IDENT30.text 
+                    gencode =  IDENT43.text 
                     #action end
 
 
-                elif alt19 == 5:
-                    # treelesscss.g:231:4: URI
+                elif alt22 == 5:
+                    # treelesscss.g:253:4: URI
                     pass 
-                    URI31=self.match(self.input, URI, self.FOLLOW_URI_in_term797)
+                    URI44=self.match(self.input, URI, self.FOLLOW_URI_in_term947)
                     #action start
-                    gencode =  URI31.text 
+                    gencode =  URI44.text 
                     #action end
 
 
-                elif alt19 == 6:
-                    # treelesscss.g:233:4: UNICODE_RANGE
+                elif alt22 == 6:
+                    # treelesscss.g:254:4: hexColor
                     pass 
-                    UNICODE_RANGE32=self.match(self.input, UNICODE_RANGE, self.FOLLOW_UNICODE_RANGE_in_term807)
+                    self._state.following.append(self.FOLLOW_hexColor_in_term956)
+                    hexColor45 = self.hexColor()
+
+                    self._state.following.pop()
                     #action start
-                    gencode =  UNICODE_RANGE32.text 
+                    gencode =  ((hexColor45 is not None) and [self.input.getTokenStream().toString(
+                        self.input.getTreeAdaptor().getTokenStartIndex(hexColor45.start),
+                        self.input.getTreeAdaptor().getTokenStopIndex(hexColor45.start)
+                        )] or [None])[0] 
+                    #action end
+
+
+                elif alt22 == 7:
+                    # treelesscss.g:255:4: UNICODE_RANGE
+                    pass 
+                    UNICODE_RANGE46=self.match(self.input, UNICODE_RANGE, self.FOLLOW_UNICODE_RANGE_in_term964)
+                    #action start
+                    gencode =  UNICODE_RANGE46.text 
                     #action end
 
 
@@ -1587,175 +1853,191 @@ class treelesscss(TreeParser):
 
 
     # $ANTLR start "termnum"
-    # treelesscss.g:236:10: fragment termnum returns [gencode] : ( NUMBER | PERCENTAGE | LENGTH | EMS | EXS | REMS | CHS | ANGLE | TIME | FREQ | RESOLUTION | VPORTLEN | NTH );
+    # treelesscss.g:258:10: fragment termnum returns [gencode] : ( NUMBER | PERCENTAGE | LENGTH | EMS | EXS | REMS | CHS | ANGLE | TIME | FREQ | RESOLUTION | VPORTLEN | NTH | function );
     def termnum(self, ):
 
         gencode = None
 
-        NUMBER33 = None
-        PERCENTAGE34 = None
-        LENGTH35 = None
-        EMS36 = None
-        EXS37 = None
-        REMS38 = None
-        CHS39 = None
-        ANGLE40 = None
-        TIME41 = None
-        FREQ42 = None
-        RESOLUTION43 = None
-        VPORTLEN44 = None
-        NTH45 = None
+        NUMBER47 = None
+        PERCENTAGE48 = None
+        LENGTH49 = None
+        EMS50 = None
+        EXS51 = None
+        REMS52 = None
+        CHS53 = None
+        ANGLE54 = None
+        TIME55 = None
+        FREQ56 = None
+        RESOLUTION57 = None
+        VPORTLEN58 = None
+        NTH59 = None
+        function60 = None
+
 
         try:
             try:
-                # treelesscss.g:237:2: ( NUMBER | PERCENTAGE | LENGTH | EMS | EXS | REMS | CHS | ANGLE | TIME | FREQ | RESOLUTION | VPORTLEN | NTH )
-                alt20 = 13
-                LA20 = self.input.LA(1)
-                if LA20 == NUMBER:
-                    alt20 = 1
-                elif LA20 == PERCENTAGE:
-                    alt20 = 2
-                elif LA20 == LENGTH:
-                    alt20 = 3
-                elif LA20 == EMS:
-                    alt20 = 4
-                elif LA20 == EXS:
-                    alt20 = 5
-                elif LA20 == REMS:
-                    alt20 = 6
-                elif LA20 == CHS:
-                    alt20 = 7
-                elif LA20 == ANGLE:
-                    alt20 = 8
-                elif LA20 == TIME:
-                    alt20 = 9
-                elif LA20 == FREQ:
-                    alt20 = 10
-                elif LA20 == RESOLUTION:
-                    alt20 = 11
-                elif LA20 == VPORTLEN:
-                    alt20 = 12
-                elif LA20 == NTH:
-                    alt20 = 13
+                # treelesscss.g:259:2: ( NUMBER | PERCENTAGE | LENGTH | EMS | EXS | REMS | CHS | ANGLE | TIME | FREQ | RESOLUTION | VPORTLEN | NTH | function )
+                alt23 = 14
+                LA23 = self.input.LA(1)
+                if LA23 == NUMBER:
+                    alt23 = 1
+                elif LA23 == PERCENTAGE:
+                    alt23 = 2
+                elif LA23 == LENGTH:
+                    alt23 = 3
+                elif LA23 == EMS:
+                    alt23 = 4
+                elif LA23 == EXS:
+                    alt23 = 5
+                elif LA23 == REMS:
+                    alt23 = 6
+                elif LA23 == CHS:
+                    alt23 = 7
+                elif LA23 == ANGLE:
+                    alt23 = 8
+                elif LA23 == TIME:
+                    alt23 = 9
+                elif LA23 == FREQ:
+                    alt23 = 10
+                elif LA23 == RESOLUTION:
+                    alt23 = 11
+                elif LA23 == VPORTLEN:
+                    alt23 = 12
+                elif LA23 == NTH:
+                    alt23 = 13
+                elif LA23 == N_Function:
+                    alt23 = 14
                 else:
-                    nvae = NoViableAltException("", 20, 0, self.input)
+                    nvae = NoViableAltException("", 23, 0, self.input)
 
                     raise nvae
 
-                if alt20 == 1:
-                    # treelesscss.g:237:4: NUMBER
+                if alt23 == 1:
+                    # treelesscss.g:259:4: NUMBER
                     pass 
-                    NUMBER33=self.match(self.input, NUMBER, self.FOLLOW_NUMBER_in_termnum827)
+                    NUMBER47=self.match(self.input, NUMBER, self.FOLLOW_NUMBER_in_termnum984)
                     #action start
-                    gencode =  NUMBER33.text.strip() 
+                    gencode =  NUMBER47.text.strip() 
                     #action end
 
 
-                elif alt20 == 2:
-                    # treelesscss.g:238:4: PERCENTAGE
+                elif alt23 == 2:
+                    # treelesscss.g:260:4: PERCENTAGE
                     pass 
-                    PERCENTAGE34=self.match(self.input, PERCENTAGE, self.FOLLOW_PERCENTAGE_in_termnum835)
+                    PERCENTAGE48=self.match(self.input, PERCENTAGE, self.FOLLOW_PERCENTAGE_in_termnum992)
                     #action start
-                    gencode =  PERCENTAGE34.text.strip() 
+                    gencode =  PERCENTAGE48.text.strip() 
                     #action end
 
 
-                elif alt20 == 3:
-                    # treelesscss.g:239:4: LENGTH
+                elif alt23 == 3:
+                    # treelesscss.g:261:4: LENGTH
                     pass 
-                    LENGTH35=self.match(self.input, LENGTH, self.FOLLOW_LENGTH_in_termnum843)
+                    LENGTH49=self.match(self.input, LENGTH, self.FOLLOW_LENGTH_in_termnum1000)
                     #action start
-                    gencode =  LENGTH35.text.strip() 
+                    gencode =  LENGTH49.text.strip() 
                     #action end
 
 
-                elif alt20 == 4:
-                    # treelesscss.g:240:4: EMS
+                elif alt23 == 4:
+                    # treelesscss.g:262:4: EMS
                     pass 
-                    EMS36=self.match(self.input, EMS, self.FOLLOW_EMS_in_termnum851)
+                    EMS50=self.match(self.input, EMS, self.FOLLOW_EMS_in_termnum1008)
                     #action start
-                    gencode =  EMS36.text.strip() 
+                    gencode =  EMS50.text.strip() 
                     #action end
 
 
-                elif alt20 == 5:
-                    # treelesscss.g:241:4: EXS
+                elif alt23 == 5:
+                    # treelesscss.g:263:4: EXS
                     pass 
-                    EXS37=self.match(self.input, EXS, self.FOLLOW_EXS_in_termnum860)
+                    EXS51=self.match(self.input, EXS, self.FOLLOW_EXS_in_termnum1017)
                     #action start
-                    gencode =  EXS37.text.strip() 
+                    gencode =  EXS51.text.strip() 
                     #action end
 
 
-                elif alt20 == 6:
-                    # treelesscss.g:242:4: REMS
+                elif alt23 == 6:
+                    # treelesscss.g:264:4: REMS
                     pass 
-                    REMS38=self.match(self.input, REMS, self.FOLLOW_REMS_in_termnum869)
+                    REMS52=self.match(self.input, REMS, self.FOLLOW_REMS_in_termnum1026)
                     #action start
-                    gencode =  REMS38.text.strip() 
+                    gencode =  REMS52.text.strip() 
                     #action end
 
 
-                elif alt20 == 7:
-                    # treelesscss.g:243:4: CHS
+                elif alt23 == 7:
+                    # treelesscss.g:265:4: CHS
                     pass 
-                    CHS39=self.match(self.input, CHS, self.FOLLOW_CHS_in_termnum878)
+                    CHS53=self.match(self.input, CHS, self.FOLLOW_CHS_in_termnum1035)
                     #action start
-                    gencode =  CHS39.text.strip() 
+                    gencode =  CHS53.text.strip() 
                     #action end
 
 
-                elif alt20 == 8:
-                    # treelesscss.g:244:4: ANGLE
+                elif alt23 == 8:
+                    # treelesscss.g:266:4: ANGLE
                     pass 
-                    ANGLE40=self.match(self.input, ANGLE, self.FOLLOW_ANGLE_in_termnum887)
+                    ANGLE54=self.match(self.input, ANGLE, self.FOLLOW_ANGLE_in_termnum1044)
                     #action start
-                    gencode =  ANGLE40.text.strip() 
+                    gencode =  ANGLE54.text.strip() 
                     #action end
 
 
-                elif alt20 == 9:
-                    # treelesscss.g:245:4: TIME
+                elif alt23 == 9:
+                    # treelesscss.g:267:4: TIME
                     pass 
-                    TIME41=self.match(self.input, TIME, self.FOLLOW_TIME_in_termnum896)
+                    TIME55=self.match(self.input, TIME, self.FOLLOW_TIME_in_termnum1053)
                     #action start
-                    gencode =  TIME41.text.strip() 
+                    gencode =  TIME55.text.strip() 
                     #action end
 
 
-                elif alt20 == 10:
-                    # treelesscss.g:246:4: FREQ
+                elif alt23 == 10:
+                    # treelesscss.g:268:4: FREQ
                     pass 
-                    FREQ42=self.match(self.input, FREQ, self.FOLLOW_FREQ_in_termnum905)
+                    FREQ56=self.match(self.input, FREQ, self.FOLLOW_FREQ_in_termnum1062)
                     #action start
-                    gencode =  FREQ42.text.strip() 
+                    gencode =  FREQ56.text.strip() 
                     #action end
 
 
-                elif alt20 == 11:
-                    # treelesscss.g:247:4: RESOLUTION
+                elif alt23 == 11:
+                    # treelesscss.g:269:4: RESOLUTION
                     pass 
-                    RESOLUTION43=self.match(self.input, RESOLUTION, self.FOLLOW_RESOLUTION_in_termnum914)
+                    RESOLUTION57=self.match(self.input, RESOLUTION, self.FOLLOW_RESOLUTION_in_termnum1071)
                     #action start
-                    gencode =  RESOLUTION43.text.strip() 
+                    gencode =  RESOLUTION57.text.strip() 
                     #action end
 
 
-                elif alt20 == 12:
-                    # treelesscss.g:248:4: VPORTLEN
+                elif alt23 == 12:
+                    # treelesscss.g:270:4: VPORTLEN
                     pass 
-                    VPORTLEN44=self.match(self.input, VPORTLEN, self.FOLLOW_VPORTLEN_in_termnum922)
+                    VPORTLEN58=self.match(self.input, VPORTLEN, self.FOLLOW_VPORTLEN_in_termnum1079)
                     #action start
-                    gencode =  VPORTLEN44.text.strip() 
+                    gencode =  VPORTLEN58.text.strip() 
                     #action end
 
 
-                elif alt20 == 13:
-                    # treelesscss.g:249:4: NTH
+                elif alt23 == 13:
+                    # treelesscss.g:271:4: NTH
                     pass 
-                    NTH45=self.match(self.input, NTH, self.FOLLOW_NTH_in_termnum930)
+                    NTH59=self.match(self.input, NTH, self.FOLLOW_NTH_in_termnum1087)
                     #action start
-                    gencode =  NTH45.text.strip() 
+                    gencode =  NTH59.text.strip() 
+                    #action end
+
+
+                elif alt23 == 14:
+                    # treelesscss.g:272:4: function
+                    pass 
+                    self._state.following.append(self.FOLLOW_function_in_termnum1096)
+                    function60 = self.function()
+
+                    self._state.following.pop()
+                    #action start
+                    gencode =  function60 
                     #action end
 
 
@@ -1772,44 +2054,44 @@ class treelesscss(TreeParser):
 
 
     # $ANTLR start "unaryOperator"
-    # treelesscss.g:254:1: unaryOperator returns [gencode] : ( MINUS | PLUS );
+    # treelesscss.g:276:1: unaryOperator returns [gencode] : ( MINUS | PLUS );
     def unaryOperator(self, ):
 
         gencode = None
 
-        MINUS46 = None
-        PLUS47 = None
+        MINUS61 = None
+        PLUS62 = None
 
         try:
             try:
-                # treelesscss.g:255:2: ( MINUS | PLUS )
-                alt21 = 2
-                LA21_0 = self.input.LA(1)
+                # treelesscss.g:277:2: ( MINUS | PLUS )
+                alt24 = 2
+                LA24_0 = self.input.LA(1)
 
-                if (LA21_0 == MINUS) :
-                    alt21 = 1
-                elif (LA21_0 == PLUS) :
-                    alt21 = 2
+                if (LA24_0 == MINUS) :
+                    alt24 = 1
+                elif (LA24_0 == PLUS) :
+                    alt24 = 2
                 else:
-                    nvae = NoViableAltException("", 21, 0, self.input)
+                    nvae = NoViableAltException("", 24, 0, self.input)
 
                     raise nvae
 
-                if alt21 == 1:
-                    # treelesscss.g:255:4: MINUS
+                if alt24 == 1:
+                    # treelesscss.g:277:4: MINUS
                     pass 
-                    MINUS46=self.match(self.input, MINUS, self.FOLLOW_MINUS_in_unaryOperator951)
+                    MINUS61=self.match(self.input, MINUS, self.FOLLOW_MINUS_in_unaryOperator1116)
                     #action start
-                    gencode =  MINUS46.text 
+                    gencode =  MINUS61.text 
                     #action end
 
 
-                elif alt21 == 2:
-                    # treelesscss.g:256:4: PLUS
+                elif alt24 == 2:
+                    # treelesscss.g:278:4: PLUS
                     pass 
-                    PLUS47=self.match(self.input, PLUS, self.FOLLOW_PLUS_in_unaryOperator959)
+                    PLUS62=self.match(self.input, PLUS, self.FOLLOW_PLUS_in_unaryOperator1124)
                     #action start
-                    gencode =  PLUS47.text 
+                    gencode =  PLUS62.text 
                     #action end
 
 
@@ -1825,15 +2107,350 @@ class treelesscss(TreeParser):
     # $ANTLR end "unaryOperator"
 
 
+    # $ANTLR start "function"
+    # treelesscss.g:282:1: function returns [gencode] : ^( N_Function fnct_name fnct_args ) ;
+    def function(self, ):
+
+        gencode = None
+
+        fnct_name63 = None
+
+        fnct_args64 = None
+
+
+        try:
+            try:
+                # treelesscss.g:283:2: ( ^( N_Function fnct_name fnct_args ) )
+                # treelesscss.g:283:4: ^( N_Function fnct_name fnct_args )
+                pass 
+                self.match(self.input, N_Function, self.FOLLOW_N_Function_in_function1144)
+
+                self.match(self.input, DOWN, None)
+                self._state.following.append(self.FOLLOW_fnct_name_in_function1146)
+                fnct_name63 = self.fnct_name()
+
+                self._state.following.pop()
+                self._state.following.append(self.FOLLOW_fnct_args_in_function1148)
+                fnct_args64 = self.fnct_args()
+
+                self._state.following.pop()
+
+                self.match(self.input, UP, None)
+                #action start
+                gencode =  fnct_name63 + fnct_args64 + ')' 
+                #action end
+
+
+
+
+            except RecognitionException, re:
+                self.reportError(re)
+                self.recover(self.input, re)
+        finally:
+
+            pass
+        return gencode
+
+    # $ANTLR end "function"
+
+
+    # $ANTLR start "fnct_name"
+    # treelesscss.g:287:1: fnct_name returns [gencode] : ^( FUNCTION ( IDENT ( COLON | DOT )+ )* ) ;
+    def fnct_name(self, ):
+
+        gencode = None
+
+        IDENT65 = None
+        COLON66 = None
+        DOT67 = None
+        FUNCTION68 = None
+
+        try:
+            try:
+                # treelesscss.g:288:2: ( ^( FUNCTION ( IDENT ( COLON | DOT )+ )* ) )
+                # treelesscss.g:288:4: ^( FUNCTION ( IDENT ( COLON | DOT )+ )* )
+                pass 
+                FUNCTION68=self.match(self.input, FUNCTION, self.FOLLOW_FUNCTION_in_fnct_name1170)
+
+                #action start
+                gencode =  '' 
+                #action end
+
+                if self.input.LA(1) == DOWN:
+                    self.match(self.input, DOWN, None)
+                    # treelesscss.g:290:4: ( IDENT ( COLON | DOT )+ )*
+                    while True: #loop26
+                        alt26 = 2
+                        LA26_0 = self.input.LA(1)
+
+                        if (LA26_0 == IDENT) :
+                            alt26 = 1
+
+
+                        if alt26 == 1:
+                            # treelesscss.g:290:5: IDENT ( COLON | DOT )+
+                            pass 
+                            IDENT65=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_fnct_name1181)
+                            #action start
+                            gencode += IDENT65.text; 
+                            #action end
+                            # treelesscss.g:291:5: ( COLON | DOT )+
+                            cnt25 = 0
+                            while True: #loop25
+                                alt25 = 3
+                                LA25_0 = self.input.LA(1)
+
+                                if (LA25_0 == COLON) :
+                                    alt25 = 1
+                                elif (LA25_0 == DOT) :
+                                    alt25 = 2
+
+
+                                if alt25 == 1:
+                                    # treelesscss.g:291:6: COLON
+                                    pass 
+                                    COLON66=self.match(self.input, COLON, self.FOLLOW_COLON_in_fnct_name1190)
+                                    #action start
+                                    gencode += COLON66.text; 
+                                    #action end
+
+
+                                elif alt25 == 2:
+                                    # treelesscss.g:292:6: DOT
+                                    pass 
+                                    DOT67=self.match(self.input, DOT, self.FOLLOW_DOT_in_fnct_name1199)
+                                    #action start
+                                    gencode += DOT67.text; 
+                                    #action end
+
+
+                                else:
+                                    if cnt25 >= 1:
+                                        break #loop25
+
+                                    eee = EarlyExitException(25, self.input)
+                                    raise eee
+
+                                cnt25 += 1
+
+
+                        else:
+                            break #loop26
+                    #action start
+                    gencode += FUNCTION68.text; 
+                    #action end
+
+                    self.match(self.input, UP, None)
+
+
+
+
+
+            except RecognitionException, re:
+                self.reportError(re)
+                self.recover(self.input, re)
+        finally:
+
+            pass
+        return gencode
+
+    # $ANTLR end "fnct_name"
+
+
+    # $ANTLR start "fnct_args"
+    # treelesscss.g:299:10: fragment fnct_args returns [gencode] : ( ^( COMMA a= fnct_args b= fnct_args ) | ^( OPEQ IDENT expr ) | term );
+    def fnct_args(self, ):
+
+        gencode = None
+
+        COMMA69 = None
+        IDENT70 = None
+        OPEQ71 = None
+        a = None
+
+        b = None
+
+        expr72 = None
+
+        term73 = None
+
+
+        try:
+            try:
+                # treelesscss.g:300:2: ( ^( COMMA a= fnct_args b= fnct_args ) | ^( OPEQ IDENT expr ) | term )
+                alt27 = 3
+                LA27 = self.input.LA(1)
+                if LA27 == COMMA:
+                    alt27 = 1
+                elif LA27 == OPEQ:
+                    alt27 = 2
+                elif LA27 == N_Term or LA27 == STRING or LA27 == URI or LA27 == IDENT or LA27 == HASH or LA27 == UNICODE_RANGE:
+                    alt27 = 3
+                else:
+                    nvae = NoViableAltException("", 27, 0, self.input)
+
+                    raise nvae
+
+                if alt27 == 1:
+                    # treelesscss.g:300:4: ^( COMMA a= fnct_args b= fnct_args )
+                    pass 
+                    COMMA69=self.match(self.input, COMMA, self.FOLLOW_COMMA_in_fnct_args1244)
+
+                    self.match(self.input, DOWN, None)
+                    self._state.following.append(self.FOLLOW_fnct_args_in_fnct_args1248)
+                    a = self.fnct_args()
+
+                    self._state.following.pop()
+                    self._state.following.append(self.FOLLOW_fnct_args_in_fnct_args1252)
+                    b = self.fnct_args()
+
+                    self._state.following.pop()
+
+                    self.match(self.input, UP, None)
+                    #action start
+                    gencode =  a + COMMA69.text + b  
+                    #action end
+
+
+                elif alt27 == 2:
+                    # treelesscss.g:303:4: ^( OPEQ IDENT expr )
+                    pass 
+                    OPEQ71=self.match(self.input, OPEQ, self.FOLLOW_OPEQ_in_fnct_args1265)
+
+                    self.match(self.input, DOWN, None)
+                    IDENT70=self.match(self.input, IDENT, self.FOLLOW_IDENT_in_fnct_args1267)
+                    self._state.following.append(self.FOLLOW_expr_in_fnct_args1269)
+                    expr72 = self.expr()
+
+                    self._state.following.pop()
+
+                    self.match(self.input, UP, None)
+                    #action start
+                    gencode =  IDENT70.text + OPEQ71.text + expr72  
+                    #action end
+
+
+                elif alt27 == 3:
+                    # treelesscss.g:305:4: term
+                    pass 
+                    self._state.following.append(self.FOLLOW_term_in_fnct_args1280)
+                    term73 = self.term()
+
+                    self._state.following.pop()
+                    #action start
+                    gencode =  term73  
+                    #action end
+
+
+
+            except RecognitionException, re:
+                self.reportError(re)
+                self.recover(self.input, re)
+        finally:
+
+            pass
+        return gencode
+
+    # $ANTLR end "fnct_args"
+
+    class hexColor_return(TreeRuleReturnScope):
+        def __init__(self):
+            super(treelesscss.hexColor_return, self).__init__()
+
+            self.gencode = None
+
+
+
+
+    # $ANTLR start "hexColor"
+    # treelesscss.g:310:1: hexColor returns [gencode] : HASH ;
+    def hexColor(self, ):
+
+        retval = self.hexColor_return()
+        retval.start = self.input.LT(1)
+
+        HASH74 = None
+
+        try:
+            try:
+                # treelesscss.g:311:2: ( HASH )
+                # treelesscss.g:311:4: HASH
+                pass 
+                HASH74=self.match(self.input, HASH, self.FOLLOW_HASH_in_hexColor1301)
+                #action start
+                retval.gencode =  HASH74.text 
+                #action end
+
+
+
+
+            except RecognitionException, re:
+                self.reportError(re)
+                self.recover(self.input, re)
+        finally:
+
+            pass
+        return retval
+
+    # $ANTLR end "hexColor"
+
+
     # Delegated rules
+
+
+    # lookup tables for DFA #22
+
+    DFA22_eot = DFA.unpack(
+        u"\12\uffff"
+        )
+
+    DFA22_eof = DFA.unpack(
+        u"\12\uffff"
+        )
+
+    DFA22_min = DFA.unpack(
+        u"\1\22\1\2\5\uffff\1\14\2\uffff"
+        )
+
+    DFA22_max = DFA.unpack(
+        u"\1\100\1\2\5\uffff\1\101\2\uffff"
+        )
+
+    DFA22_accept = DFA.unpack(
+        u"\2\uffff\1\3\1\4\1\5\1\6\1\7\1\uffff\1\1\1\2"
+        )
+
+    DFA22_special = DFA.unpack(
+        u"\12\uffff"
+        )
+
+            
+    DFA22_transition = [
+        DFA.unpack(u"\1\1\1\uffff\1\2\2\uffff\1\4\4\uffff\1\3\11\uffff\1"
+        u"\5\31\uffff\1\6"),
+        DFA.unpack(u"\1\7"),
+        DFA.unpack(u""),
+        DFA.unpack(u""),
+        DFA.unpack(u""),
+        DFA.unpack(u""),
+        DFA.unpack(u""),
+        DFA.unpack(u"\1\11\26\uffff\1\11\1\10\17\uffff\14\11\1\uffff\1\10"),
+        DFA.unpack(u""),
+        DFA.unpack(u"")
+    ]
+
+    # class definition for DFA #22
+
+    class DFA22(DFA):
+        pass
 
 
  
 
     FOLLOW_N_StyleSheet_in_styleSheet51 = frozenset([2])
-    FOLLOW_charSet_in_styleSheet56 = frozenset([3, 7, 21, 23])
-    FOLLOW_imports_in_styleSheet66 = frozenset([3, 7, 21, 23])
-    FOLLOW_body_in_styleSheet75 = frozenset([3, 7, 23])
+    FOLLOW_charSet_in_styleSheet56 = frozenset([3, 7, 22, 24])
+    FOLLOW_imports_in_styleSheet66 = frozenset([3, 7, 22, 24])
+    FOLLOW_body_in_styleSheet75 = frozenset([3, 7, 24])
     FOLLOW_CHARSET_SYM_in_charSet101 = frozenset([2])
     FOLLOW_STRING_in_charSet103 = frozenset([3])
     FOLLOW_IMPORT_SYM_in_imports141 = frozenset([2])
@@ -1843,11 +2460,11 @@ class treelesscss(TreeParser):
     FOLLOW_ruleSet_in_body204 = frozenset([1])
     FOLLOW_media_in_body211 = frozenset([1])
     FOLLOW_MEDIA_SYM_in_media240 = frozenset([2])
-    FOLLOW_media_query_in_media246 = frozenset([3, 5, 7, 23])
-    FOLLOW_body_in_media260 = frozenset([3, 7, 23])
+    FOLLOW_media_query_in_media246 = frozenset([3, 5, 7, 24])
+    FOLLOW_body_in_media260 = frozenset([3, 7, 24])
     FOLLOW_N_MediaQuery_in_media_query295 = frozenset([2])
-    FOLLOW_media_stmt_in_media_query301 = frozenset([3, 6, 27])
-    FOLLOW_media_expr_in_media_query309 = frozenset([3, 6, 27])
+    FOLLOW_media_stmt_in_media_query301 = frozenset([3, 6, 28])
+    FOLLOW_media_expr_in_media_query309 = frozenset([3, 6, 28])
     FOLLOW_IDENT_in_media_stmt335 = frozenset([1])
     FOLLOW_N_MediaExpr_in_media_expr347 = frozenset([2])
     FOLLOW_media_stmt_in_media_expr349 = frozenset([3])
@@ -1856,55 +2473,88 @@ class treelesscss(TreeParser):
     FOLLOW_declarationset_in_ruleSet394 = frozenset([3])
     FOLLOW_N_Selector_in_selector_list417 = frozenset([2])
     FOLLOW_selector_in_selector_list421 = frozenset([3])
-    FOLLOW_simpleSelector_in_selector444 = frozenset([1, 15, 27, 35, 36, 37, 40])
-    FOLLOW_combinator_in_selector453 = frozenset([15, 27, 35, 36, 37, 40])
-    FOLLOW_simpleSelector_in_selector461 = frozenset([1, 15, 27, 35, 36, 37, 40])
+    FOLLOW_simpleSelector_in_selector444 = frozenset([1, 13, 16, 28, 36, 37, 38, 41])
+    FOLLOW_combinator_in_selector453 = frozenset([13, 16, 28, 36, 37, 38, 41])
+    FOLLOW_simpleSelector_in_selector461 = frozenset([1, 13, 16, 28, 36, 37, 38, 41])
     FOLLOW_PLUS_in_combinator482 = frozenset([1])
     FOLLOW_GREATER_in_combinator491 = frozenset([1])
     FOLLOW_IDENT_in_simpleSelector514 = frozenset([1])
     FOLLOW_STAR_in_simpleSelector522 = frozenset([1])
     FOLLOW_HASH_in_simpleSelector530 = frozenset([1])
     FOLLOW_pseudo_in_simpleSelector538 = frozenset([1])
-    FOLLOW_N_Pseudo_in_pseudo557 = frozenset([2])
-    FOLLOW_COLON_in_pseudo561 = frozenset([27, 29])
-    FOLLOW_COLON_in_pseudo565 = frozenset([27])
-    FOLLOW_IDENT_in_pseudo568 = frozenset([3])
-    FOLLOW_N_Empty_in_declarationset589 = frozenset([1])
-    FOLLOW_declaration_in_declarationset594 = frozenset([1, 11, 14])
-    FOLLOW_N_Declaration_in_declaration608 = frozenset([2])
-    FOLLOW_property_in_declaration612 = frozenset([3, 17, 19, 22, 27, 49, 63])
-    FOLLOW_expr_in_declaration619 = frozenset([3, 49])
-    FOLLOW_prio_in_declaration629 = frozenset([3])
-    FOLLOW_IDENT_in_property656 = frozenset([1])
-    FOLLOW_IMPORTANT_SYM_in_prio675 = frozenset([1])
-    FOLLOW_term_in_expr696 = frozenset([1])
-    FOLLOW_SOLIDUS_in_operator717 = frozenset([1])
-    FOLLOW_COMMA_in_operator726 = frozenset([1])
-    FOLLOW_N_Empty_in_operator735 = frozenset([1])
-    FOLLOW_N_Term_in_term754 = frozenset([2])
-    FOLLOW_unaryOperator_in_term756 = frozenset([34, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62])
-    FOLLOW_termnum_in_term758 = frozenset([3])
-    FOLLOW_N_Term_in_term768 = frozenset([2])
-    FOLLOW_termnum_in_term770 = frozenset([3])
-    FOLLOW_STRING_in_term780 = frozenset([1])
-    FOLLOW_IDENT_in_term788 = frozenset([1])
-    FOLLOW_URI_in_term797 = frozenset([1])
-    FOLLOW_UNICODE_RANGE_in_term807 = frozenset([1])
-    FOLLOW_NUMBER_in_termnum827 = frozenset([1])
-    FOLLOW_PERCENTAGE_in_termnum835 = frozenset([1])
-    FOLLOW_LENGTH_in_termnum843 = frozenset([1])
-    FOLLOW_EMS_in_termnum851 = frozenset([1])
-    FOLLOW_EXS_in_termnum860 = frozenset([1])
-    FOLLOW_REMS_in_termnum869 = frozenset([1])
-    FOLLOW_CHS_in_termnum878 = frozenset([1])
-    FOLLOW_ANGLE_in_termnum887 = frozenset([1])
-    FOLLOW_TIME_in_termnum896 = frozenset([1])
-    FOLLOW_FREQ_in_termnum905 = frozenset([1])
-    FOLLOW_RESOLUTION_in_termnum914 = frozenset([1])
-    FOLLOW_VPORTLEN_in_termnum922 = frozenset([1])
-    FOLLOW_NTH_in_termnum930 = frozenset([1])
-    FOLLOW_MINUS_in_unaryOperator951 = frozenset([1])
-    FOLLOW_PLUS_in_unaryOperator959 = frozenset([1])
+    FOLLOW_attrib_in_simpleSelector545 = frozenset([1])
+    FOLLOW_N_Pseudo_in_pseudo563 = frozenset([2])
+    FOLLOW_COLON_in_pseudo567 = frozenset([28, 30])
+    FOLLOW_COLON_in_pseudo571 = frozenset([28])
+    FOLLOW_IDENT_in_pseudo574 = frozenset([3])
+    FOLLOW_N_Attrib_in_attrib597 = frozenset([2])
+    FOLLOW_attribBody_in_attrib599 = frozenset([3])
+    FOLLOW_IDENT_in_attribBody621 = frozenset([1])
+    FOLLOW_attribOper_in_attribBody630 = frozenset([2])
+    FOLLOW_IDENT_in_attribBody632 = frozenset([18, 20, 23, 28, 38, 64])
+    FOLLOW_term_in_attribBody634 = frozenset([3])
+    FOLLOW_OPEQ_in_attribOper658 = frozenset([1])
+    FOLLOW_INCLUDES_in_attribOper668 = frozenset([1])
+    FOLLOW_DASHMATCH_in_attribOper676 = frozenset([1])
+    FOLLOW_PREFIXMATCH_in_attribOper684 = frozenset([1])
+    FOLLOW_SUFFIXMATCH_in_attribOper692 = frozenset([1])
+    FOLLOW_SUBSTRINGMATCH_in_attribOper700 = frozenset([1])
+    FOLLOW_N_Empty_in_declarationset716 = frozenset([1])
+    FOLLOW_declaration_in_declarationset721 = frozenset([1, 11, 14])
+    FOLLOW_N_Declaration_in_declaration735 = frozenset([2])
+    FOLLOW_property_in_declaration739 = frozenset([3, 15, 18, 20, 23, 27, 28, 38, 50, 51, 64])
+    FOLLOW_expr_in_declaration746 = frozenset([3, 50])
+    FOLLOW_prio_in_declaration756 = frozenset([3])
+    FOLLOW_IDENT_in_property783 = frozenset([1])
+    FOLLOW_IMPORTANT_SYM_in_prio802 = frozenset([1])
+    FOLLOW_operator_in_expr823 = frozenset([2])
+    FOLLOW_expr_in_expr829 = frozenset([15, 18, 20, 23, 27, 28, 38, 51, 64])
+    FOLLOW_expr_in_expr833 = frozenset([3])
+    FOLLOW_term_in_expr846 = frozenset([1])
+    FOLLOW_SOLIDUS_in_operator867 = frozenset([1])
+    FOLLOW_COMMA_in_operator876 = frozenset([1])
+    FOLLOW_N_Space_in_operator885 = frozenset([1])
+    FOLLOW_N_Term_in_term904 = frozenset([2])
+    FOLLOW_unaryOperator_in_term906 = frozenset([12, 35, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63])
+    FOLLOW_termnum_in_term908 = frozenset([3])
+    FOLLOW_N_Term_in_term918 = frozenset([2])
+    FOLLOW_termnum_in_term920 = frozenset([3])
+    FOLLOW_STRING_in_term930 = frozenset([1])
+    FOLLOW_IDENT_in_term938 = frozenset([1])
+    FOLLOW_URI_in_term947 = frozenset([1])
+    FOLLOW_hexColor_in_term956 = frozenset([1])
+    FOLLOW_UNICODE_RANGE_in_term964 = frozenset([1])
+    FOLLOW_NUMBER_in_termnum984 = frozenset([1])
+    FOLLOW_PERCENTAGE_in_termnum992 = frozenset([1])
+    FOLLOW_LENGTH_in_termnum1000 = frozenset([1])
+    FOLLOW_EMS_in_termnum1008 = frozenset([1])
+    FOLLOW_EXS_in_termnum1017 = frozenset([1])
+    FOLLOW_REMS_in_termnum1026 = frozenset([1])
+    FOLLOW_CHS_in_termnum1035 = frozenset([1])
+    FOLLOW_ANGLE_in_termnum1044 = frozenset([1])
+    FOLLOW_TIME_in_termnum1053 = frozenset([1])
+    FOLLOW_FREQ_in_termnum1062 = frozenset([1])
+    FOLLOW_RESOLUTION_in_termnum1071 = frozenset([1])
+    FOLLOW_VPORTLEN_in_termnum1079 = frozenset([1])
+    FOLLOW_NTH_in_termnum1087 = frozenset([1])
+    FOLLOW_function_in_termnum1096 = frozenset([1])
+    FOLLOW_MINUS_in_unaryOperator1116 = frozenset([1])
+    FOLLOW_PLUS_in_unaryOperator1124 = frozenset([1])
+    FOLLOW_N_Function_in_function1144 = frozenset([2])
+    FOLLOW_fnct_name_in_function1146 = frozenset([18, 20, 23, 27, 28, 38, 44, 64])
+    FOLLOW_fnct_args_in_function1148 = frozenset([3])
+    FOLLOW_FUNCTION_in_fnct_name1170 = frozenset([2])
+    FOLLOW_IDENT_in_fnct_name1181 = frozenset([30, 39])
+    FOLLOW_COLON_in_fnct_name1190 = frozenset([3, 28, 30, 39])
+    FOLLOW_DOT_in_fnct_name1199 = frozenset([3, 28, 30, 39])
+    FOLLOW_COMMA_in_fnct_args1244 = frozenset([2])
+    FOLLOW_fnct_args_in_fnct_args1248 = frozenset([18, 20, 23, 27, 28, 38, 44, 64])
+    FOLLOW_fnct_args_in_fnct_args1252 = frozenset([3])
+    FOLLOW_OPEQ_in_fnct_args1265 = frozenset([2])
+    FOLLOW_IDENT_in_fnct_args1267 = frozenset([15, 18, 20, 23, 27, 28, 38, 51, 64])
+    FOLLOW_expr_in_fnct_args1269 = frozenset([3])
+    FOLLOW_term_in_fnct_args1280 = frozenset([1])
+    FOLLOW_HASH_in_hexColor1301 = frozenset([1])
 
 
 

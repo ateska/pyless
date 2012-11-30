@@ -172,7 +172,7 @@ simpleSelector returns [gencode]
 	| STAR		{ $gencode = $STAR.text; }
 	| HASH		{ $gencode = $HASH.text; }
 	| pseudo	{ $gencode = $pseudo.gencode; }
-//	| attrib
+	| attrib	{ $gencode = $attrib.gencode; }
 	;
 
 pseudo returns [gencode]
@@ -180,6 +180,26 @@ pseudo returns [gencode]
 		{ $gencode = $a.text + ($b.text if $b is not None else '') + $IDENT.text; }
 
 //	| ^(N_Pseudo a=COLON b=COLON? pseudoFunction)
+	;
+
+attrib returns [gencode]
+	: ^(N_Attrib attribBody )
+			{ $gencode = '[' + $attribBody.gencode + ']' ; }
+	;
+
+attribBody returns [gencode]
+	: IDENT		{ $gencode = $IDENT.text; }
+	| ^(attribOper IDENT term )
+			{ $gencode = $IDENT.text + $attribOper.gencode + $term.gencode; }
+	;
+
+fragment attribOper returns [gencode]
+	: OPEQ 			{ $gencode = $OPEQ.text; }
+	| INCLUDES		{ $gencode = $INCLUDES.text; }
+	| DASHMATCH		{ $gencode = $DASHMATCH.text; }
+	| PREFIXMATCH		{ $gencode = $PREFIXMATCH.text; }
+	| SUFFIXMATCH		{ $gencode = $SUFFIXMATCH.text; }
+	| SUBSTRINGMATCH	{ $gencode = $SUBSTRINGMATCH.text; }
 	;
 
 // ---------
@@ -213,14 +233,16 @@ prio returns [gencode]
 
 
 expr returns [gencode]
-	//: ^(operator term term)*
-	: term			{ $gencode = $term.gencode; }
+	: ^( operator
+		a=expr b=expr 
+	)			{ $gencode = $a.gencode + $operator.gencode + $b.gencode; }
+	| term			{ $gencode = $term.gencode; }
 	;
 
 fragment operator returns [gencode]
 	: SOLIDUS 		{ $gencode = $SOLIDUS.text; }
 	| COMMA 		{ $gencode = $COMMA.text; }
-	| N_Empty		{ $gencode = ''; }
+	| N_Space		{ $gencode = ' '; }
 	;
 
 term returns [gencode]
@@ -229,7 +251,7 @@ term returns [gencode]
 	| STRING		{ $gencode = $STRING.text; }
 	| IDENT			{ $gencode = $IDENT.text; }
 	| URI			{ $gencode = $URI.text; }
-//	| hexColor
+	| hexColor		{ $gencode = $hexColor.text; }
 	| UNICODE_RANGE		{ $gencode = $UNICODE_RANGE.text; }
 	;
 
@@ -247,11 +269,44 @@ fragment termnum returns [gencode]
 	| RESOLUTION		{ $gencode = $RESOLUTION.text.strip(); }
 	| VPORTLEN		{ $gencode = $VPORTLEN.text.strip(); }
 	| NTH			{ $gencode = $NTH.text.strip(); }
-//	| function
+	| function 		{ $gencode = $function.gencode; }
 	;
 
 
 unaryOperator returns [gencode]
 	: MINUS		{ $gencode = $MINUS.text; }
 	| PLUS		{ $gencode = $PLUS.text; }
+	;
+
+
+function returns [gencode]
+	: ^(N_Function fnct_name fnct_args)
+			{ $gencode = $fnct_name.gencode + $fnct_args.gencode + ')'; }
+	;
+
+fnct_name returns [gencode]
+	: ^(FUNCTION
+			{ $gencode = ''; }
+			(IDENT { $gencode += $IDENT.text; }
+				(COLON { $gencode += $COLON.text; }
+				|DOT   { $gencode += $DOT.text; }
+				)+
+			) * 
+			{ $gencode += $FUNCTION.text; }
+	)
+	;
+
+fragment fnct_args returns [gencode]
+	: ^(COMMA a=fnct_args b=fnct_args)
+			{ $gencode = $a.gencode + $COMMA.text + $b.gencode ; }
+
+	| ^(OPEQ IDENT expr)
+			{ $gencode = $IDENT.text + $OPEQ.text + $expr.gencode ; }
+	| term
+			{ $gencode = $term.gencode ; }
+	;
+
+
+hexColor returns [gencode]
+	: HASH		{ $gencode = $HASH.text; }
 	;
