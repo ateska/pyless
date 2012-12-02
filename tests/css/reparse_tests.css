@@ -1,0 +1,99 @@
+@charset "utf-8";
+
+@import "xxx.a";
+@import url(example.css) screen and (color), projection and (color);
+
+@media print {
+	@media all {
+	}
+}
+
+@media screen and (device-width: 800px) and (xxxxx) {
+}
+
+a, b c {
+
+}
+
+a:active {
+	margin: -5px !important;
+	padding: 5px 5px 5px 5px;
+	background-color: #112233 !important;
+}
+
+a::active {
+}
+
+button[disabled]
+{
+}
+
+pre[class='code']
+{
+	background-color: #A1B2C3;
+	background-color: rgb(1,2,3,4);
+	background-color: rgb(a=1,b=2,c=3,d=4);
+	background-color: a1.b2.c3:rgb(a=1,b=2,c=3,d=4);
+}
+
+@page :right {
+  margin: 3cm;
+}
+
+@page {
+  margin: 3cm;
+}
+
+
+@font-face
+{
+	font-family: myFirstFont;
+	src: url('Sansation_Light.ttf'),
+ url('Sansation_Light.eot'); /* IE9 */
+}
+
+@keyframes diagonal-slide {
+
+from {
+      top: 100px;
+      animation-timing-function: ease-out;
+    }
+
+    25% {
+      top: 50px;
+      animation-timing-function: ease-in;
+    }
+
+    50% {
+      top: 100px;
+      animation-timing-function: ease-out;
+    }
+
+    75% {
+      top: 75px;
+      animation-timing-function: ease-in;
+    }
+
+    to {
+      top: 100px;
+    }
+}
+
+a {
+background: url(http://www.example.org/image);
+color: rgb(100, 200, 50 );
+content: counter(list-item) ". ";
+width: calc(50% - 2em);
+}
+
+
+a[title="a not so very long title"] {/*...*/}
+
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+@font-face { font-family: 'Garamond Pro'; src: url("/fonts/garamond-pro.ttf"); }
+@font-face { font-family: 'Garamond Pro'; src:url("/fonts/garamond-pro.ttf"); }
