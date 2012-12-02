@@ -1,4 +1,4 @@
-# $ANTLR 3.1.3 Mar 18, 2009 10:09:25 lesscss.g 2012-12-01 00:56:40
+# $ANTLR 3.1.3 Mar 18, 2009 10:09:25 lesscss.g 2012-12-02 01:03:55
 
 import sys
 from antlr3 import *
@@ -296,7 +296,7 @@ class lesscssParser(Parser):
                     stream_EOF.add(EOF4)
 
                 # AST Rewrite
-                # elements: body, imports, charSet
+                # elements: body, charSet, imports
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -1183,7 +1183,7 @@ class lesscssParser(Parser):
                     stream_RPAREN.add(RPAREN33)
 
                 # AST Rewrite
-                # elements: expr, media_stmt
+                # elements: media_stmt, expr
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -1670,7 +1670,7 @@ class lesscssParser(Parser):
                     stream_RBRACE.add(RBRACE54)
 
                 # AST Rewrite
-                # elements: keyframe_selector, declarationset
+                # elements: declarationset, keyframe_selector
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -1888,7 +1888,7 @@ class lesscssParser(Parser):
                     stream_RBRACE.add(RBRACE61)
 
                 # AST Rewrite
-                # elements: selector, declarationset
+                # elements: declarationset, selector
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -2709,7 +2709,7 @@ class lesscssParser(Parser):
                         stream_IDENT.add(IDENT77)
 
                     # AST Rewrite
-                    # elements: IDENT, a, b
+                    # elements: a, b, IDENT
                     # token labels: b, a
                     # rule labels: retval
                     # token list labels: 
@@ -2760,7 +2760,7 @@ class lesscssParser(Parser):
                         stream_pseudoFunction.add(pseudoFunction78.tree)
 
                     # AST Rewrite
-                    # elements: pseudoFunction, b, a
+                    # elements: pseudoFunction, a, b
                     # token labels: b, a
                     # rule labels: retval
                     # token list labels: 
@@ -2973,7 +2973,7 @@ class lesscssParser(Parser):
                         stream_RPAREN.add(RPAREN86)
 
                     # AST Rewrite
-                    # elements: LBRACKET, RBRACKET, FUNCTION, attribBody
+                    # elements: FUNCTION, attribBody, LBRACKET, RBRACKET
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -3024,7 +3024,7 @@ class lesscssParser(Parser):
                         stream_RPAREN.add(RPAREN89)
 
                     # AST Rewrite
-                    # elements: FUNCTION, pseudo
+                    # elements: pseudo, FUNCTION
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -3595,7 +3595,7 @@ class lesscssParser(Parser):
 
 
                     # AST Rewrite
-                    # elements: prio, property, expr
+                    # elements: expr, prio, property
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -4316,7 +4316,7 @@ class lesscssParser(Parser):
                             stream_PERCENTAGE.add(PERCENTAGE117)
 
                         # AST Rewrite
-                        # elements: PERCENTAGE, unaryOperator
+                        # elements: unaryOperator, PERCENTAGE
                         # token labels: 
                         # rule labels: retval
                         # token list labels: 
@@ -4361,7 +4361,7 @@ class lesscssParser(Parser):
                             stream_LENGTH.add(LENGTH118)
 
                         # AST Rewrite
-                        # elements: unaryOperator, LENGTH
+                        # elements: LENGTH, unaryOperator
                         # token labels: 
                         # rule labels: retval
                         # token list labels: 
@@ -4406,7 +4406,7 @@ class lesscssParser(Parser):
                             stream_EMS.add(EMS119)
 
                         # AST Rewrite
-                        # elements: unaryOperator, EMS
+                        # elements: EMS, unaryOperator
                         # token labels: 
                         # rule labels: retval
                         # token list labels: 
@@ -4451,7 +4451,7 @@ class lesscssParser(Parser):
                             stream_EXS.add(EXS120)
 
                         # AST Rewrite
-                        # elements: EXS, unaryOperator
+                        # elements: unaryOperator, EXS
                         # token labels: 
                         # rule labels: retval
                         # token list labels: 
@@ -4541,7 +4541,7 @@ class lesscssParser(Parser):
                             stream_CHS.add(CHS122)
 
                         # AST Rewrite
-                        # elements: CHS, unaryOperator
+                        # elements: unaryOperator, CHS
                         # token labels: 
                         # rule labels: retval
                         # token list labels: 
@@ -4586,7 +4586,7 @@ class lesscssParser(Parser):
                             stream_ANGLE.add(ANGLE123)
 
                         # AST Rewrite
-                        # elements: unaryOperator, ANGLE
+                        # elements: ANGLE, unaryOperator
                         # token labels: 
                         # rule labels: retval
                         # token list labels: 
@@ -4676,7 +4676,7 @@ class lesscssParser(Parser):
                             stream_FREQ.add(FREQ125)
 
                         # AST Rewrite
-                        # elements: unaryOperator, FREQ
+                        # elements: FREQ, unaryOperator
                         # token labels: 
                         # rule labels: retval
                         # token list labels: 
@@ -4721,7 +4721,7 @@ class lesscssParser(Parser):
                             stream_RESOLUTION.add(RESOLUTION126)
 
                         # AST Rewrite
-                        # elements: unaryOperator, RESOLUTION
+                        # elements: RESOLUTION, unaryOperator
                         # token labels: 
                         # rule labels: retval
                         # token list labels: 
@@ -4766,7 +4766,7 @@ class lesscssParser(Parser):
                             stream_VPORTLEN.add(VPORTLEN127)
 
                         # AST Rewrite
-                        # elements: unaryOperator, VPORTLEN
+                        # elements: VPORTLEN, unaryOperator
                         # token labels: 
                         # rule labels: retval
                         # token list labels: 
@@ -4859,7 +4859,7 @@ class lesscssParser(Parser):
                             stream_function.add(function129.tree)
 
                         # AST Rewrite
-                        # elements: function, unaryOperator
+                        # elements: unaryOperator, function
                         # token labels: 
                         # rule labels: retval
                         # token list labels: 
@@ -5161,7 +5161,7 @@ class lesscssParser(Parser):
                         stream_RPAREN.add(RPAREN141)
 
                     # AST Rewrite
-                    # elements: expr, fnct_name
+                    # elements: fnct_name, expr
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
