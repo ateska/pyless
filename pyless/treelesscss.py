@@ -1,4 +1,4 @@
-# $ANTLR 3.1.3 Mar 18, 2009 10:09:25 treelesscss.g 2012-12-02 20:15:29
+# $ANTLR 3.1.3 Mar 18, 2009 10:09:25 treelesscss.g 2012-12-02 23:12:03
 
 import sys
 from antlr3 import *
@@ -820,7 +820,7 @@ class treelesscss(TreeParser):
 
                 #action start
                      
-                self.writeln('@fontface' + self.EOLLBRACKET);
+                self.writeln('@font-face' + self.EOLLBRACKET);
                 self.indent_level += 1;
                 				
                 #action end

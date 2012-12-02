@@ -121,7 +121,7 @@ media_expr returns [gencode]
 fontface
 	: ^(FONTFACE_SYM
 				{
-				  self.writeln('@fontface' + self.EOLLBRACKET);
+				  self.writeln('@font-face' + self.EOLLBRACKET);
 				  self.indent_level += 1;
 				}
 		declarationset
