@@ -1,10 +1,11 @@
+import sys
 from . import antlr3
 from .treelesscss import treelesscss as _treelesscss
 
 #
 
 class lesscsstwalker(_treelesscss):
-	'''Tree parser'''
+	'''Tree walker/parser'''
 
 	EOLSEMI = ';'
 	LISTCOMA = ','
@@ -12,17 +13,23 @@ class lesscsstwalker(_treelesscss):
 	EOLRBRACKET = '}'
 
 
-	def __init__(self, input, state=None, *args, **kwargs):
+	def __init__(self, input, state=None, output=sys.stdout, *args, **kwargs):
 		super(lesscsstwalker, self).__init__(input, state, *args, **kwargs)
 		self.indent_level = 0
+		self.output = output
+		self.errormsgcache = []
 
-	def output(self, codetext):
-		print self.indent_level*'\t' + codetext
+	def writeln(self, codetext):
+		self.output.write(self.indent_level*'\t' + codetext + '\n')
+
+
+	def emitErrorMessage(self, msg):
+		self.errormsgcache.append(msg)
 
 #
 
-def twalk(pres, tokens):
+def twalk(pres, tokens, output=sys.stdout):
 	nodes = antlr3.tree.CommonTreeNodeStream(pres.tree)
 	nodes.setTokenStream(tokens)
-	walker = lesscsstwalker(nodes)
+	walker = lesscsstwalker(nodes,output=output)
 	return walker, walker.styleSheet()

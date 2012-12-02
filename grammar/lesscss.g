@@ -56,6 +56,7 @@ tokens {
 	N_Pseudo;
 	N_PseudoFunction;
 	N_Term;
+	N_Expr;
 }
 
 
@@ -341,7 +342,7 @@ function
 		-> ^(N_Function fnct_name fnct_args)
 
 	| fnct_name expr RPAREN
-		-> ^(N_Function fnct_name expr)
+		-> ^(N_Function fnct_name ^(N_Expr expr) )
 
 	;
 

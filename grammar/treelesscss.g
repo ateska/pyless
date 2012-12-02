@@ -13,10 +13,10 @@ options {
 styleSheet
 	: ^( N_StyleSheet
 		(
-		  charSet	{ self.output($charSet.gencode); } 
+		  charSet	{ self.writeln($charSet.gencode); } 
 		)?
 		(
-		  imports	{ self.output($imports.gencode); }
+		  imports	{ self.writeln($imports.gencode); }
 		 )*
 		body*	// Body is 'direct' output function
 	);
@@ -37,9 +37,9 @@ imports returns [gencode]
 				  $gencode = '@import ';
 				  mqs = list(); 
 				}
-		importUrl	{ $gencode += $importUrl.text ; }
+		importUrl	{ $gencode += $importUrl.text; }
 		(
-		  media_query	{ mqs.append($media_query.gencode) ; }
+		  media_query	{ mqs.append($media_query.gencode); }
 		) *
 				{
 				  if len(mqs) > 0: $gencode += ' ' + self.LISTCOMA.join(mqs);
@@ -78,13 +78,13 @@ media
 				  mediahead = '@media';
 				  if len(mqs) > 0: mediahead += ' ' + self.LISTCOMA.join(mqs);
 				  mediahead += self.EOLLBRACKET;
-				  self.output(mediahead);
+				  self.writeln(mediahead);
 				  self.indent_level += 1
 				}
 		body*
 				{
 				  self.indent_level -= 1
-				  self.output(self.EOLRBRACKET);
+				  self.writeln(self.EOLRBRACKET);
 				}
 	);
 
@@ -121,13 +121,13 @@ media_expr returns [gencode]
 fontface
 	: ^(FONTFACE_SYM
 				{
-				  self.output('@fontface' + self.EOLLBRACKET);
+				  self.writeln('@fontface' + self.EOLLBRACKET);
 				  self.indent_level += 1;
 				}
 		declarationset
 				{
 				  self.indent_level -= 1
-				  self.output(self.EOLRBRACKET);
+				  self.writeln(self.EOLRBRACKET);
 				}
 	);
 
@@ -140,13 +140,13 @@ page
 		  pseudoPage	{ out += ' ' + $pseudoPage.text; }
 		)?
 				{
-				  self.output(out + self.EOLLBRACKET);
+				  self.writeln(out + self.EOLLBRACKET);
 				  self.indent_level += 1;
 				}
 		declarationset
 				{
 				  self.indent_level -= 1
-				  self.output(self.EOLRBRACKET);
+				  self.writeln(self.EOLRBRACKET);
 				}
 	);
 
@@ -161,13 +161,13 @@ pseudoPage
 keyframes
 	: ^(KEYFRAMES_SYM IDENT
 				{
-				  self.output('@keyframes ' + $IDENT.text + self.EOLLBRACKET);
+				  self.writeln('@keyframes ' + $IDENT.text + self.EOLLBRACKET);
 				  self.indent_level += 1;
 				}
 		keyframes_block*
 				{
 				  self.indent_level -= 1
-				  self.output(self.EOLRBRACKET);
+				  self.writeln(self.EOLRBRACKET);
 				}
 	);
 
@@ -177,13 +177,13 @@ keyframes_block
 		  		{ ks.append($keyframe_selector.gencode); }
 		)+
 				{
-				  self.output(' '.join(ks) + self.EOLLBRACKET);
+				  self.writeln(' '.join(ks) + self.EOLLBRACKET);
 				  self.indent_level += 1;
 				}
 		declarationset
 				{
 				  self.indent_level -= 1
-				  self.output(self.EOLRBRACKET);
+				  self.writeln(self.EOLRBRACKET);
 				}
 	);
 
@@ -204,13 +204,13 @@ ruleSet
 		 selector_list	{ sellist.append($selector_list.gencode); } 
 		)+
 				{
-				  self.output(self.LISTCOMA.join(sellist) + self.EOLLBRACKET);
+				  self.writeln(self.LISTCOMA.join(sellist) + self.EOLLBRACKET);
 				  self.indent_level += 1;
 				}
 		declarationset
 				{
 				  self.indent_level -= 1
-				  self.output(self.EOLRBRACKET);
+				  self.writeln(self.EOLRBRACKET);
 				}
 	);
 
@@ -257,13 +257,32 @@ pseudo returns [gencode]
 		)?
 		IDENT		{ $gencode += $IDENT.text; }
 	)
+	| ^(N_Pseudo
+		a=COLON		{ $gencode = $a.text; }
+		(
+		  b=COLON 	{ $gencode += $b.text; }
+		)?
+		pseudoFunction	{ $gencode += $pseudoFunction.gencode; }
+	);
 
-//	| ^(N_Pseudo a=COLON b=COLON? pseudoFunction)
-	;
+pseudoFunction returns [gencode]
+	: ^(N_PseudoFunction
+		FUNCTION
+		expr 		{ $gencode = $FUNCTION.text + $expr.gencode + ')'; }
+	)
+	| ^(N_PseudoFunction
+		FUNCTION LBRACKET
+		attribBody
+		RBRACKET	{ $gencode = $FUNCTION.text + '[' + $attribBody.gencode + '])'; }
+	)
+	| ^(N_PseudoFunction
+		FUNCTION
+		pseudo		{ $gencode = $FUNCTION.text + $pseudo.gencode + ')'; }
+	);
 
 attrib returns [gencode]
 	: ^(N_Attrib
-		attribBody	{ $gencode = '[' + $attribBody.gencode + ']' ; }
+		attribBody	{ $gencode = '[' + $attribBody.gencode + ']'; }
 	);
 
 attribBody returns [gencode]
@@ -302,7 +321,7 @@ declaration
 		)?
 				{
 				  #TODO: Remove last semicolon in the declarationset (how?) ...
-				  self.output(propout + self.EOLSEMI);
+				  self.writeln(propout + self.EOLSEMI);
 				}
 	);
 
@@ -372,7 +391,8 @@ function returns [gencode]
 	: ^(N_Function
 		fnct_name
 		fnct_args	{ $gencode = $fnct_name.gencode + $fnct_args.gencode + ')'; }
-	);
+	)
+	;
 
 fnct_name returns [gencode]
 	: ^(FUNCTION		{ prefix = list(); }
@@ -386,14 +406,15 @@ fnct_name returns [gencode]
 fragment fnct_args returns [gencode]
 	: ^(COMMA
 		a=fnct_args
-		b=fnct_args	{ $gencode = $a.gencode + $COMMA.text + $b.gencode ; }
+		b=fnct_args	{ $gencode = $a.gencode + $COMMA.text + $b.gencode; }
 	)
 	| ^(OPEQ
 		IDENT
-		expr 		{ $gencode = $IDENT.text + $OPEQ.text + $expr.gencode ; }
+		expr 		{ $gencode = $IDENT.text + $OPEQ.text + $expr.gencode; }
 	)
-	| term 			{ $gencode = $term.gencode ; }
-	;
+	| ^(N_Expr
+		expr 		{ $gencode = $expr.gencode; }
+	);
 
 
 hexColor
