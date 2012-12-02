@@ -144,7 +144,7 @@ page
 		{	out = '@page'}
 		(
 			pseudoPage
-			{ out += ' ' + $pseudoPage.gencode}
+			{ out += ' ' + $pseudoPage.text}
 		)?
 		{
 			self.output(out + self.EOLLBRACKET);
@@ -158,8 +158,8 @@ page
 	)
 	;
 
-pseudoPage returns [gencode]
-	: IDENT 	{ $gencode = $IDENT.text; }
+pseudoPage
+	: IDENT
 	;
 
 
@@ -281,16 +281,16 @@ attrib returns [gencode]
 attribBody returns [gencode]
 	: IDENT		{ $gencode = $IDENT.text; }
 	| ^(attribOper IDENT term )
-			{ $gencode = $IDENT.text + $attribOper.gencode + $term.gencode; }
+			{ $gencode = $IDENT.text + $attribOper.text + $term.gencode; }
 	;
 
-fragment attribOper returns [gencode]
-	: OPEQ 			{ $gencode = $OPEQ.text; }
-	| INCLUDES		{ $gencode = $INCLUDES.text; }
-	| DASHMATCH		{ $gencode = $DASHMATCH.text; }
-	| PREFIXMATCH		{ $gencode = $PREFIXMATCH.text; }
-	| SUFFIXMATCH		{ $gencode = $SUFFIXMATCH.text; }
-	| SUBSTRINGMATCH	{ $gencode = $SUBSTRINGMATCH.text; }
+fragment attribOper
+	: OPEQ
+	| INCLUDES
+	| DASHMATCH
+	| PREFIXMATCH
+	| SUFFIXMATCH
+	| SUBSTRINGMATCH
 	;
 
 // ---------
@@ -304,7 +304,7 @@ declarationset
 
 declaration
 	: ^(N_Declaration
-		property { propout = $property.gencode +  ":"; }
+		property { propout = $property.text +  ":"; }
 		(expr { propout += $expr.gencode} )?
 		(prio { propout += ' !important'} )?
 		{
@@ -314,12 +314,12 @@ declaration
 	)
 	;
 
-property returns [gencode]
-	: IDENT			{ $gencode = $IDENT.text; }
+property
+	: IDENT
 	;
 
-prio returns [gencode]
-	: IMPORTANT_SYM 	{ $gencode = $IMPORTANT_SYM.text; }
+prio
+	: IMPORTANT_SYM
 	;
 
 
@@ -337,7 +337,7 @@ fragment operator returns [gencode]
 	;
 
 term returns [gencode]
-	: ^(N_Term unaryOperator termnum) 	{ $gencode = $unaryOperator.gencode + $termnum.gencode; }
+	: ^(N_Term unaryOperator termnum) 	{ $gencode = $unaryOperator.text + $termnum.gencode; }
 	| ^(N_Term termnum)			{ $gencode = $termnum.gencode; }
 	| STRING		{ $gencode = $STRING.text; }
 	| IDENT			{ $gencode = $IDENT.text; }
@@ -364,9 +364,9 @@ fragment termnum returns [gencode]
 	;
 
 
-unaryOperator returns [gencode]
-	: MINUS		{ $gencode = $MINUS.text; }
-	| PLUS		{ $gencode = $PLUS.text; }
+unaryOperator
+	: MINUS
+	| PLUS
 	;
 
 
@@ -377,14 +377,12 @@ function returns [gencode]
 
 fnct_name returns [gencode]
 	: ^(FUNCTION
-			{ $gencode = ''; }
-			(IDENT { $gencode += $IDENT.text; }
-				(COLON { $gencode += $COLON.text; }
-				|DOT   { $gencode += $DOT.text; }
-				)+
-			) * 
-			{ $gencode += $FUNCTION.text; }
-	)
+				{ prefix = []; }
+		( IDENT 	{ prefix.append($IDENT.text); }
+		| COLON 	{ prefix.append($COLON.text); }
+		| DOT		{ prefix.append($DOT.text); }
+		)* 
+	) { $gencode = ''.join(prefix) + $FUNCTION.text; }
 	;
 
 fragment fnct_args returns [gencode]
@@ -398,6 +396,6 @@ fragment fnct_args returns [gencode]
 	;
 
 
-hexColor returns [gencode]
-	: HASH		{ $gencode = $HASH.text; }
+hexColor
+	: HASH
 	;
