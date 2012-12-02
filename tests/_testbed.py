@@ -1,4 +1,4 @@
-import unittest, glob, os, tempfile
+import unittest, glob, os, StringIO
 import pyless
 from pyless.antlr3 import tree
 from pyless import dotout
@@ -30,13 +30,17 @@ class FileBasedParserTest(unittest.TestCase):
 		dotout.save_result(presult, fname+".dot")
 
 		# Tree walk
-		output = tempfile.TemporaryFile()
+		output = StringIO.StringIO()
 		twalker, tresult = pyless.twalk(presult, tokens, output=output)
 		if twalker.getNumberOfSyntaxErrors() > 0:
 			self.fail("Tree walker errors:\n" + '\n'.join(twalker.errormsgcache))
 
 		output.seek(0)
-		self._reparse(output)
+		output2nd = self._reparse(output)
+
+		# Compare outputs - must be the same
+		output.seek(0)
+		self.assertEqual(output.getvalue(), output2nd.getvalue())
 
 
 	def _reparse(self, output):
@@ -49,6 +53,15 @@ class FileBasedParserTest(unittest.TestCase):
 
 		r = presult.tree.toStringTree()
 		self.assertIsNotNone(r, "Parsing (reparse) silently failed!")
+
+		# Tree walk
+		output = StringIO.StringIO()
+		twalker, tresult = pyless.twalk(presult, tokens, output=output)
+		if twalker.getNumberOfSyntaxErrors() > 0:
+			self.fail("Tree walker errors:\n" + '\n'.join(twalker.errormsgcache))
+
+		output.seek(0)
+		return output
 
 
 	@classmethod
