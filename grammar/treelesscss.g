@@ -137,7 +137,7 @@ fontface
 page
 	: ^(PAGE_SYM 		{ out = '@page'; }
 		(
-		  pseudoPage	{ out += ' ' + $pseudoPage.text; }
+		  pseudoPage	{ out += ' ' + $pseudoPage.gencode; }
 		)?
 				{
 				  self.writeln(out + self.EOLLBRACKET);
@@ -150,8 +150,8 @@ page
 				}
 	);
 
-pseudoPage
-	: IDENT
+fragment pseudoPage returns [gencode]
+	: IDENT 		{ $gencode = $IDENT.text; }
 	;
 
 
@@ -177,7 +177,7 @@ keyframes_block
 		  		{ ks.append($keyframe_selector.gencode); }
 		)+
 				{
-				  self.writeln(' '.join(ks) + self.EOLLBRACKET);
+				  self.writeln(self.LISTCOMA.join(ks) + self.EOLLBRACKET);
 				  self.indent_level += 1;
 				}
 		declarationset
@@ -289,16 +289,16 @@ attribBody returns [gencode]
 	: IDENT			{ $gencode = $IDENT.text; }
 	| ^(attribOper
 		IDENT
-		term 		{ $gencode = $IDENT.text + $attribOper.text + $term.gencode; }
+		term 		{ $gencode = $IDENT.text + $attribOper.gencode + $term.gencode; }
 	);
 
-fragment attribOper
-	: OPEQ
-	| INCLUDES
-	| DASHMATCH
-	| PREFIXMATCH
-	| SUFFIXMATCH
-	| SUBSTRINGMATCH
+fragment attribOper returns [gencode]
+	: OPEQ			{ $gencode = $OPEQ.text; }
+	| INCLUDES		{ $gencode = $INCLUDES.text; }
+	| DASHMATCH		{ $gencode = $DASHMATCH.text; }
+	| PREFIXMATCH		{ $gencode = $PREFIXMATCH.text; }
+	| SUFFIXMATCH		{ $gencode = $SUFFIXMATCH.text; }
+	| SUBSTRINGMATCH	{ $gencode = $SUBSTRINGMATCH.text; }
 	;
 
 // ---------
@@ -312,7 +312,7 @@ declarationset
 
 declaration
 	: ^(N_Declaration
-		property 	{ propout = $property.text +  ":"; }
+		property 	{ propout = $property.gencode +  ":";  }
 		(
 		  expr		{ propout += $expr.gencode}
 		)?
@@ -325,8 +325,8 @@ declaration
 				}
 	);
 
-property
-	: IDENT
+property returns [gencode]
+	: IDENT 		{ $gencode = $IDENT.text; }
 	;
 
 prio

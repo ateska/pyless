@@ -3,4 +3,4 @@
 
 cd $(dirname ${0})
 
-exec python -m unittest discover
+exec python -m unittest discover $@
