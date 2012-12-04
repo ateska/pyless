@@ -359,7 +359,9 @@ term returns [gencode]
 	| STRING		{ $gencode = $STRING.text; }
 	| IDENT			{ $gencode = $IDENT.text; }
 	| URI			{ $gencode = $URI.text; }
-	| hexColor		{ $gencode = $hexColor.text; }
+	| ^(N_Term
+		hexColor	{ $gencode = $hexColor.text; }
+	)
 	| UNICODE_RANGE		{ $gencode = $UNICODE_RANGE.text; }
 	;
 

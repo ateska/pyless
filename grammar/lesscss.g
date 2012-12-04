@@ -57,6 +57,8 @@ tokens {
 	N_PseudoFunction;
 	N_Term;
 	N_Expr;
+
+	N_Less_VarDef;
 }
 
 
@@ -76,7 +78,7 @@ styleSheet
 // Character set.   Picks up the user specified character set, should it be present.
 //
 charSet
-	: CHARSET_SYM^ STRING SEMI !
+	: CHARSET_SYM^ STRING SEMI!
 	;
 
 // ---------
@@ -101,6 +103,7 @@ body
 	| page
 	| fontface
 	| keyframes
+	| less_variable_def
 	;   
 
 
@@ -179,6 +182,17 @@ keyframe_selector
 
 
 // ---------
+// LESS Variables
+//
+less_variable_def
+	: LESS_VARNAME COLON term SEMI
+		-> ^(N_Less_VarDef LESS_VARNAME term)
+//TODO: less_variable_expr - e.g. (@nice-blue + #111)
+//	| LESS_VARNAME COLON LPAREN expr RPAREN SEMI
+//		-> ^(N_Less_VarDef LESS_VARNAME less_variable_expr)
+	;
+
+// ---------
 // Rules
 //
 ruleSet
@@ -217,7 +231,7 @@ elementSubsequent
 	: HASH
 	| cssClass
 	| pseudo
-	| attrib
+	| attrib	
 	;
 
 cssClass
@@ -291,6 +305,7 @@ property
 	| STAR a=IDENT
 		{ $a.setText('*' + $a.getText()); } // Add '*' to IDENT token
 		-> IDENT
+
 	;
 
 prio
@@ -327,8 +342,9 @@ term
 	| STRING
 	| IDENT
 	| URI
-	| hexColor
+	| hexColor		-> ^(N_Term hexColor)
 	| UNICODE_RANGE
+	| LESS_VARNAME
 	;
 
 unaryOperator
@@ -768,6 +784,14 @@ KEYFRAMES_SYM	: '@' K E Y F R A M E S
 		| '@' '-' M S '-' K E Y F R A M E S
 		| '@' '-' O '-' K E Y F R A M E S
 		;
+
+// -------------
+// LESS Variable name. 
+//
+LESS_VARNAME
+	: '@'+ NMSTART NMCHAR*
+	;
+
 
 IMPORTANT_SYM	: '!' (WS|COMMENT)* I M P O R T A N T ;
 
